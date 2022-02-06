@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contract;
+use Barryvdh\DomPDF\PDF as DomPDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use PDF;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ContractController
@@ -26,8 +30,12 @@ class ContractController extends Controller
 
     public function printPDF($id) 
     {
+        ini_set('max_execution_time', 400);
         $contract = Contract::find($id);
-        return view('contract.pdf', compact('contract'));
+        //dd($contract);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('contract.pdf', ['contract' => $contract])->setPaper('a4', 'portrait');
+        return $pdf->stream();
     }
 
     /**

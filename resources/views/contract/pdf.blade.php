@@ -1,47 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel 8 PDF</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-md-8">
-                <h2>Contracto xxxxxx</h2>
-            </div>
-            <div class="col-md-4">
-                <div class="mb-4 d-flex justify-content-end">
-                    <a class="btn btn-primary" href="{{ URL::to('#') }}">Convertir a PDF</a>
-                </div>
-            </div>
+  <head>
+    <meta charset="utf-8">
+    <title>Contrato No {{ $contract->contractNum }} - {{ $contract->arrendatarioName}}</title>
+    <link rel="stylesheet" href="css/style.css" media="all" />
+  </head>
+  <body>
+    <header class="clearfix">
+     
+        <div id="logo">
+          <img src="logo2.png">
+          <h2 class="name">Indicaciones de Contrato</h2>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <table class="table">
-                    <caption>Lista de productos</caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">SKU</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Descripción</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        
-                    </tbody>
-                  </table>
-            </div>
+        <div id="company">
+          <h2 class="name">{{ $contract->contractNum }}</h2>
+          <div>Asegurable {{ $contract->asegurable }}</div>
+          <div>Domus {{ $contract->domus }}</div>
+          <div><a href="mailto:company@example.com">company@example.com</a></div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</body>
+    </header>
+    <main>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to"><b>ARRENDATARIO:</b> </div>
+          <h2 class="name">{{ $contract->arrendatarioName ? $contract->arrendatarioName : 'ISMAEL ENRIQUE LASTRE ALVAREZ' }}   </h2>
+          <div class="address">NIT / CEDULA : {{ $contract->arrendatarioDni ? $contract->arrendatarioDni : '72288959'}}</div>
+          <div class="email"><a href="mailto:john@example.com">{{ $contract->arrendatarioEmail ? $contract->arrendatarioEmail : 'ismaelfac@gmail.com'}}</a></div>
+        </div>
+        <div id="invoice">
+        <div class="address">Telefono Contacto: {{ $contract->arrendatarioPhone ? $contract->arrendatarioPhone : '3113258468' }}</div>
+          <div class="date">Date of Invoice: 01/06/2014</div>
+          <div class="date">Due Date: 30/06/2014</div>
+        </div>
+      </div>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to"><b>DEUDOR:</b> </div>
+          <h2 class="name">{{ $contract->deudorName ? $contract->deudorName : 'VANESSA DE LAS SALAS' }}   </h2>
+          <div class="address">NIT / CEDULA : {{ $contract->arrendatarioDni ? $contract->arrendatarioDni : '500231'}}</div>
+          <div class="email"><a href="mailto:john@example.com">{{ $contract->arrendatarioEmail ? $contract->arrendatarioEmail : 'vdelassalas@aliadosinmobiliariossa.com'}}</a></div>
+        </div>
+        <div id="invoice">
+        <div class="address">Telefono Contacto: {{ $contract->arrendatarioPhone ? $contract->arrendatarioPhone : '30020000000' }}</div>
+          <div class="date">Date of Invoice: 01/06/2014</div>
+          <div class="date">Due Date: 30/06/2014</div>
+        </div>
+      </div>
+      <div id="details" class="clearfix">
+        <div id="client">
+          <div class="to"><b>INMUEBLE:</b> </div>
+          <h2 class="name">{{ $contract->estateAddress ? $contract->estateAddress : 'CLL 84B # 37-69 APTO 3 BARRIO EL RUBY' }}   </h2>
+          <div class="address">NIT / CEDULA : {{ $contract->arrendatarioDni ? $contract->arrendatarioDni : '72288959'}}</div>
+          <div class="email"><a href="mailto:john@example.com">{{ $contract->arrendatarioEmail ? $contract->arrendatarioEmail : 'ismaelfac@gmail.com'}}</a></div>
+        </div>
+        <div id="invoice">
+        <div class="address">Telefono Contacto: {{ $contract->arrendatarioPhone ? $contract->arrendatarioPhone : '3113258468' }}</div>
+          <div class="date">Date of Invoice: 01/06/2014</div>
+          <div class="date">Due Date: 30/06/2014</div>
+        </div>
+      </div>
+      <div id="thanks">Thank you!</div>
+      <div id="notices">
+        <div>NOTICE:</div>
+        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+      </div>
+    </main>
+    <footer>
+      Este documento fue creado por aliados inmobilairios sa.
+    </footer>
+  </body>
 </html>
