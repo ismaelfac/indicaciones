@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Person;
 /**
  * Class Contract
  *
@@ -49,6 +49,9 @@ class Contract extends Model
      */
     protected $fillable = ['contractNum','asegurable','domus','cannonLease','adminValue','increment','contractRights','deliveryDate','gracePeriod','clause'];
 
-
+	public function people()
+    {
+      return $this->belongsToMany(Person::class);
+    }
 
 }

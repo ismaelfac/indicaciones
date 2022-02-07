@@ -6,21 +6,32 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Contract;
 
 /**
- * Class Estate
+ * Class Person
  *
  * @property $id
+ * @property $names
+ * @property $slug
  * @property $address
+ * @property $dni
+ * @property $typeDni
+ * @property $phone
+ * @property $email
+ * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Estate extends Model
+class Person extends Model
 {
     
     static $rules = [
-		'address' => 'required',
+		'names' => 'required',
+		'dni' => 'required',
+		'typeDni' => 'required',
+		'phone' => 'required',
+		'email' => 'required'
     ];
 
     protected $perPage = 20;
@@ -30,13 +41,12 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address'];
+    protected $fillable = ['names','slug','address','dni','typeDni','phone','email','isActive'];
 
     public function contracts()
     {
       return $this->belongsToMany(Contract::class);
     }
-
 
 
 }

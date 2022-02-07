@@ -16,6 +16,10 @@ class CreateEstatesTable extends Migration
         Schema::create('estates', function (Blueprint $table) {
             $table->id();
             $table->string('address');
+            $table->string('garajes')->nullable();
+            $table->string('usefulRoom')->nullable();
+            $table->enum('typeEstate', ['NO DEFINIDO','APARTAMENTO', 'CASA COMERCIAL', 'CASA VIVIENDA', 'BODEGA', 'APARTA-STUDIO'])->default('NO DEFINIDO');
+            $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }

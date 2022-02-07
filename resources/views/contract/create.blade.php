@@ -13,8 +13,16 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Contract</span>
-                    </div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span id="card_title">
+                                    Crear Contrato
+                                </span>
+
+                                <div class="float-right">
+                                    <a class="btn btn-primary" href="{{ route('contracts.index') }}"> Cancelar</a>
+                                </div>
+                            </div>                        
+                        </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('contracts.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
