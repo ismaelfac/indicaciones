@@ -19,6 +19,7 @@ class CreateEstatesTable extends Migration
             $table->string('garajes')->nullable();
             $table->string('usefulRoom')->nullable();
             $table->enum('typeEstate', ['NO DEFINIDO','APARTAMENTO', 'CASA COMERCIAL', 'CASA VIVIENDA', 'BODEGA', 'APARTA-STUDIO'])->default('NO DEFINIDO');
+            $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isActive')->default(false);
             $table->timestamps();
         });

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contract;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * Class ContractController
@@ -46,9 +48,13 @@ class ContractController extends Controller
         request()->validate(Contract::$rules);
 
         $contract = Contract::create($request->all());
+        if($contract->id) {
+            //pendiente, filtro para escanear si existe el directorio
+            Storage::makeDirectory($contract->asegurable);
+            //Storage::putFileAs($contract->asegurable, new File('/contracts'), 'photo.jpg');
+        }
 
-        return redirect()->route('contracts.index')
-            ->with('success', 'Contract created successfully.');
+        return redirect()->route('contracts.index')->with('success', 'Contract created successfully.');
     }
 
     /**

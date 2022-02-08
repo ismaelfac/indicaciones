@@ -23,6 +23,7 @@ class CreatePeopleTable extends Migration
             $table->string('phone');
             $table->string('email')->unique();
             $table->boolean('isActive')->default(false);
+            $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->timestamps();
         });
     }

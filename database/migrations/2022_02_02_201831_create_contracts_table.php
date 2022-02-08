@@ -24,6 +24,7 @@ class CreateContractsTable extends Migration
             $table->date('deliveryDate')->nullable();
             $table->string('gracePeriod')->nullable();
             $table->mediumText('clause')->nullable();
+            $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
