@@ -13,7 +13,7 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Contract Person') }}
+                                {{ __('Contracto Persona') }}
                             </span>
 
                              <div class="float-right">
@@ -36,10 +36,10 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Contract Id</th>
-										<th>Person Id</th>
-										<th>Typeperson</th>
-										<th>Isactive</th>
+										<th>Contracto</th>
+										<th>Persona</th>
+										<th>Tipo</th>
+										<th>Estado</th>
 
                                         <th></th>
                                     </tr>
@@ -49,18 +49,17 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $contractPerson->contractNum }}</td>
-											<td>{{ $contractPerson->names }}</td>
+											<td>{{ $contractPerson->contract->asegurable }}</td>
+											<td>{{ $contractPerson->person->names }}</td>
 											<td>{{ $contractPerson->typePerson }}</td>
-											<td>{{ $contractPerson->isActive }}</td>
-
+											<td><a href="" class="{{ $contractPerson->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contractPerson->isActive ? 'Activo': 'Inactivo' }}</a></td>
                                             <td>
                                                 <form action="{{ route('contract-person.destroy',$contractPerson->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('contract-person.show',$contractPerson->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('contract-person.edit',$contractPerson->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('contract-person.show',$contractPerson->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('contract-person.edit',$contractPerson->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -52,11 +52,11 @@
                                             <td>{{ ++$i }}</td>
 											<td>{{ $contract->asegurable }}</td>
 											<td>{{ $contract->domus }}</td>
-                                            <td>{{ $contract->estates }}</td>
-											<td><a href="#" class="btn btn-sm btn-success"> {{ $contract->person === 'ARRENDATARIO' ? $contract->person : 'Asignar' }}</a> </td>
-                                            <td><a href="#" class="btn btn-sm btn-warning">{{ $contract->person === 'DEUDORES' ? $contract->person : 'Asignar'}}</a></td>
-                                            <td><a href="#" class="btn btn-sm btn-primary">{{ $contract->person ? $contract->person : 'Asignar'}}</a></td>											
-                                            <td><a class="btn btn-sm btn-primary" href="">{{ ($contract->isActive === true ? 'Activo' : 'Inactivo')}}</a></td>
+                                            <td><a href="#" class="{{ $contract->estate ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->estate ? $contract->estate : 'Sin Inmueble' }}</a> </td>
+											<td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->person === 'ARRENDATARIO' ? $contract->person : 'Asignar' }}</a> </td>
+                                            <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contract->person === 'DEUDORES' ? $contract->person : 'Asignar'}}</a></td>
+                                            <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contract->person ? $contract->person : 'Asignar'}}</a></td>											
+                                            <td><a class="{{ $contract->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}" href="">{{ ($contract->isActive ? 'Activo' : 'Inactivo')}}</a></td>
 
                                             <td>
                                                 <form action="{{ route('contracts.destroy',$contract->id) }}" method="POST">

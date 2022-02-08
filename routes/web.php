@@ -18,4 +18,4 @@ Route::resource('/estates', EstateController::class);
 Route::get('contracts/pdf/{id}', [ContractController::class, 'printPDF']);
 Route::resource('/contracts', ContractController::class);
 Route::get('contract-person/pdf/{id}', [ContractPersonController::class, 'printPDF']);
-Route::resource('/contract-person', ContractPersonController::class);
+Route::resource('contract-person', ContractPersonController::class);

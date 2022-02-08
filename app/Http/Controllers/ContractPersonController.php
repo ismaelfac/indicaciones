@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContractPerson;
+use App\Models\{ Contract, ContractPerson, Person };
 use Illuminate\Http\Request;
 
 /**
@@ -32,7 +32,10 @@ class ContractPersonController extends Controller
     public function create()
     {
         $contractPerson = new ContractPerson();
-        return view('contract-person.create', compact('contractPerson'));
+        $people = Person::all();
+        $contracts = Contract::all();
+        //dd($people);
+        return view('contract-person.create', compact('contractPerson', 'people', 'contracts'));
     }
 
     /**
@@ -47,7 +50,7 @@ class ContractPersonController extends Controller
 
         $contractPerson = ContractPerson::create($request->all());
 
-        return redirect()->route('contract-people.index')
+        return redirect()->route('contract-person.index')
             ->with('success', 'ContractPerson created successfully.');
     }
 
@@ -72,9 +75,11 @@ class ContractPersonController extends Controller
      */
     public function edit($id)
     {
+        $people = Person::all();
+        $contracts = Contract::all();
         $contractPerson = ContractPerson::find($id);
 
-        return view('contract-person.edit', compact('contractPerson'));
+        return view('contract-person.edit', compact('contractPerson', 'people', 'contracts'));
     }
 
     /**
