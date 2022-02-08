@@ -18,7 +18,7 @@
 
                              <div class="float-right">
                                 <a href="{{ route('contract-estate.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Crear nueva relacion Contrato - Inmueble') }}
                                 </a>
                               </div>
                         </div>
@@ -48,17 +48,17 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $contractEstate->contract_id }}</td>
-											<td>{{ $contractEstate->estate_id }}</td>
+											<td>{{ $contractEstate->contract->asegurable }}</td>
+											<td>{{ $contractEstate->estate->address }}</td>
 											<td><a class="{{ $contractEstate->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}" href="">{{ ($contractEstate->isActive ? 'Activo' : 'Inactivo')}}</a></td>
 
                                             <td>
-                                                <form action="{{ route('contract-estates.destroy',$contractEstate->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('contract-estates.show',$contractEstate->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('contract-estates.edit',$contractEstate->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                                <form action="{{ route('contract-estate.destroy',$contractEstate->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('contract-estate.show',$contractEstate->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('contract-estate.edit',$contractEstate->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -16,7 +16,7 @@
                             </span>
 
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('people.index') }}"> Cancelar</a>
+                                <a class="btn btn-primary" href="{{ route('contract-person.index') }}"> Cancelar</a>
                             </div>
                         </div>                        
                     </div>

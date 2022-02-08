@@ -16,7 +16,7 @@
                         <span class="card-title">Update Contract Estate</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('contract-estates.update', $contractEstate->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('contract-estate.update', $contractEstate->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 

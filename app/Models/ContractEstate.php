@@ -27,7 +27,6 @@ class ContractEstate extends Model
     static $rules = [
 		'contract_id' => 'required',
 		'estate_id' => 'required',
-		'user_id' => 'required',
 		'isActive' => 'required',
     ];
 

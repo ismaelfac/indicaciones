@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{ Contract, ContractEstate };
+use App\Models\{ Contract, ContractEstate, Estate };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,17 +34,16 @@ class ContractEstateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($contract_id = null)
     {
         $contractEstate = new ContractEstate();
-        $contracts = Contract::all();        
-        return view('contract-estate.create', compact('contractEstate', 'contracts'));
+        $contracts = $contract_id ? Contract::find($contract_id) : Contract::where('isActive', true);
+        $estates = Estate::where('isActive', true);  
+        return view('contract-estate.create', compact('contractEstate', 'contracts','estates'));
     }
 
     public function createContractEstate($contract_id){
-        $contractEstate = new ContractEstate();
-        $contracts = Contract::find($contract_id);
-        return view('contract-estate.create', compact('contractEstate', 'contracts'));
+        $this->create($contract_id);
     }
     /**
      * Store a newly created resource in storage.
@@ -107,7 +106,7 @@ class ContractEstateController extends Controller
 
         $contractEstate->update($request->all());
 
-        return redirect()->route('contract-estates.index')
+        return redirect()->route('contract-estate.index')
             ->with('success', 'ContractEstate updated successfully');
     }
 
@@ -120,7 +119,7 @@ class ContractEstateController extends Controller
     {
         $contractEstate = ContractEstate::find($id)->delete();
 
-        return redirect()->route('contract-estates.index')
+        return redirect()->route('contract-estate.index')
             ->with('success', 'ContractEstate deleted successfully');
     }
 }

@@ -14,7 +14,7 @@
                             <span class="card-title">Show Contract Estate</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('contract-estates.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('contract-estate.index') }}"> Back</a>
                         </div>
                     </div>
 

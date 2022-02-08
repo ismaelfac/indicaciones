@@ -29,7 +29,6 @@ class ContractPerson extends Model
 		'contract_id' => 'required',
 		'person_id' => 'required',
 		'typePerson' => 'required',
-		'user_id' => 'required',
 		'isActive' => 'required',
     ];
 

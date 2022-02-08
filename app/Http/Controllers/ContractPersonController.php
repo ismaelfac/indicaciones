@@ -39,7 +39,6 @@ class ContractPersonController extends Controller
         $contractPerson = new ContractPerson();
         $people = Person::all();
         $contracts = Contract::all();
-        dd($contractPerson);
         return view('contract-person.create', compact('contractPerson', 'people', 'contracts'));
     }
 
@@ -62,7 +61,7 @@ class ContractPersonController extends Controller
         $contractPerson->isActive = true;
         $contractPerson->save();
 
-        return redirect()->route('contract-people.index')
+        return redirect()->route('contract-person.index')
             ->with('success', 'ContractPerson created successfully.');
     }
 

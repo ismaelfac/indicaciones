@@ -27,7 +27,7 @@
                         <form method="POST" action="{{ route('contract-person.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('person.form')
+                            @include('contract-person.form')
 
                         </form>
                     </div>

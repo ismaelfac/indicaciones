@@ -17,4 +17,4 @@ Route::get('contracts/pdf/{id}', [ContractController::class, 'printPDF']);
 Route::resource('/contracts', ContractController::class);
 Route::resource('contract-person', ContractPersonController::class);
 Route::resource('contract-estate', ContractEstateController::class);
-Route::get('contract-estate-contract/{id}', [ContractEstateController::class, 'createContractEstate']);
+Route::get('contract-estate/{id}', [ContractEstateController::class, 'createContractEstate']);

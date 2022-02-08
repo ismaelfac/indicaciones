@@ -1,25 +1,22 @@
 <div class="box box-info padding-1">
     <div class="box-body">
         
-    <div class="form-group">
+        <div class="form-group">
             {{ Form::label('Contrato') }}
             {{ Form::select('contract_id', $contracts->pluck('asegurable', 'id'), $contractEstate->contract_id, ['class' => 'form-control' . ($errors->has('contract_id') ? ' is-invalid' : '') ]) }}
             {!! $errors->first('contract_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('estate_id') }}
-            {{ Form::text('estate_id', $contractEstate->estate_id, ['class' => 'form-control' . ($errors->has('estate_id') ? ' is-invalid' : ''), 'placeholder' => 'Estate Id']) }}
+            {{ Form::label('Inmueble') }}
+            {{ Form::select('estate_id', $estates->pluck('address', 'id'), $contractEstate->estate_id, ['class' => 'form-control' . ($errors->has('estate_id') ? ' is-invalid' : '') ]) }}
             {!! $errors->first('estate_id', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('user_id') }}
-            {{ Form::text('user_id', $contractEstate->user_id, ['class' => 'form-control' . ($errors->has('user_id') ? ' is-invalid' : ''), 'placeholder' => 'User Id']) }}
-            {!! $errors->first('user_id', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
-            {{ Form::label('isActive') }}
-            {{ Form::text('isActive', $contractEstate->isActive, ['class' => 'form-control' . ($errors->has('isActive') ? ' is-invalid' : ''), 'placeholder' => 'Isactive']) }}
+            <div class="form-check form-switch"> 
+            {{ Form::label('Estado') }}           
+            {{ Form::checkbox('isActive', ($contractEstate->isActive ? $contractEstate->isActive : true), ['class' => 'form-check-input' . ($errors->has('isActive') ? ' is-invalid' : ''), 'role'=>'switch', 'true' ]) }}
             {!! $errors->first('isActive', '<div class="invalid-feedback">:message</p>') !!}
+            </div>
         </div>
 
     </div>
