@@ -62,10 +62,9 @@
           <div class="date">Due Date: 30/06/2014</div>
         </div>
       </div>
-      <div id="thanks">Thank you!</div>
       <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+        <div>CLAUSULAS:</div>
+        <div class="notice">{{ $contract->clause ? $contract->clause : ''}}</div>
       </div>
     </main>
     <footer>
