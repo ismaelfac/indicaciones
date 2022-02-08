@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Update Contract
+    Update Document
 @endsection
 
 @section('content')
@@ -13,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Actualizar Contracto</span>
+                        <span class="card-title">Update Document</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('contracts.update', $contract->id) }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('documents.update', $document->id) }}"  role="form" enctype="multipart/form-data">
                             {{ method_field('PATCH') }}
                             @csrf
 
-                            @include('contract.form')
+                            @include('document.form')
 
                         </form>
                     </div>
