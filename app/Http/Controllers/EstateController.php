@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Estate;
 use Illuminate\Http\Request;
-use PDF;
 
 /**
  * Class EstateController
@@ -23,12 +22,6 @@ class EstateController extends Controller
 
         return view('estate.index', compact('estates'))
             ->with('i', (request()->input('page', 1) - 1) * $estates->perPage());
-    }
-
-    public function printPDF($id) 
-    {
-        $estate = Estate::find($id);
-        return view('estate.pdf', compact('estate'));
     }
 
     /**

@@ -2,11 +2,6 @@
     <div class="box-body">
         
         <div class="form-group">
-            {{ Form::label('Numero de Contrato') }}
-            {{ Form::text('contractNum', $contract->contractNum, ['class' => 'form-control' . ($errors->has('contractNum') ? ' is-invalid' : ''), 'placeholder' => 'Contractnum']) }}
-            {!! $errors->first('contractNum', '<div class="invalid-feedback">:message</p>') !!}
-        </div>
-        <div class="form-group">
             {{ Form::label('asegurable') }}
             {{ Form::text('asegurable', $contract->asegurable, ['class' => 'form-control' . ($errors->has('asegurable') ? ' is-invalid' : ''), 'placeholder' => 'Asegurable']) }}
             {!! $errors->first('asegurable', '<div class="invalid-feedback">:message</p>') !!}
@@ -17,12 +12,12 @@
             {!! $errors->first('domus', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Valor del Cannon') }}
+            {{ Form::label('Arrendamiento del Cannon') }}
             {{ Form::text('cannonLease', $contract->cannonLease, ['class' => 'form-control' . ($errors->has('cannonLease') ? ' is-invalid' : ''), 'placeholder' => 'Cannonlease']) }}
             {!! $errors->first('cannonLease', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Valor Admin') }}
+            {{ Form::label('Valor de Administración') }}
             {{ Form::text('adminValue', $contract->adminValue, ['class' => 'form-control' . ($errors->has('adminValue') ? ' is-invalid' : ''), 'placeholder' => 'Adminvalue']) }}
             {!! $errors->first('adminValue', '<div class="invalid-feedback">:message</p>') !!}
         </div>
@@ -38,7 +33,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('Fecha de Entrega') }}
-            {{ Form::date('deliveryDate', $contract->deliveryDate, ['class' => 'form-control' . ($errors->has('deliveryDate') ? ' is-invalid' : ''), 'placeholder' => 'Deliverydate']) }}
+            {{ Form::date('deliveryDate', $contract->deliveryDate, ['class' => 'form-control' . ($errors->has('deliveryDate') ? ' is-invalid' : '')]) }}
             {!! $errors->first('deliveryDate', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
@@ -47,14 +42,20 @@
             {!! $errors->first('gracePeriod', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('Claudulas') }}
+            {{ Form::label('Clausulas') }}
             {{ Form::text('clause', $contract->clause, ['class' => 'form-control' . ($errors->has('clause') ? ' is-invalid' : ''), 'placeholder' => 'Clause']) }}
             {!! $errors->first('clause', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
+            <div class="form-check form-switch"> 
+            {{ Form::label('Estado') }}           
+            {{ Form::checkbox('isActive', ($contract->isActive ? $contract->isActive : true), ['class' => 'form-check-input' . ($errors->has('isActive') ? ' is-invalid' : ''), 'role'=>'switch', 'true' ]) }}
+            {!! $errors->first('isActive', '<div class="invalid-feedback">:message</p>') !!}
+            </div>
         </div>
 
     </div>
     <div class="box-footer mt20">
-        <a class="btn btn-primary" href="{{ route('contracts.index') }}"> Volver al listado de contratos</a>
-        <button type="submit" class="btn btn-primary">Crear</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>

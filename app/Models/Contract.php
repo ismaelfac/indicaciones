@@ -3,12 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Person;
+
 /**
  * Class Contract
  *
  * @property $id
- * @property $contractNum
  * @property $asegurable
  * @property $domus
  * @property $cannonLease
@@ -18,9 +17,11 @@ use App\Models\Person;
  * @property $deliveryDate
  * @property $gracePeriod
  * @property $clause
+ * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
+ * @property ContractPerson[] $contractPeoples
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -28,16 +29,8 @@ class Contract extends Model
 {
     
     static $rules = [
-		'contractNum' => 'required',
-		'asegurable' => 'required',
-		'domus' => 'required',
 		'cannonLease' => 'required',
-		'adminValue' => 'required',
-		'increment' => 'required',
-		'contractRights' => 'required',
-		'deliveryDate' => 'required',
-		'gracePeriod' => 'required',
-		'clause' => 'required',
+		'isActive' => 'required',
     ];
 
     protected $perPage = 20;
@@ -47,11 +40,16 @@ class Contract extends Model
      *
      * @var array
      */
-    protected $fillable = ['contractNum','asegurable','domus','cannonLease','adminValue','increment','contractRights','deliveryDate','gracePeriod','clause'];
+    protected $fillable = ['asegurable','domus','cannonLease','adminValue','increment','contractRights','deliveryDate','gracePeriod','clause','isActive'];
 
-	public function people()
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contractPeoples()
     {
-      return $this->belongsToMany(Person::class);
+        return $this->hasMany('App\Models\ContractPerson', 'contract_id', 'id');
     }
+    
 
 }

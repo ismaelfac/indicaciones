@@ -15,16 +15,16 @@ class CreateContractsTable extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-            $table->string('contractNum');
-            $table->string('asegurable')->nullable();
-            $table->string('domus')->nullable();
+            $table->string('asegurable')->unique()->nullable();
+            $table->string('domus')->unique()->nullable();
             $table->string('cannonLease');
             $table->string('adminValue')->nullable();
             $table->string('increment')->nullable();
             $table->string('contractRights')->nullable();
-            $table->date('deliveryDate');
+            $table->date('deliveryDate')->nullable();
             $table->string('gracePeriod')->nullable();
             $table->mediumText('clause')->nullable();
+            $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }

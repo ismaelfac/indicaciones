@@ -3,13 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Contract;
 
 /**
  * Class Estate
  *
  * @property $id
  * @property $address
+ * @property $garajes
+ * @property $usefulRoom
+ * @property $typeEstate
+ * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
@@ -21,6 +24,8 @@ class Estate extends Model
     
     static $rules = [
 		'address' => 'required',
+		'typeEstate' => 'required',
+		'isActive' => 'required',
     ];
 
     protected $perPage = 20;
@@ -30,12 +35,7 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address'];
-
-    public function contracts()
-    {
-      return $this->belongsToMany(Contract::class);
-    }
+    protected $fillable = ['address','garajes','usefulRoom','typeEstate','isActive'];
 
 
 

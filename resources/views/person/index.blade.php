@@ -58,7 +58,7 @@
 											<td>{{ $person->typeDni }}</td>
 											<td>{{ $person->phone }}</td>
 											<td>{{ $person->email }}</td>
-											<td>{{ $person->isActive }}</td>
+											<td><a href="" class="{{ $person->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $person->isActive ? 'Activo': 'Inactivo' }}</a></td>
 
                                             <td>
                                                 <form action="{{ route('people.destroy',$person->id) }}" method="POST">
