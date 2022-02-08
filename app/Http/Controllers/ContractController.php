@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-
+use PDF;
 /**
  * Class ContractController
  * @package App\Http\Controllers
@@ -31,9 +32,14 @@ class ContractController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }
 
-    public function printPDF()
+    public function printPDF($contract_id)
     {
-        
+        $contract = Contract::find($contract_id);
+        //dd($contract->estates);
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('contract.pdf', ['contract'=>$contract]);
+    
+        return $pdf->stream();
     }
 
     /**

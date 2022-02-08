@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContractPerson extends Model
 {
+    protected $table = 'contract_person';
     
     static $rules = [
 		'contract_id' => 'required',
