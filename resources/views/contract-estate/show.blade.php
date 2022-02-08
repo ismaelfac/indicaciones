@@ -11,32 +11,23 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Contract Estate</span>
+                            <span class="card-title">Ver relacion Contrato / Inmueble</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('contract-estate.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('contract-estate.index') }}"> Regresar</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Contract Id:</strong>
-                            {{ $contractEstate->contract_id }}
+                            <strong>Asegurable:</strong>
+                            {{ $contractEstate->contract->asegurable }}
                         </div>
                         <div class="form-group">
-                            <strong>Estate Id:</strong>
-                            {{ $contractEstate->estate_id }}
+                            <strong>Inmueble: </strong>
+                            {{ $contractEstate->estate->address }}
                         </div>
-                        <div class="form-group">
-                            <strong>User Id:</strong>
-                            {{ $contractEstate->user_id }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Isactive:</strong>
-                            {{ $contractEstate->isActive }}
-                        </div>
-
                     </div>
                 </div>
             </div>

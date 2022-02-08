@@ -36,12 +36,10 @@
                                     <tr>
                                         <th>No</th>
 										<th>Asegurable</th>
-										<th>Domus</th>
 										<th>Dirección Inmueble</th>
 										<th>Arrendatario</th>
                                         <th>Deudores</th>
                                         <th>Propietarios</th>
-										<th>Estado</th>
 
                                         <th></th>
                                     </tr>
@@ -51,13 +49,11 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
 											<td>{{ $contract->asegurable }}</td>
-											<td>{{ $contract->domus }}</td>
-                                            <td><a href="{{ url('contract-estate',$contract->id) }}" class="{{ $contract->estate ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->estate ? $contract->estate : 'Asignar' }}</a> </td>
-											<td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->person === 'ARRENDATARIO' ? $contract->person : 'Asignar' }}</a> </td>
-                                            <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contract->person === 'DEUDORES' ? $contract->person : 'Asignar'}}</a></td>
-                                            <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contract->person ? $contract->person : 'Asignar'}}</a></td>											
-                                            <td><a class="{{ $contract->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}" href="">{{ ($contract->isActive ? 'Activo' : 'Inactivo')}}</a></td>
-
+                                            <td><a href="{{ url('contract-estate',$contract->id) }}" class="{{ $contract->estate ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> @foreach($contract->estates as $estate){{ $estate->address ? $estate->address : 'Asignar'  }}@endforeach</a> </td>
+											<td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> @foreach($contract->contractPerson as $person) {{ $person->pivot->typePerson <> 'ARRENDATARIO' ?: $person->names  }}@endforeach </a> </td>
+                                            <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">@foreach($contract->contractPerson as $person) {{ $person->pivot->typePerson <> 'DEUDORES' ?: $person->names  }}@endforeach</a></td>
+                                            <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">@foreach($contract->contractPerson as $person) {{ $person->pivot->typePerson <> 'PROPIETARIO' ?: $person->names}}@endforeach</a></td>											
+                                            
                                             <td>
                                                 <form action="{{ route('contracts.destroy',$contract->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('contracts.show',$contract->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>

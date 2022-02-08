@@ -13,10 +13,13 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Contract Estate') }}
+                                {{ __('Relacion Contracto Inmueble ') }}
                             </span>
 
                              <div class="float-right">
+                             <a href="{{ route('contracts.index') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Volver a Contratos') }}
+                                </a>
                                 <a href="{{ route('contract-estate.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Crear nueva relacion Contrato - Inmueble') }}
                                 </a>

@@ -13,8 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Contract Estate</span>
+                        <div class="float-left">
+                            <span class="card-title">Crear relacion Contrato / Inmueble</span>
+                        </div>
+                        <div class="float-right">
+                            <a class="btn btn-primary" href="{{ route('contract-estate.index') }}"> Regresar</a>
+                        </div>
                     </div>
+
                     <div class="card-body">
                         <form method="POST" action="{{ route('contract-estate.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf

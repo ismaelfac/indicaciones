@@ -8,13 +8,9 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <h5 class="card-title">Indicadores de Contratos</h5>
+                    <p class="card-text">.</p>
+                    <a href="{{ route('contracts.index') }}" class="btn btn-primary">Entrar</a>                   
                 </div>
             </div>
         </div>
