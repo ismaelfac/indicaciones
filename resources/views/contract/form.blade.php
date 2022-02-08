@@ -43,7 +43,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('Clausulas') }}
-            {{ Form::text('clause', $contract->clause, ['class' => 'form-control' . ($errors->has('clause') ? ' is-invalid' : ''), 'placeholder' => 'Clause']) }}
+            {{ Form::textarea('clause', $contract->clause, ['class' => 'form-control' . ($errors->has('clause') ? ' is-invalid' : ''), 'placeholder' => 'Indique aqui las anotaciones pertinentes al contrato']) }}
             {!! $errors->first('clause', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
@@ -53,7 +53,6 @@
             {!! $errors->first('isActive', '<div class="invalid-feedback">:message</p>') !!}
             </div>
         </div>
-
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Submit</button>

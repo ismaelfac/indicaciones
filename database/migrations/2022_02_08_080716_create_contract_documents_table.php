@@ -16,7 +16,6 @@ class CreateContractDocumentsTable extends Migration
         Schema::create('contract_documents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contract_id')->references('id')->on('contracts')->onUpdate('cascade');
-            $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->string('fileName');
             $table->string('route');
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');

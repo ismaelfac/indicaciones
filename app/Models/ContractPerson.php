@@ -11,12 +11,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property $contract_id
  * @property $person_id
  * @property $typePerson
+ * @property $user_id
  * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
  * @property Contract $contract
  * @property Person $person
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -27,6 +29,7 @@ class ContractPerson extends Model
 		'contract_id' => 'required',
 		'person_id' => 'required',
 		'typePerson' => 'required',
+		'user_id' => 'required',
 		'isActive' => 'required',
     ];
 
@@ -37,7 +40,7 @@ class ContractPerson extends Model
      *
      * @var array
      */
-    protected $fillable = ['contract_id','person_id','typePerson','isActive'];
+    protected $fillable = ['contract_id','person_id','typePerson','user_id','isActive'];
 
 
     /**
@@ -54,6 +57,14 @@ class ContractPerson extends Model
     public function person()
     {
         return $this->hasOne('App\Models\Person', 'id', 'person_id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
     
 

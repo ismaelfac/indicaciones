@@ -5,29 +5,30 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Estate
+ * Class ContractDocument
  *
  * @property $id
- * @property $address
- * @property $garajes
- * @property $usefulRoom
- * @property $typeEstate
+ * @property $contract_id
+ * @property $fileName
+ * @property $route
  * @property $user_id
  * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
- * @property ContractEstate[] $contractEstates
+ * @property Contract $contract
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
-class Estate extends Model
+class ContractDocument extends Model
 {
     
     static $rules = [
-		'address' => 'required',
-		'typeEstate' => 'required',
+		'contract_id' => 'required',
+		'fileName' => 'required',
+		'route' => 'required',
+		'user_id' => 'required',
 		'isActive' => 'required',
     ];
 
@@ -38,15 +39,15 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address','garajes','usefulRoom','typeEstate','user_id','isActive'];
+    protected $fillable = ['contract_id','fileName','route','user_id','isActive'];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function contractEstates()
+    public function contract()
     {
-        return $this->hasMany('App\Models\ContractEstate', 'estate_id', 'id');
+        return $this->hasOne('App\Models\Contract', 'id', 'contract_id');
     }
     
     /**

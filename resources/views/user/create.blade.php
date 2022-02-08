@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Estate
+    Create User
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Estate</span>
+                        <span class="card-title">Create User</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('estates.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('users.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('estate.form')
+                            @include('user.form')
 
                         </form>
                     </div>

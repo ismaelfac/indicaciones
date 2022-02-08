@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $estate->name ?? 'Show Estate' }}
+    {{ $contractEstate->name ?? 'Show Contract Estate' }}
 @endsection
 
 @section('content')
@@ -11,38 +11,30 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">Show Estate</span>
+                            <span class="card-title">Show Contract Estate</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary" href="{{ route('estates.index') }}"> Back</a>
+                            <a class="btn btn-primary" href="{{ route('contract-estates.index') }}"> Back</a>
                         </div>
                     </div>
 
                     <div class="card-body">
                         
                         <div class="form-group">
-                            <strong>Address:</strong>
-                            {{ $estate->address }}
+                            <strong>Contract Id:</strong>
+                            {{ $contractEstate->contract_id }}
                         </div>
                         <div class="form-group">
-                            <strong>Garajes:</strong>
-                            {{ $estate->garajes }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Usefulroom:</strong>
-                            {{ $estate->usefulRoom }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Typeestate:</strong>
-                            {{ $estate->typeEstate }}
+                            <strong>Estate Id:</strong>
+                            {{ $contractEstate->estate_id }}
                         </div>
                         <div class="form-group">
                             <strong>User Id:</strong>
-                            {{ $estate->user_id }}
+                            {{ $contractEstate->user_id }}
                         </div>
                         <div class="form-group">
                             <strong>Isactive:</strong>
-                            {{ $estate->isActive }}
+                            {{ $contractEstate->isActive }}
                         </div>
 
                     </div>

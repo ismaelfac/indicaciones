@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contract;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Storage;
  */
 class ContractController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -45,9 +50,23 @@ class ContractController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
         request()->validate(Contract::$rules);
+        
+        $contract = new Contract;
+        $contract->asegurable = $request->asegurable;
+        $contract->domus = $request->domus;
+        $contract->cannonLease = $request->cannonLease;
+        $contract->adminValue = $request->adminValue;
+        $contract->increment = $request->increment;
+        $contract->contractRights = $request->contractRights;
+        $contract->deliveryDate = $request->deliveryDate;
+        $contract->gracePeriod = $request->gracePeriod;
+        $contract->clause = $request->clause;
+        $contract->user_id = $user_id;
+        $contract->isActive = true;
 
-        $contract = Contract::create($request->all());
+        $contract->save();
         if($contract->id) {
             //pendiente, filtro para escanear si existe el directorio
             Storage::makeDirectory($contract->asegurable);

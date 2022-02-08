@@ -13,7 +13,7 @@ class CreateContractEstateTable extends Migration
      */
     public function up()
     {
-        Schema::create('contract_estate', function (Blueprint $table) {
+        Schema::create('contract_estates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contract_id')->references('id')->on('contracts')->onUpdate('cascade');
             $table->foreignId('estate_id')->references('id')->on('estates')->onUpdate('cascade');
@@ -30,6 +30,6 @@ class CreateContractEstateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contract_estate');
+        Schema::dropIfExists('contract_estates');
     }
 }

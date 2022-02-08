@@ -52,7 +52,7 @@
                                             <td>{{ ++$i }}</td>
 											<td>{{ $contract->asegurable }}</td>
 											<td>{{ $contract->domus }}</td>
-                                            <td><a href="#" class="{{ $contract->estate ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->estate ? $contract->estate : 'Sin Inmueble' }}</a> </td>
+                                            <td><a href="{{ url('contract-estate-contract',$contract->id) }}" class="{{ $contract->estate ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->estate ? $contract->estate : 'Asignar' }}</a> </td>
 											<td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> {{ $contract->person === 'ARRENDATARIO' ? $contract->person : 'Asignar' }}</a> </td>
                                             <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contract->person === 'DEUDORES' ? $contract->person : 'Asignar'}}</a></td>
                                             <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contract->person ? $contract->person : 'Asignar'}}</a></td>											

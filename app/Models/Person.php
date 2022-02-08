@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Contract;
 
 /**
  * Class Person
@@ -17,9 +16,12 @@ use App\Models\Contract;
  * @property $phone
  * @property $email
  * @property $isActive
+ * @property $user_id
  * @property $created_at
  * @property $updated_at
  *
+ * @property ContractPerson[] $contractPeoples
+ * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
  */
@@ -31,7 +33,8 @@ class Person extends Model
 		'dni' => 'required',
 		'typeDni' => 'required',
 		'phone' => 'required',
-		'email' => 'required'
+		'email' => 'required',
+		'isActive' => 'required'
     ];
 
     protected $perPage = 20;
@@ -41,12 +44,24 @@ class Person extends Model
      *
      * @var array
      */
-    protected $fillable = ['names','slug','address','dni','typeDni','phone','email','isActive'];
+    protected $fillable = ['names','slug','address','dni','typeDni','phone','email','isActive','user_id'];
 
-    public function contracts()
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contractPeoples()
     {
-      return $this->belongsToMany(Contract::class);
+        return $this->hasMany('App\Models\ContractPerson', 'person_id', 'id');
     }
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+    
 
 }

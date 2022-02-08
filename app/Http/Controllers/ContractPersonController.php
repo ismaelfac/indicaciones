@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\{ Contract, ContractPerson, Person };
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class ContractPersonController
@@ -11,6 +12,10 @@ use Illuminate\Http\Request;
  */
 class ContractPersonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +39,7 @@ class ContractPersonController extends Controller
         $contractPerson = new ContractPerson();
         $people = Person::all();
         $contracts = Contract::all();
-        //dd($people);
+        dd($contractPerson);
         return view('contract-person.create', compact('contractPerson', 'people', 'contracts'));
     }
 
@@ -46,11 +51,18 @@ class ContractPersonController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
         request()->validate(ContractPerson::$rules);
 
-        $contractPerson = ContractPerson::create($request->all());
+        $contractPerson = new ContractPerson;
+        $contractPerson->contract_id = $request->contract_id;
+        $contractPerson->person_id = $request->person_id;
+        $contractPerson->typePerson = $request->typePerson;
+        $contractPerson->user_id = $user_id;
+        $contractPerson->isActive = true;
+        $contractPerson->save();
 
-        return redirect()->route('contract-person.index')
+        return redirect()->route('contract-people.index')
             ->with('success', 'ContractPerson created successfully.');
     }
 
@@ -75,10 +87,9 @@ class ContractPersonController extends Controller
      */
     public function edit($id)
     {
+        $contractPerson = ContractPerson::find($id);
         $people = Person::all();
         $contracts = Contract::all();
-        $contractPerson = ContractPerson::find($id);
-
         return view('contract-person.edit', compact('contractPerson', 'people', 'contracts'));
     }
 

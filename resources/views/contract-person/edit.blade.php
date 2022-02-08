@@ -13,16 +13,15 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Update Contract Person</span>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('contract-person.update', $contractPerson->id) }}"  role="form" enctype="multipart/form-data">
-                            {{ method_field('PATCH') }}
-                            @csrf
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">
+                                Editar Persona
+                            </span>
 
-                            @include('contract-person.form')
-
-                        </form>
+                            <div class="float-right">
+                                <a class="btn btn-primary" href="{{ route('people.index') }}"> Cancelar</a>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 /**
  * Class PersonController
@@ -11,6 +13,10 @@ use Illuminate\Http\Request;
  */
 class PersonController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +24,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $people = Person::where('isActive',1)->paginate();
+        $people = Person::paginate();
 
         return view('person.index', compact('people'))
             ->with('i', (request()->input('page', 1) - 1) * $people->perPage());
@@ -43,12 +49,23 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
         request()->validate(Person::$rules);
-        
-        $person = Person::create($request->all());
+
+        $person = new Person;
+        $person->names = $request->names;
+        $person->slug = Str::slug($request->names);
+        $person->address = $request->address;
+        $person->dni =$request->dni;
+        $person->typeDni = $request->typeDni;
+        $person->phone = $request->phone;
+        $person->email = $request->email;
+        $person->user_id = $user_id;
+        $person->isActive = true;
+        $person->save();
 
         return redirect()->route('people.index')
-            ->with('success', 'Persona creada con exito.');
+            ->with('success', 'Person created successfully.');
     }
 
     /**
@@ -91,7 +108,7 @@ class PersonController extends Controller
         $person->update($request->all());
 
         return redirect()->route('people.index')
-            ->with('success', 'Persoana actualizada con exito');
+            ->with('success', 'Person updated successfully');
     }
 
     /**
@@ -101,10 +118,9 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        $person = Person::find($id);
-        $person->update($person->isActive,false);
+        $person = Person::find($id)->delete();
 
         return redirect()->route('people.index')
-            ->with('success', 'Person Eliminada con Exito');
+            ->with('success', 'Person deleted successfully');
     }
 }

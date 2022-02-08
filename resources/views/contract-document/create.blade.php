@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Create Estate
+    Create Contract Document
 @endsection
 
 @section('content')
@@ -13,13 +13,13 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">Create Estate</span>
+                        <span class="card-title">Create Contract Document</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('estates.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('contract-documents.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 
-                            @include('estate.form')
+                            @include('contract-document.form')
 
                         </form>
                     </div>
