@@ -31,6 +31,11 @@ class ContractController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }
 
+    public function printPDF()
+    {
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      *
