@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">CREAR {{ typeParticipante }}</button>
+            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipante }}</button>
             <div class="row" v-if="detailPersonView">
                 <hr class="my-4">
                 <h4 class="mb-1">Información del {{ typeParticipante }}</h4>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="col-6">
+                <div class="col-12">
                     <div class="input-group has-validation">
                         <span class="input-group-text">Dirección de contacto</span>
                         <input type="text" class="form-control" id="username" v-model="addressPerson">
@@ -78,7 +78,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12">
+                    <div class="input-group has-validation">
+                        <span class="input-group-text">correo de contacto</span>
+                        <input type="text" class="form-control" id="username" v-model="emailPerson" >
+                        <div class="invalid-feedback">
+                        Your username is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
                     <div class="input-group has-validation">
                         <span class="input-group-text">Telefono de contacto</span>
                         <input type="text" class="form-control" id="username" v-model="phonePerson" >
@@ -87,13 +96,66 @@
                         </div>
                     </div>
                 </div>
+                
+            </div>
+            <hr class="my-4">
+            <div class="row" v-if="detailPersonDocumentView">
+                <h4 class="mb-1">Documentos del {{ typeParticipante }}</h4>
+                <div v-if="typePerson === 'Juridica'" class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">RUT</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div v-if="typePerson === 'Juridica'" class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">CAMARA DE COMERCIO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">SOLICITUD DE ARENDAMIENTO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">INSPECCION E INVENTARIO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>     
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">ASEGURABLE O APROVADO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">INVENTARIO DE ENTREGA</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>            
             </div>
         </div>
             
 
         <hr class="my-4">
 
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+        <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar</button>
     </form>
 </template>
 <script>
@@ -101,6 +163,7 @@ export default {
     name:'person',
     data() {
         return {
+            stateParticipante: 'CREAR',
             typePerson: '',
             typeParticipante: '',
             dni: '',
@@ -109,12 +172,16 @@ export default {
             typeDni:'',
             addressPerson: '',
             phonePerson: '',
-            detailPersonView: false
+            emailPerson: '',
+            detailPersonView: false,
+            detailPersonDocumentView: false
         }
     },
     methods: {
         findOnCreatePerson() {
+            this.stateParticipante = 'GUARDAR'
             this.detailPersonView = !this.detailPersonView;
+            this.detailPersonDocumentView = !this.detailPersonDocumentView;
         }
     }
 }

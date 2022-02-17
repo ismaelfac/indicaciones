@@ -50,34 +50,6 @@
                     </li>
                     </ul>
 
-                    
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Documentos</span>
-                    <span class="badge bg-primary rounded-pill">3</span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                    
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                        <h6 class="my-0">RUT</h6>
-                        <small class="text-muted">
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                                <input type="file" class="form-control" id="inputGroupFile01">
-                            </div>
-                        </small>
-                        </div>
-                        <span class="text-muted">INCOMPLETO</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                        <h6 class="my-0">Propietario</h6>
-                        <small class="text-muted">Ismael Lastre Alvarez</small>
-                        </div>
-                        <span class="text-muted">COMPLETADO</span>
-                    </li>
-                    </ul>
-
                     <form class="card p-2">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Promo code">
