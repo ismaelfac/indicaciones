@@ -3,14 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    <h5 class="card-title">Indicadores de Contratos</h5>
-                    <p class="card-text">.</p>
-                    <a href="{{ route('contracts.index') }}" class="btn btn-primary">Entrar</a>                   
+        <div class="col-md-12">
+            <div class="card" id="app">
+                <div class="card-header">{{ __('Indicadores de Contratos') }}</div>
+                <a href="#" class="btn btn-danger">PDF</a>
+                <div class="card-body">            
+                    <example-component/>    
                 </div>
             </div>
         </div>
