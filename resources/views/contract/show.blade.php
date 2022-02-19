@@ -24,6 +24,7 @@
 
                     <div class="card-body">                        
                         <example-component 
+                            :documents="{{ json_encode($documents)}}"
                             :contract="{{ json_encode($contract) }}" 
                             :estate="{{ json_encode($contract->estates[0]) }}" 
                             :participants="{{json_encode($contract->contractPerson ) }}">

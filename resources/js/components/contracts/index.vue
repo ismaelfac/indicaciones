@@ -79,7 +79,7 @@
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Periodo de Gracia</span>
-                    <input type="text" v-model="gradePeriod" class="form-control" id="username">
+                    <input type="text" v-model="gradePeriod" class="form-control" id="gradePeriod">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -97,58 +97,20 @@
         </div>
 
         <hr class="my-4">
-            <div class="row" v-if="detailEstateDocumentView">
-                <h4 class="mb-1">Documentos del Inmueble</h4>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">RUT</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
+            <h4 class="mb-1">Documentos del Contrato</h4>
+            <ul class="list-group mb-3">
+                <div v-if="documents">
+                    <li class="list-group-item d-flex justify-content-between lh-sm" v-for="document in documentContract" :key="document.id">
+                        <small class="text-muted">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupFile01">{{ document.title}}</label>
+                                <input type="file" class="form-control" id="inputGroupFile01">
+                            </div>
+                        </small>
+                        <span class="text-muted"></span>
+                    </li>
                 </div>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">CAMARA DE COMERCIO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">SOLICITUD DE ARENDAMIENTO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">INSPECCION E INVENTARIO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>     
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">ASEGURABLE O APROVADO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">INVENTARIO DE ENTREGA</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>            
-            </div>
-            contract: {{ this.contract[0] }}
+            </ul>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -156,7 +118,14 @@
 <script>
 export default {
     name:"contract",
-    props: ['contract'],
+    props: ['contract','documents'],
+    computed: {
+        documentContract: function () {
+            return this.documents.filter(function (document) {
+            return document.category === 'CONTRATO';
+            })
+        }
+    },
     data() {
         return {        
             contractEditing: true,
@@ -169,7 +138,7 @@ export default {
             contractRights: this.contract ? this.contract[0].contractRights : contractRights,
             increment: this.contract ? this.contract[0].increment : increment,
             deliveryDate: this.contract ? this.contract[0].deliveryDate : deliveryDate,
-            gradePeriod: this.contract ? this.contract[0].gradePeriod : gradePeriod,
+            gradePeriod: this.contract ? this.contract[0].gracePeriod : gradePeriod,
             clause: this.contract ? this.contract[0].clause : clause
         }
     }

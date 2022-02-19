@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contract;
+use App\Models\{Contract, Document};
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\App;
@@ -27,7 +27,7 @@ class ContractController extends Controller
     public function index()
     {
         $contracts = Contract::paginate();
-
+        $documents = Document::paginate();
         return view('contract.index', compact('contracts'))
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }
@@ -96,8 +96,8 @@ class ContractController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
-
-        return view('contract.show', compact('contract'));
+        $documents = Document::paginate();
+        return view('contract.show', compact('contract','documents'));
     }
 
     /**

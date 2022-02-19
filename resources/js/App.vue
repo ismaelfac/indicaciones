@@ -2,13 +2,19 @@
     <div>
         <div class="row g-5">
             <div class="col-md-5 col-lg-4 order-md-last">
-                <PanelContract :contract="contract" :participants="participants" :estate="estate" @ContractView="ContractView" @EstateView="EstateView" @PersonView="PersonView" />
+                <PanelContract 
+                        :contract="contract" 
+                        :participants="participants" 
+                        :estate="estate" 
+                        @ContractView="ContractView" 
+                        @EstateView="EstateView" 
+                        @PersonView="PersonView" />
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3"></h4>
-                <div v-if="contractOn"><ContractForm :contract="contractInject"></ContractForm></div>
-                <div v-if="estateOn"><EstateForm :estate="estateInject"></EstateForm></div>
-                <div v-if="personOn"><PersonForm :participant="participant"></PersonForm></div>
+                <div v-if="contractOn"><ContractForm :contract="contractInject" :documents="documents.data"></ContractForm></div>
+                <div v-if="estateOn"><EstateForm :estate="estateInject" :documents="documents.data"></EstateForm></div>
+                <div v-if="personOn"><PersonForm :participant="participant" :documents="documents.data"></PersonForm></div>
             </div>
         </div>
     </div>
@@ -21,7 +27,7 @@ import PersonForm from './components/person/index.vue';
 import PanelContract from './components/panelContract/index.vue';
 export default {
     name: 'App',
-    props: ['contract', 'estate', 'participants'],
+    props: ['contract', 'documents', 'estate', 'participants'],
     components: {
         PanelContract,
         ContractForm,
