@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contract;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use PDF;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +28,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $contracts = Contract::paginate();
+
+        return view('home', compact('contracts'))
+            ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }
 }

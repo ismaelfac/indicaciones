@@ -21,49 +21,12 @@
                         </div>
                     </div>
 
-                    <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Asegurable:</strong>
-                            {{ $contract->asegurable }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Domus:</strong>
-                            {{ $contract->domus }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Cannonlease:</strong>
-                            {{ $contract->cannonLease }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Adminvalue:</strong>
-                            {{ $contract->adminValue }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Increment:</strong>
-                            {{ $contract->increment }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Contractrights:</strong>
-                            {{ $contract->contractRights }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Deliverydate:</strong>
-                            {{ $contract->deliveryDate }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Graceperiod:</strong>
-                            {{ $contract->gracePeriod }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Clause:</strong>
-                            {{ $contract->clause }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Isactive:</strong>
-                            {{ $contract->isActive }}
-                        </div>
-
+                    <div class="card-body">                        
+                        <example-component 
+                            :contract="{{ json_encode($contract) }}" 
+                            :estate="{{ json_encode($contract->estates[0]) }}" 
+                            :participants="{{json_encode($contract->contractPerson ) }}">
+                        </example-component>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <script>
 export default {
     name: 'ListPeople',
-    props: ['numParticipants','typePerson','names', 'bussinessName', 'estate'],
+    props: ['numParticipants','typePerson','names', 'bussinessName', 'state'],
     data() {
         return{
             active: 'btn btn-success btn-sm',
@@ -17,6 +17,6 @@ export default {
         <h6 class="my-0">{{ typePerson }}</h6>
         <small class="text-muted">{{ (names) ? names : bussinessName }}</small>
         </div>
-        <span class="text-muted"><a href="#" :class="[ estate ? active : inactive]">{{ (estate) ? 'COMPLETADO': 'COMPLETAR'}}</a></span>
+        <span class="text-muted"><a href="#" :class="[ state ? active : inactive]">{{ (state) ? 'COMPLETADO': 'COMPLETAR'}}</a></span>
     </li>
 </template>

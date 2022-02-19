@@ -13,7 +13,7 @@
             <div class="col-6">
                 <div class="input-group has-validation" v-if="contractEditing"> 
                     <span class="input-group-text">COD DOMUS</span>
-                    <input type="text" class="form-control" id="username" placeholder="Username" required>
+                    <input type="text" class="form-control" id="username" v-model="codDomus">
                 <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -97,6 +97,57 @@
         </div>
 
         <hr class="my-4">
+            <div class="row" v-if="detailEstateDocumentView">
+                <h4 class="mb-1">Documentos del Inmueble</h4>
+                <div v-if="typePerson === 'Juridica'" class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">RUT</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div v-if="typePerson === 'Juridica'" class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">CAMARA DE COMERCIO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">SOLICITUD DE ARENDAMIENTO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">INSPECCION E INVENTARIO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>     
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">ASEGURABLE O APROVADO</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>
+                <div class="col-12">
+                    <small class="text-muted">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupFile01">INVENTARIO DE ENTREGA</label>
+                            <input type="file" class="form-control" id="inputGroupFile01">
+                        </div>
+                    </small>
+                </div>            
+            </div>
 
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
@@ -107,7 +158,10 @@ export default {
     name:"estate",
     data() {
         return {        
-            contractEditing: true,    
+            contractEditing: true,
+            asegurable: '',
+            codDomus: '',
+            detailEstateDocumentView: true,
             ifAdminValue: false,
             adminValue: 0,
             deliveryDate: '',
