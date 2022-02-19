@@ -33,7 +33,7 @@
             <div class="col-4">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Valor Cannon</span>
-                    <input type="text" class="form-control" id="username">
+                    <input type="text" class="form-control" id="cannon" v-model="cannon">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -48,7 +48,7 @@
             <div class="col-4" v-if="ifAdminValue">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Valor Admin</span>
-                    <input type="text" v-model="adminValue" class="form-control" id="username">
+                    <input type="text" v-model="adminValue" class="form-control" id="adminValue">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -157,7 +157,6 @@
                     </small>
                 </div>            
             </div>
-            address: {{ this.estate[0] }}
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -170,6 +169,7 @@ export default {
         return {        
             contractEditing: true,
             estateAddress: this.estate ? this.estate[0].address : estateAddress,
+            cannon: this.estate ? this.estate[0].address : estateAddress,
             asegurable: '',
             codDomus: '',
             detailEstateDocumentView: true,
