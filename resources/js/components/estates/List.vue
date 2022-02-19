@@ -2,6 +2,7 @@
     export default {
         name: 'ListEstate',
         props: [ 'id','isActive','typeEstate', 'address'],
+        emits: ['EstateViewChild'],
         data() {
             return{
                 active: 'btn btn-success btn-sm',

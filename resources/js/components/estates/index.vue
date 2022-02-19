@@ -23,6 +23,15 @@
             <h4 class="mb-1">Información de Inmueble</h4>
             <div class="col-4">
                 <div class="input-group has-validation">
+                    <span class="input-group-text">Dirección</span>
+                    <input type="text" class="form-control" id="estateAddress" v-model="estateAddress">
+                    <div class="invalid-feedback">
+                    Your username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group has-validation">
                     <span class="input-group-text">Valor Cannon</span>
                     <input type="text" class="form-control" id="username">
                     <div class="invalid-feedback">
@@ -148,7 +157,7 @@
                     </small>
                 </div>            
             </div>
-
+            address: {{ this.estate[0] }}
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -156,9 +165,11 @@
 <script>
 export default {
     name:"estate",
+    props: ['estate'],
     data() {
         return {        
             contractEditing: true,
+            estateAddress: this.estate ? this.estate[0].address : estateAddress,
             asegurable: '',
             codDomus: '',
             detailEstateDocumentView: true,

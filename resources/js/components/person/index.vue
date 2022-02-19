@@ -151,7 +151,7 @@
                 </div>            
             </div>
         </div>
-            
+        names: {{ this.participant }}    
 
         <hr class="my-4">
 
@@ -161,14 +161,9 @@
 <script>
 export default {
     name:'person',
-    mounted() {
-
-    },
+    props:['participant'],
     data() {
         return {
-            participants: [
-                
-            ],
             stateParticipante: 'CREAR',
             typePerson: '',
             typeParticipante: '',

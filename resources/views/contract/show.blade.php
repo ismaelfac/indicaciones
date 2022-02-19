@@ -16,7 +16,8 @@
                             </span>
 
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('contracts.index') }}"> Cancelar</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('contracts.index') }}"> Cancelar</a>
+                                <a class="btn btn-sm btn-danger" href="{{ url('contracts/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>
