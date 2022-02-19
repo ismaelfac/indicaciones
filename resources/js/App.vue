@@ -15,47 +15,18 @@
                             <span class="text-muted">INCOMPLETO</span>
                         </li>
                     </ul>
-
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-primary">Participantes</span>
-                    <span class="badge bg-primary rounded-pill">{{ NumParticipantes }}</span>
+                    <span class="badge bg-primary rounded-pill">{{ numParticipants }}</span>
                     </h4>
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0"><a href="#" @click="PersonView" class="btn btn-default">Nuevo Participante</a></h6>
                         </div>
-                        <span class="text-muted">INCOMPLETO</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                        <h6 class="my-0">Arrendatario</h6>
-                        <small class="text-muted">Comercizalizadora xyz</small>
-                        </div>
-                        <span class="text-muted">INCOMPLETO</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                        <h6 class="my-0">Deudor</h6>
-                        <small class="text-muted">Francisco Venabides</small>
-                        </div>
-                        <span class="text-muted">INCOMPLETO</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                        <h6 class="my-0">Propietario</h6>
-                        <small class="text-muted">Ismael Lastre Alvarez</small>
-                        </div>
-                        <span class="text-muted">COMPLETADO</span>
-                    </li>
+                        <ListPerson v-for="participant in participants" :key="participant.id" :typePerson="participant.typePerson" :names="participant.names" :bussinessName="participant.bussinessName" :estate="participant.estate" />
                     </ul>
-
-                    <form class="card p-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Promo code">
-                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                    </div>
-                    </form>
                 </div>
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3"></h4>
@@ -69,11 +40,13 @@
 <script>
 import EstateForm from './components/estates/index.vue';
 import PersonForm from './components/person/index.vue';
+import ListPerson from './components/person/List.vue';
 export default {
     name: 'App',
     components: {
         EstateForm,
-        PersonForm
+        PersonForm,
+        ListPerson
     },
     data() {
         return {
@@ -82,7 +55,27 @@ export default {
             estateAddress: 'CLL 95 # 37-69 PISO 2',
             contractEditing: true,
             asegurable: '',
-            NumParticipantes: 3
+            numParticipants: 3,
+            participants: [
+                {
+                    id: 1,
+                    typePerson: 'ARRENDATARIO',
+                    bussinessName: 'COMERCIALIZADORA XYZ',
+                    estate: false
+                },
+                {
+                    id: 1,
+                    typePerson: 'DEUDOR',
+                    names: 'SINFOROSO GUMERSINDO',
+                    estate: true
+                },
+                {
+                    id: 1,
+                    typePerson: 'PROPIETARIO',
+                    names: 'ISMAEL ENRIQUE LASTRE ALVAREZ',
+                    estate: true
+                }
+            ]
         }
     },
     methods: {

@@ -161,8 +161,14 @@
 <script>
 export default {
     name:'person',
+    mounted() {
+
+    },
     data() {
         return {
+            participants: [
+                
+            ],
             stateParticipante: 'CREAR',
             typePerson: '',
             typeParticipante: '',

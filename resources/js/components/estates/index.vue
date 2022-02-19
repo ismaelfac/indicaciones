@@ -30,7 +30,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-4">
                 <div class="form-check form-switch">
                 <input class="form-check-input" v-model="ifAdminValue" type="checkbox" role="switch" id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">Con Administración</label>
@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="col-3">
+            <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Incremento</span>
                     <input type="text" v-model="increment" class="form-control" id="username">
@@ -56,7 +56,7 @@
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Derechos de contrato</span>
                     <input type="text" v-model="contractRights" class="form-control" id="username">
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="col-5">
+            <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Fecha de Entrega</span>
                     <input type="date" v-model="deliveryDate" class="form-control" format="dd-mm-yyyy" id="username">
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="col-4">
+            <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Periodo de Gracia</span>
                     <input type="text" v-model="gradePeriod" class="form-control" id="username">
