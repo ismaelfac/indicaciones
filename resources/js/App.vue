@@ -7,14 +7,13 @@
                         :participants="participants" 
                         :estate="estate" 
                         @ContractView="ContractView" 
-                        @EstateView="EstateView" 
-                        @PersonView="PersonView" />
+                        @EstateView="EstateView" />
             </div>
             <div class="col-md-7 col-lg-8">
                 <h4 class="mb-3"></h4>
                 <div v-if="contractOn"><ContractForm :contract="contractInject" :documents="documents.data"></ContractForm></div>
                 <div v-if="estateOn"><EstateForm :estate="estateInject" :documents="documents.data"></EstateForm></div>
-                <div v-if="personOn"><PersonForm :participant="participant" :documents="documents.data"></PersonForm></div>
+                <div v-if="personOn"><PersonForm :participant="participantInject" :documents="documents.data"></PersonForm></div>
             </div>
         </div>
     </div>
@@ -33,6 +32,11 @@ export default {
         ContractForm,
         EstateForm,
         PersonForm
+    },
+    mounted() {
+        this.emitter.on('Person-View', (participant) =>{
+            this.PersonView(participant);
+        })
     },
     data() {
         return {
@@ -61,11 +65,12 @@ export default {
             console.log(this.estateInject[0])
         },
         PersonView(participant){
+            console.log('entro con el participante', participant)
             this.personOn = !this.personOn;
             this.contractOn = false;
             this.estateOn = false;
             this.participantInject.push(participant);
-            console.log(this.participantInject)
+            //console.log(this.participantInject)
         }
     }    
 }

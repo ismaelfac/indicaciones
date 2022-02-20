@@ -1,12 +1,15 @@
 <script>
 export default {
     name: 'ListPeople',
-    props: ['numParticipants','typePerson','names', 'bussinessName', 'state'],
+    props: ['id','numParticipants','typePerson','names', 'bussinessName', 'state'],
     data() {
         return{
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm'
         }
+    },
+    methods: {
+        
     }
 
 }

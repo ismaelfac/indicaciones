@@ -5,7 +5,7 @@ import ListEstate from '../estates/List.vue';
 export default {
     name: 'panelContract',
     props: ['participants', 'estate', 'contract'],
-    emits: ['ContractView','EstateView','PersonView'],
+    emits: ['ContractView','EstateView'],
     inject: ['contractInject','estateInject', 'participantInject'],
     components: {
         ListContract,
@@ -18,7 +18,9 @@ export default {
         }
     },
     methods: {
-
+        loadParticipant(participant){
+            this.emitter.emit('Person-View', participant);
+        }
     }
 }
 </script>
@@ -78,8 +80,8 @@ export default {
                             :typePerson="participant.typePerson" 
                             :names="participant.names" 
                             :bussinessName="participant.bussinessName" 
-                            :state="participant.state" 
-                            @click="$emit('PersonView', participant)"/>
+                            :state="participant.state"
+                            @click="loadParticipant(participant)"/>
             </div>
         </ul>
     </div>

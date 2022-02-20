@@ -3,8 +3,8 @@
         <div class="row g-3">
             <div class="col-6">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Tipo de participante</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeParticipante">
+                    <label class="input-group-text" for="typeParticipant">Tipo de participante</label>
+                    <select class="form-select" id="typeParticipant" v-model="typeParticipant">
                         <option selected>Eliga una opción...</option>
                         <option value="ARRENDATARIO">ARRENDATARIO</option>
                         <option value="DEUDOR">DEUDOR</option>
@@ -17,8 +17,8 @@
             </div>
             <div class="col-6">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Tipo de persona</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typePerson">
+                    <label class="input-group-text" for="typePerson">Tipo de persona</label>
+                    <select class="form-select" id="typePerson" v-model="typePerson">
                         <option selected>Eliga una opción...</option>
                         <option value="Natural">Natural</option>
                         <option value="Juridica">Juridica</option>
@@ -47,9 +47,9 @@
                 </div>
             </div>
             <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipante }}</button>
-            <div class="row" v-if="detailPersonView">
+            <div class="row">
                 <hr class="my-4">
-                <h4 class="mb-1">Información del {{ typeParticipante }}</h4>
+                <h4 class="mb-1">Información del {{ typeParticipant }}</h4>
                 <div v-if="typePerson === 'Natural'" class="col-12">
                     <div class="input-group has-validation">
                         <span class="input-group-text">Nombres Completos</span>
@@ -99,8 +99,8 @@
                 
             </div>
             <hr class="my-4">
-            <div class="row" v-if="detailPersonDocumentView">
-                <h4 class="mb-1">Documentos del {{ typeParticipante }}</h4>
+            <div class="row">
+                <h4 class="mb-1">Documentos del {{ typeParticipant }}</h4>
                 <div v-if="typePerson === 'Juridica'" class="col-12">
                     <small class="text-muted">
                         <div class="input-group mb-3">
@@ -151,9 +151,8 @@
                 </div>            
             </div>
         </div>
-        names: {{ this.participant }}    
 
-        <hr class="my-4">
+        <hr class="my-4">{{ this.participant[0].pivot.typePerson }}
 
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar</button>
     </form>
@@ -165,11 +164,11 @@ export default {
     data() {
         return {
             stateParticipante: 'CREAR',
-            typePerson: '',
-            typeParticipante: '',
+            typePerson: this.participant ? this.participant[0].typePerson : typePerson,
+            typeParticipant: this.participant ? this.participant[0].pivot.typePerson : typeParticipant,
             dni: '',
             bussinessName: '',
-            names: '',
+            names: this.participant ? this.participant[0].names : names,
             typeDni:'',
             addressPerson: '',
             phonePerson: '',

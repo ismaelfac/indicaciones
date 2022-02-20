@@ -29,6 +29,7 @@ class ContractPerson extends Model
     static $rules = [
 		'contract_id' => 'required',
 		'person_id' => 'required',
+        'typeParticipant' => 'required',
 		'typePerson' => 'required',
 		'isActive' => 'required',
     ];
@@ -40,7 +41,7 @@ class ContractPerson extends Model
      *
      * @var array
      */
-    protected $fillable = ['contract_id','person_id','typePerson','user_id','isActive'];
+    protected $fillable = ['contract_id','person_id','typeParticipant','typePerson','user_id','isActive'];
 
 
     /**
