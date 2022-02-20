@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Auth;
  */
 class EstateController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -50,11 +46,10 @@ class EstateController extends Controller
     {
         $user_id = Auth::id();
         request()->validate(Estate::$rules);
-
+        
         $estate = new Estate;
         $estate->address = $request->address;
-        $estate->garajes = $request->garajes;
-        $estate->usefulRoom = $request->usefulRoom;
+        $estate->realEstateRegistration = $request->realEstateRegistration;
         $estate->typeEstate = $request->typeEstate;
         $estate->user_id = $user_id;
         $estate->isActive = true;

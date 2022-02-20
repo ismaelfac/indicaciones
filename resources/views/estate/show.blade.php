@@ -25,12 +25,8 @@
                             {{ $estate->address }}
                         </div>
                         <div class="form-group">
-                            <strong>Garajes:</strong>
-                            {{ $estate->garajes }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Usefulroom:</strong>
-                            {{ $estate->usefulRoom }}
+                            <strong>Realestateregistration:</strong>
+                            {{ $estate->realEstateRegistration }}
                         </div>
                         <div class="form-group">
                             <strong>Typeestate:</strong>

@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $address
- * @property $garajes
- * @property $usefulRoom
+ * @property $realEstateRegistration
  * @property $typeEstate
  * @property $user_id
  * @property $isActive
@@ -27,8 +26,8 @@ class Estate extends Model
     
     static $rules = [
 		'address' => 'required',
+		'realEstateRegistration' => 'required',
 		'typeEstate' => 'required',
-		'isActive' => 'required',
     ];
 
     protected $perPage = 20;
@@ -38,7 +37,7 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address','garajes','usefulRoom','typeEstate','user_id','isActive'];
+    protected $fillable = ['address','realEstateRegistration','typeEstate','user_id','isActive'];
 
 
     /**

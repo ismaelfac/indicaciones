@@ -43,7 +43,6 @@
             {!! $errors->first('isActive', '<div class="invalid-feedback">:message</p>') !!}
             </div>
         </div>
-
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">Crear / Actualizar</button>

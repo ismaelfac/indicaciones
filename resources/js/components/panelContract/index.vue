@@ -14,7 +14,7 @@ export default {
     },
     data() {
         return{
-            numParticipants: this.participants.length ? this.participants.length : '',
+            numParticipants: 3,
         }
     },
     methods: {
