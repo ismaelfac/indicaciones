@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{ ContractPerson, Person };
+use App\Models\{ContractEstate, ContractPerson, Person };
 /**
  * Class Contract
  *
@@ -31,7 +31,6 @@ use App\Models\{ ContractPerson, Person };
  */
 class Contract extends Model
 {
-    
     static $rules = [
         'asegurable' => 'required',
 		'cannonLease' => 'required',
@@ -69,7 +68,15 @@ class Contract extends Model
      */
     public function contractPerson()
     {
-        return $this->belongsToMany(Person::class)->withPivot('typePerson')->wherePivot('isActive',1);
+        return $this->belongsToMany(Person::class)->withPivot('typePerson','type_participant')->wherePivot('isActive',1);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function contractEstate()
+    {
+        return $this->hasMany('App\Models\ContractEstate', 'contract_id', 'id');
     }
     
     /**

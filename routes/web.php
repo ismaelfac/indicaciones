@@ -22,4 +22,3 @@ Route::resource('contract-person', ContractPersonController::class);
 Route::resource('contract-estate', ContractEstateController::class);
 Route::resource('contract-documents', ContractDocumentController::class);
 Route::resource('documents', DocumentController::class);
-Route::get('contract-estate/{id}', [ContractEstateController::class, 'createContractEstate']);
