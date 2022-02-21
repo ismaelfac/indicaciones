@@ -58,25 +58,17 @@ class Contract extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
-    public function estates()
-    {
-        return $this->belongsToMany(Estate::class)->wherePivot('isActive',1);
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-     */
     public function contractPerson()
     {
-        return $this->belongsToMany(Person::class)->withPivot('typePerson','type_participant')->wherePivot('isActive',1);
+        return $this->belongsToMany(Person::class)->withPivot('typePerson','typeParticipant')->wherePivot('isActive',1);
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
      */
-    public function contractEstate()
+    public function contractEstates()
     {
-        return $this->hasMany('App\Models\ContractEstate', 'contract_id', 'id');
+        return $this->belongsToMany(Estate::class)->wherePivot('isActive',1);
     }
     
     /**

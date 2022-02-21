@@ -28,7 +28,6 @@ class ContractController extends Controller
     {
         $contracts = Contract::paginate();
         $documents = Document::paginate();
-        //dd($contracts);
         return view('contract.index', compact('contracts'))
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }

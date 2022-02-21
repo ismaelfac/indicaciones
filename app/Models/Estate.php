@@ -45,7 +45,7 @@ class Estate extends Model
      */
     public function contractEstates()
     {
-        return $this->hasMany('App\Models\ContractEstate', 'estate_id', 'id');
+        return $this->belongsToMany(Contract::class)->wherePivot('isActive',1);
     }
     
     /**
