@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Estate;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
 class EstateSeeder extends Seeder
 {
@@ -13,6 +15,17 @@ class EstateSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $user_id = Auth::id();
+        $data = file_get_contents("database/Queries/estates.json");
+        $estates = json_decode($data, true);
+        foreach ($estates as $value) {
+            Estate::create([
+                'address' => $value['address'],
+                'realEstateRegistration' => $value['realEstateRegistration'],
+                'typeEstate' => $value['typeEstate'],
+                'user_id' => 1,
+                'isActive' => $value['isActive']
+            ]);
+        }
     }
 }

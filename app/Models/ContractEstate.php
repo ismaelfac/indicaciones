@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 /**
  * Class ContractEstate
  *
@@ -23,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContractEstate extends Model
 {
-    protected $table = 'contract_estates';
+    protected $table = 'contract_estate';
     
     static $rules = [
 		'contract_id' => 'required',

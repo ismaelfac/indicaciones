@@ -24,7 +24,6 @@ class ContractEstateController extends Controller
     public function index()
     {
         $contractEstates = ContractEstate::paginate();
-        dd($contractEstates);
         return view('contract-estate.index', compact('contractEstates'))
             ->with('i', (request()->input('page', 1) - 1) * $contractEstates->perPage());
     }

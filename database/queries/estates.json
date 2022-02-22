@@ -1,0 +1,42 @@
+[
+    {
+        "address": "Cra 59 # 95-26 LOCAL 23",
+        "realEstateRegistration": "4025300",
+        "typeEstate": "CASA COMERCIAL",
+        "user_id": 1,
+        "isSharedElectricityMeter": false,
+        "isActive": true
+    },
+    {
+        "address": "Cll 102 # 62-19 TORREO MANACA APTO 605",
+        "realEstateRegistration": "25620310",
+        "typeEstate": "APARTAMENTO",
+        "isSharedElectricityMeter": false,
+        "user_id": 1,
+        "isActive": true
+    },
+    {
+        "address": "Cra 71 Via 40 SECTOR LOMA",
+        "realEstateRegistration": "4025300",
+        "typeEstate": "BODEGA",
+        "isSharedElectricityMeter": false,
+        "user_id": 1,
+        "isActive": true
+    },
+    {
+        "address": "CLL 72 # 49 - 129",
+        "realEstateRegistration": "32856321",
+        "isSharedElectricityMeter": true,
+        "typeEstate": "LOCAL COMERCIAL",
+        "user_id": 1,
+        "isActive": true
+    },
+    {
+        "address": "CLL 68 # 58 - 29",
+        "realEstateRegistration": "4035210",
+        "isSharedElectricityMeter": false,
+        "typeEstate": "CASA VIVIENDA",
+        "user_id": 1,
+        "isActive": true
+    }
+]

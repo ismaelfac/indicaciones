@@ -26,7 +26,7 @@
                         <example-component 
                             :documents="{{ json_encode($documents)}}"
                             :contract="{{ json_encode($contract) }}" 
-                            :estate="{{ json_encode($contract->estates[0]) }}" 
+                            :estate="{{ json_encode($contract->contractEstates[0]) }}" 
                             :participants="{{json_encode($contract->contractPerson ) }}">
                         </example-component>
                     </div>

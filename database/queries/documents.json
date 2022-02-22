@@ -1,0 +1,104 @@
+[
+    {
+        "title": "Solicitudes de arrendamiento",
+        "description": "",
+        "category": "PERSONA_AD",
+        "isActive": true
+    },
+    {
+        "title": "Asegurable o aprobado según el caso (direccion y valor deben coincidir con contrato)",
+        "description": "",
+        "category": "PERSONA_AD",
+        "isActive": true
+    },
+    {
+        "title": "Rut (P.Juridica) año corriente",
+        "description": "",
+        "category": "PERSONA_AD",
+        "isActive": true
+    },
+    {
+        "title": "Rut (P.Juridica) año corriente",
+        "description": "",
+        "category": "PERSONA_PUC",
+        "isActive": true
+    },
+    {
+        "title": "Convenio Administracion firmado",
+        "description": "",
+        "category": "PERSONA_PUC",
+        "isActive": true
+    },
+    {
+        "title": "Documento Usufructo (si aplica)",
+        "description": "",
+        "category": "PERSONA_PUC",
+        "isActive": true
+    },
+    {
+        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
+        "description": "",
+        "category": "PERSONA_AD",
+        "isActive": true
+    },
+    {
+        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
+        "description": "",
+        "category": "PERSONA_PUC",
+        "isActive": true
+    },
+    {
+        "title": "Poder  (casos firmante no es el propietario)",
+        "description": "",
+        "category": "PERSONA_PUC",
+        "isActive": true
+    },
+    {
+        "title": "Certificado Tradicion o escritura o medidas y linderos especificos en caso de no estar el inmueble desenglobado ( Vigencia 30 dìas)",
+        "description": "",
+        "category": "PERSONA_PUC",
+        "isActive": true
+    },
+    {
+        "title": "Copia de sevicios publicos domiciliarios del inmueble",
+        "description": "",
+        "category": "INMUEBLE",
+        "isActive": true
+    },
+    {
+        "title": "Novedad de Ingreso Seguro o Fianza",
+        "description": "",
+        "category": "CONTRATO",
+        "isActive": true
+    },
+    {
+        "title": "Cuenta de cobro Canon y Derechos de Contrato",
+        "description": "",
+        "category": "CONTRATO",
+        "isActive": true
+    },
+    {
+        "title": "Soporte de Consignación o transferencia de canon y derechos de contrato",
+        "description": "",
+        "category": "CONTRATO",
+        "isActive": true
+    },
+    {
+        "title": "Contrato firmado por las partes",
+        "description": "",
+        "category": "CONTRATO",
+        "isActive": true
+    },
+    {
+        "title": "Inventario de entrega",
+        "description": "",
+        "category": "Inmueble",
+        "isActive": true
+    },
+    {
+        "title": "Paz y salvo de administracion",
+        "description": "",
+        "category": "CONTRATO",
+        "isActive": true
+    }
+]
