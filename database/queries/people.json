@@ -34,5 +34,32 @@
         "phone": "3014125252",
         "email": "lrobledo630@gmail.com",
         "isActive": true
+    },
+    {
+        "names": "JULIO CESAR GULY PABA",
+        "address": "CLL 84B # 37-69 APTO 3 BARRIO EL RUBY",
+        "dni": "74525631",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3002002020",
+        "email": "jpaba@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "RUT OJEDA PEREIRA",
+        "address": "CLL 84B # 37 - 69 APTO 3 BARRIO EL RUBY",
+        "dni": "8632541",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3256451",
+        "email": "rudojeda@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "FRANCISCO RODRIGUEZ POLO",
+        "address": "CLL 58 #67-63",
+        "dni": "86325142",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3205206363",
+        "email": "frodriguezpolo@gmail.com",
+        "isActive": true
     }
 ]
