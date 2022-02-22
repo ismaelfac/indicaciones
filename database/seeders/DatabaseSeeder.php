@@ -31,7 +31,10 @@ class DatabaseSeeder extends Seeder
             DocumentSeeder::class,
             EstateSeeder::class,
             PersonSeeder::class,
-            ContractSeeder::class            
+            ContractSeeder::class,
+            ContractEstateSeeder::class,
+            ContractPersonSeeder::class,
+            ContractDocumentSeeder::class,            
         ]);
     }
 
