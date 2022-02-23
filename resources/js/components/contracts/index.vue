@@ -98,17 +98,25 @@
 
         <hr class="my-4">
             <h4 class="mb-1">Documentos del Contrato</h4>
-            <ul class="list-group mb-3">
-                <div v-if="documents">
-                    <li class="list-group-item d-flex justify-content-between lh-sm" v-for="document in documentContract" :key="document.id">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">{{ document.title }}</label>
-                            <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
-                        </div>
-                        <span class="text-muted"><a href="#" :class="[document.isActive ? active : inactive]">{{ (document.isActive) ? 'COMPLETADO': 'COMPLETAR'}}</a></span>
-                    </li>
-                </div>
-            </ul>
+                <ul class="row list-group mb-3">
+                    <div v-if="documents" class="row">
+                        <li class="list-group-item d-flex justify-content-between lh-sm col-12" v-for="document in documentContract" :key="document.id">
+                            <div class="card text-center">
+                                <div class="card-header">
+                                    {{ document.title }}
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Special title treatment</h5>
+                                    <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
+                                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                                </div>
+                                <div class="card-footer text-muted">
+                                    2 days ago
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -116,12 +124,12 @@
 <script>
 export default {
     name:"contract",
-    props: ['contract','documents'],
+    props: ['contract','documents','contractDocument'],
     computed: {
         documentContract: function () {
             return this.documents.filter(function (document) {
-            return document.category === 'CONTRATO';
-            })
+                return document.category === 'CONTRATO';
+            });
         }
     },
     data() {
