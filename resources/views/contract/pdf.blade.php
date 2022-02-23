@@ -20,23 +20,7 @@
         </div>
     </header>
     <main>
-      @foreach ($contract->contractPerson as $person)
-      <div id="details" class="clearfix">
-        
-        <div id="client">
-        
-          <div class="to"><b>{{ $person->pivot->typePerson }}:</b> </div>
-          <h2 class="name">{{ $person ? $person->names : 'NO DEFINIDO' }}   </h2>
-          <div class="address">{{  $person->typeDni }} : {{ $person->dni ? $person->dni : 'NO DEFINIDO'}}</div>
-          <div class="email"><a href="mailto:john@example.com">{{ $person->email ?$person->email : 'NO DEFINIDO'}}</a></div>
-        </div>       
-        <div id="invoice">
-          <div class="to">.</div>
-          <div class="address">Telefono Contacto: {{  $person->phone ?  $person->phone : 'NO DEFINIDO' }}</div>
-        </div>        
-      </div>
-      @endforeach
-      @foreach ($contract->estates as $estate)
+    @foreach ($contract->contractEstates as $estate)
       <div id="details" class="clearfix">
         <div id="client">
           <div class="to"><b>INMUEBLE:</b> {{ $estate->address ? $estate->address : 'NO DEFINIDO' }} </div>
@@ -49,17 +33,33 @@
           <div class="date">Due Date: 30/06/2014</div>
         </div>
       </div>
+      @foreach ($contract->contractPerson as $person)
+      <div id="details" class="clearfix">
+        
+        <div id="client">
+        
+          <div class="to"><b>{{ $person->pivot->typeParticipant }}:</b> </div>
+          <h2 class="name">{{ $person ? $person->names : 'NO DEFINIDO' }}   </h2>
+          <div class="address">{{  $person->typeDni }} : {{ $person->dni ? $person->dni : 'NO DEFINIDO'}}</div>
+          <div class="email"><a href="mailto:john@example.com">{{ $person->email ?$person->email : 'NO DEFINIDO'}}</a></div>
+        </div>       
+        <div id="invoice">
+          <div class="to">.</div>
+          <div class="address">Telefono Contacto: {{  $person->phone ?  $person->phone : 'NO DEFINIDO' }}</div>
+        </div>        
+      </div>
+      @endforeach
       @endforeach
       <div id="details" class="clearfix">
         <div id="client">
           <div class="to"><b>VALOR DEL ARRIENDO:</b> {{ $contract->cannonLease ? $contract->cannonLease : 'NO DEFINIDO' }} </div>
           <div class="address">Cannon  : {{ $contract->adminValue ? $contract->adminValue : 'NO DEFINIDO' }}</div>
-          <div class="address">Cuarto Util  : {{ $contract->increment ? $contract->increment : 'NO DEFINIDO' }}</div>
+          <div class="address">Incremento  : {{ $contract->increment ? $contract->increment : 'NO DEFINIDO' }}</div>
         </div>
         <div id="invoice">
         <div class="address">Derechos de Contrato {{ $contract->contractRights ? $contract->contractRights : 'NO DEFINIDO' }}</div>
           <div class="date">Periodo de Gracia:{{ $contract->gracePeriod ? $contract->gracePeriod : 'NO DEFINIDO' }}</div>
-          <div class="date">Due Date: 30/06/2014</div>
+          <div class="date">Fecha de Entrega: {{ $contract->deliveryDate ? $contract->deliveryDate : 'NO DEFINIDO' }}</div>
         </div>
       </div>
       <div id="notices">

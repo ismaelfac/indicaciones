@@ -3,8 +3,8 @@
         <div class="row g-3">
             <div class="col-6">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="typeParticipant">Tipo de participante</label>
-                    <select class="form-select" id="typeParticipant" v-model="typeParticipant">
+                    <label class="input-group-text" for="inputGroupSelect01">Tipo de participante</label>
+                    <select class="form-select" id="inputGroupSelect01" v-model="typeParticipant">
                         <option selected>Eliga una opción...</option>
                         <option value="ARRENDATARIO">ARRENDATARIO</option>
                         <option value="DEUDOR">DEUDOR</option>
@@ -17,8 +17,8 @@
             </div>
             <div class="col-6">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="typePerson">Tipo de persona</label>
-                    <select class="form-select" id="typePerson" v-model="typePerson">
+                    <label class="input-group-text" for="inputGroupSelect02">Tipo de persona</label>
+                    <select class="form-select" id="inputGroupSelect02" v-model="typePerson">
                         <option selected>Eliga una opción...</option>
                         <option value="Natural">Natural</option>
                         <option value="Juridica">Juridica</option>
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipante }}</button>
+            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipant }}</button>
             <div class="row">
                 <hr class="my-4">
                 <h4 class="mb-1">Información del {{ typeParticipant }}</h4>
@@ -54,15 +54,6 @@
                     <div class="input-group has-validation">
                         <span class="input-group-text">Nombres Completos</span>
                         <input type="text" class="form-control" id="username" v-model="names">
-                        <div class="invalid-feedback">
-                        Your username is required.
-                        </div>
-                    </div>
-                </div>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">Razon Social</span>
-                        <input type="text" class="form-control" id="username" v-model="bussinessName">
                         <div class="invalid-feedback">
                         Your username is required.
                         </div>
@@ -164,10 +155,9 @@ export default {
     data() {
         return {
             stateParticipante: 'CREAR',
-            typePerson: this.participant ? this.participant[0].typePerson : typePerson,
+            typePerson: this.participant ? this.participant[0].pivot.typePerson : typePerson,
             typeParticipant: this.participant ? this.participant[0].pivot.typePerson : typeParticipant,
             dni: '',
-            bussinessName: '',
             names: this.participant ? this.participant[0].names : names,
             typeDni:'',
             addressPerson: '',

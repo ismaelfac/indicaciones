@@ -51,26 +51,27 @@ export default {
     },
     methods: {
         ContractView(contract){
-            this.contractOn = !this.contractOn;
+            this.contractInject = [];
+            this.contractOn = true;
             this.estateOn = false;
             this.personOn = false;
             this.contractInject.push(contract);
             console.log(this.contractInject)
         },
         EstateView(estate){
-            this.estateOn = !this.estateOn;
+            this.estateInject = [];
+            this.estateOn = true;
             this.contractOn = false;
             this.personOn = false;
             this.estateInject.push(estate);
             console.log(this.estateInject[0])
         },
         PersonView(participant){
-            console.log('entro con el participante', participant)
-            this.personOn = !this.personOn;
+            this.participantInject = [];
+            this.personOn = true;
             this.contractOn = false;
             this.estateOn = false;
             this.participantInject.push(participant);
-            //console.log(this.participantInject)
         }
     }    
 }

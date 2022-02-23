@@ -31,23 +31,19 @@
             <h4 class="mb-1">Documentos del Inmueble</h4>
             <ul class="list-group mb-3">
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                <div v-if="documents">
-                    <li class="list-group-item d-flex justify-content-between lh-sm" v-for="document in documentEstate" :key="document.id">
-                        <small class="text-muted">
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="document{{ document.id}}">{{ document.title }}</label>
-                                <input type="file" class="form-control" id="document{{ document.id}}" @change="changeFiles" ref="documentsFile">
+                    <div v-if="documents">
+                        <li class="list-group-item d-flex justify-content-between lh-sm" v-for="document in documentEstate" :key="document.id">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">{{ document.title }}</label>
+                                <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
                             </div>
-                        </small>
-                        <span class="text-muted"></span>
-                    </li>
-                </div>
+                        </li>
+                    </div>
                 </form>
             </ul>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
-
 <script>
 export default {
     name:"estate",

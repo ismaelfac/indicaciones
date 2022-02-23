@@ -77,10 +77,11 @@ export default {
             <div v-if="participants">
                 <ListPerson v-for="participant in participants" 
                             :key="participant.id" 
-                            :typePerson="participant.typePerson" 
+                            :typeParticipant="participant.pivot.typeParticipant"
+                            :typePerson="participant.pivot.typePerson" 
                             :names="participant.names" 
                             :bussinessName="participant.bussinessName" 
-                            :state="participant.state"
+                            :isActive="participant.isActive"
                             @click="loadParticipant(participant)"/>
             </div>
         </ul>

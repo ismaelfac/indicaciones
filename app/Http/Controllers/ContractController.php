@@ -35,7 +35,6 @@ class ContractController extends Controller
     public function printPDF($contract_id)
     {
         $contract = Contract::find($contract_id);
-        //dd($contract->estates);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('contract.pdf', ['contract'=>$contract]);
     
