@@ -65,8 +65,9 @@
                                 <label for="formFile" class="form-label">{{ document.title }}</label>
                                 <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
                             </div>
+                            <span class="text-muted"><a href="#" :class="[document.isActive ? active : inactive]">{{ (document.isActive) ? 'COMPLETADO': 'COMPLETAR'}}</a></span>
                         </li>
-                    </div>
+                    </div>                    
                 </form>
             </ul>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
@@ -85,6 +86,8 @@ export default {
     },
     data() {
         return {        
+            active: 'btn btn-success btn-sm',
+            inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
             estateAddress: this.estate ? this.estate[0].address : estateAddress,
             typeEstate: this.estate ? this.estate[0].typeEstate : typeEstate,

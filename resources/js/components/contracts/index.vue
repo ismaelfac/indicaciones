@@ -101,13 +101,11 @@
             <ul class="list-group mb-3">
                 <div v-if="documents">
                     <li class="list-group-item d-flex justify-content-between lh-sm" v-for="document in documentContract" :key="document.id">
-                        <small class="text-muted">
-                            <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupFile01">{{ document.title}}</label>
-                                <input type="file" class="form-control" id="inputGroupFile01">
-                            </div>
-                        </small>
-                        <span class="text-muted"></span>
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">{{ document.title }}</label>
+                            <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
+                        </div>
+                        <span class="text-muted"><a href="#" :class="[document.isActive ? active : inactive]">{{ (document.isActive) ? 'COMPLETADO': 'COMPLETAR'}}</a></span>
                     </li>
                 </div>
             </ul>
@@ -128,6 +126,8 @@ export default {
     },
     data() {
         return {        
+            active: 'btn btn-success btn-sm',
+            inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
             asegurable: this.contract ? this.contract[0].asegurable : asegurable,
             domus: this.contract ? this.contract[0].domus : domus,
@@ -140,6 +140,11 @@ export default {
             deliveryDate: this.contract ? this.contract[0].deliveryDate : deliveryDate,
             gradePeriod: this.contract ? this.contract[0].gracePeriod : gradePeriod,
             clause: this.contract ? this.contract[0].clause : clause
+        }
+    },
+    methods: {
+        changeFiles(e){
+            console.log('entro', e.target.files[0]);
         }
     }
 }
