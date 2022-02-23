@@ -4,13 +4,15 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de participante</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeParticipant">
+                    <select class="form-select" id="inputGroupSelect01" v-model="typeParticipantPerson">
                         <option selected>Eliga una opción...</option>
+                        <option value="NO DEFINIDO">NO DEFINIDO</option>
                         <option value="ARRENDATARIO">ARRENDATARIO</option>
                         <option value="DEUDOR">DEUDOR</option>
                         <option value="PROPIETARIO">PROPIETARIO</option>
                         <option value="COMODATARIO">COMODATARIO</option>
                         <option value="USUFRUCTUARIO">USUFRUCTUARIO</option>
+                        <option value="REPRESENTANTE LEGAL">REPRESENTANTE LEGAL</option>
 
                     </select>
                 </div>
@@ -18,42 +20,40 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect02">Tipo de persona</label>
-                    <select class="form-select" id="inputGroupSelect02" v-model="typePerson">
+                    <select class="form-select" id="inputGroupSelect02" v-model="typePersonPerson">
                         <option selected>Eliga una opción...</option>
-                        <option value="Natural">Natural</option>
-                        <option value="Juridica">Juridica</option>
-
+                        <option value="NATURAL">NATURAL</option>
+                        <option value="JURIDICA">JURIDICA</option>
                     </select>
                 </div>
             </div>
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeDni">
+                    <select class="form-select" id="inputGroupSelect01" v-model="typeDniPerson">
                         <option selected>Eliga una opción...</option>
-                        <option value="CC">CC</option>
+                        <option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
                         <option value="NIT">NIT</option>
-
                     </select>
                 </div>
             </div>
             <div class="col-6">
-                <div class="input-group has-validation"> 
+                <div class="input-group has-validation input-group mb-3"> 
                     <span class="input-group-text">Número de Identificación</span>
-                    <input type="text" class="form-control" id="username" v-model="dni">
+                    <input type="text" class="form-control" id="username" v-model="dniPerson">
                 <div class="invalid-feedback">
                     Your username is required.
                     </div>
                 </div>
             </div>
-            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipant }}</button>
+            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipantPerson }}</button>
             <div class="row">
                 <hr class="my-4">
-                <h4 class="mb-1">Información del {{ typeParticipant }}</h4>
-                <div v-if="typePerson === 'Natural'" class="col-12">
-                    <div class="input-group has-validation">
+                <h4 class="mb-1">Información del {{ typeParticipantPerson }}</h4>
+                <div class="col-12">
+                    <div class="input-group has-validation input-group mb-3">
                         <span class="input-group-text">Nombres Completos</span>
-                        <input type="text" class="form-control" id="username" v-model="names">
+                        <input type="text" class="form-control" id="namesPerson" v-model="namesPerson">
                         <div class="invalid-feedback">
                         Your username is required.
                         </div>
@@ -61,27 +61,27 @@
                 </div>
 
                 <div class="col-12">
-                    <div class="input-group has-validation">
+                    <div class="input-group has-validation input-group mb-3">
                         <span class="input-group-text">Dirección de contacto</span>
-                        <input type="text" class="form-control" id="username" v-model="addressPerson">
+                        <input type="text" class="form-control" id="addressPerson" v-model="addressPerson">
                         <div class="invalid-feedback">
                         Your username is required.
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="input-group has-validation">
+                    <div class="input-group has-validation input-group mb-3">
                         <span class="input-group-text">correo de contacto</span>
-                        <input type="text" class="form-control" id="username" v-model="emailPerson" >
+                        <input type="text" class="form-control" id="emailPerson" v-model="emailPerson" >
                         <div class="invalid-feedback">
                         Your username is required.
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="input-group has-validation">
+                    <div class="input-group has-validation input-group mb-3">
                         <span class="input-group-text">Telefono de contacto</span>
-                        <input type="text" class="form-control" id="username" v-model="phonePerson" >
+                        <input type="text" class="form-control" id="phonePerson" v-model="phonePerson" >
                         <div class="invalid-feedback">
                         Your username is required.
                         </div>
@@ -91,8 +91,8 @@
             </div>
             <hr class="my-4">
             <div class="row">
-                <h4 class="mb-1">Documentos del {{ typeParticipant }}</h4>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
+                <h4 class="mb-1">Documentos del {{ typeParticipantPerson }}</h4>
+                <div class="col-12">
                     <small class="text-muted">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupFile01">RUT</label>
@@ -100,7 +100,7 @@
                         </div>
                     </small>
                 </div>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
+                <div class="col-12">
                     <small class="text-muted">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupFile01">CAMARA DE COMERCIO</label>
@@ -143,7 +143,7 @@
             </div>
         </div>
 
-        <hr class="my-4">{{ this.participant[0].pivot.typePerson }}
+        <hr class="my-4">{{ this.participant[0]}}
 
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar</button>
     </form>
@@ -155,14 +155,14 @@ export default {
     data() {
         return {
             stateParticipante: 'CREAR',
-            typePerson: this.participant ? this.participant[0].pivot.typePerson : typePerson,
-            typeParticipant: this.participant ? this.participant[0].pivot.typePerson : typeParticipant,
-            dni: '',
-            names: this.participant ? this.participant[0].names : names,
-            typeDni:'',
-            addressPerson: '',
-            phonePerson: '',
-            emailPerson: '',
+            typePerson: this.participant[0] ? this.participant[0].pivot.typePerson : typePerson,
+            typeParticipantPerson: this.participant[0] ? this.participant[0].pivot.typeParticipant : typeParticipantPerson,
+            dniPerson: this.participant[0] ? this.participant[0].dni : dniPerson,
+            namesPerson: this.participant[0] ? this.participant[0].names : namesPerson,
+            typeDniPerson: this.participant[0] ? this.participant[0].typeDni : typeDniPerson,
+            addressPerson: this.participant[0] ? this.participant[0].address : addressPerson,
+            phonePerson: this.participant[0] ? this.participant[0].phone : phonePerson,
+            emailPerson: this.participant[0] ? this.participant[0].email : emailPerson,
             detailPersonView: false,
             detailPersonDocumentView: false
         }

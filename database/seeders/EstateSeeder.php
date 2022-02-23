@@ -23,6 +23,10 @@ class EstateSeeder extends Seeder
                 'address' => $value['address'],
                 'realEstateRegistration' => $value['realEstateRegistration'],
                 'typeEstate' => $value['typeEstate'],
+                'isSharedElectricityMeter'=> $value['isSharedElectricityMeter'],
+                'isSharedWaterMeter'=> $value['isSharedWaterMeter'],
+                'isSharedGasMeter'=> $value['isSharedGasMeter'],
+                'observations'=> $value['observations'],
                 'user_id' => 1,
                 'isActive' => $value['isActive']
             ]);

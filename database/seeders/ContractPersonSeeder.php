@@ -24,9 +24,9 @@ class ContractPersonSeeder extends Seeder
         ContractPerson::create([
             'contract_id' => $contract[0]->id,
             'person_id' => $person->id,
-            'typeParticipant' => $typeParticipant->random(3),
+            'typeParticipant' => $typeParticipant->random(),
             'typePerson' => 'NATURAL',
-            'legalPerson_id' => 0,
+            'legalPersonOf' => '',
             'user_id' => 1,
             'isActive' => true
         ]);

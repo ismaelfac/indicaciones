@@ -14,12 +14,14 @@ export default {
     },
     data() {
         return{
-            numParticipants: 3,
         }
     },
     methods: {
         loadParticipant(participant){
             this.emitter.emit('Person-View', participant);
+        },
+        newParticipant(){
+            console.log('new Participant')
         }
     }
 }
@@ -66,12 +68,12 @@ export default {
         <hr class="my-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-primary">Participantes</span>
-        <span class="badge bg-primary rounded-pill">{{ numParticipants }}</span>
+        <span class="badge bg-primary rounded-pill"></span>
         </h4>
         <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm" v-if="!participants">
+            <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
-                <h6 class="my-0"><a href="#" @click="PersonView" class="btn btn-default">Nuevo Participante</a></h6>
+                <h6 class="my-0"><a href="#" @click="newParticipant" class="btn btn-danger">Nuevo Participante</a></h6>
             </div>
         </li>
             <div v-if="participants">
@@ -79,6 +81,7 @@ export default {
                             :key="participant.id" 
                             :typeParticipant="participant.pivot.typeParticipant"
                             :typePerson="participant.pivot.typePerson" 
+                            :legalPersonOf="participant.pivot.legalPersonOf"
                             :names="participant.names" 
                             :bussinessName="participant.bussinessName" 
                             :isActive="participant.isActive"

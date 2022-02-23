@@ -15,6 +15,9 @@ class CreateEstatesTable extends Migration
             $table->enum('typeEstate', ['NO DEFINIDO','APARTAMENTO', 'LOCAL COMERCIAL', 'CASA COMERCIAL', 'CASA VIVIENDA', 'BODEGA', 'APARTA-STUDIO', 'GARAJE', 'CUARTO UTIL'])->default('NO DEFINIDO');
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isSharedElectricityMeter')->default(false);
+            $table->boolean('isSharedWaterMeter')->default(false);
+            $table->boolean('isSharedGasMeter')->default(false);
+            $table->mediumText('observations')->nullable();
             $table->boolean('isActive')->default(false);
             $table->timestamps();
         });

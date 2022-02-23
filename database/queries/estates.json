@@ -5,6 +5,9 @@
         "typeEstate": "CASA COMERCIAL",
         "user_id": 1,
         "isSharedElectricityMeter": false,
+        "isSharedWaterMeter": true,
+        "isSharedGasMeter": false,
+        "observations": "EL contador del agua esta compartido con el local 22",
         "isActive": true
     },
     {
@@ -12,6 +15,9 @@
         "realEstateRegistration": "25620310",
         "typeEstate": "APARTAMENTO",
         "isSharedElectricityMeter": false,
+        "isSharedWaterMeter": false,
+        "isSharedGasMeter": false,
+        "observations": "",
         "user_id": 1,
         "isActive": true
     },
@@ -20,6 +26,9 @@
         "realEstateRegistration": "4025300",
         "typeEstate": "BODEGA",
         "isSharedElectricityMeter": false,
+        "isSharedWaterMeter": false,
+        "isSharedGasMeter": false,
+        "observations": "",
         "user_id": 1,
         "isActive": true
     },
@@ -27,6 +36,9 @@
         "address": "CLL 72 # 49 - 129",
         "realEstateRegistration": "32856321",
         "isSharedElectricityMeter": true,
+        "isSharedWaterMeter": false,
+        "isSharedGasMeter": false,
+        "observations": "",
         "typeEstate": "LOCAL COMERCIAL",
         "user_id": 1,
         "isActive": true
@@ -36,6 +48,9 @@
         "realEstateRegistration": "4035210",
         "isSharedElectricityMeter": false,
         "typeEstate": "CASA VIVIENDA",
+        "isSharedWaterMeter": false,
+        "isSharedGasMeter": false,
+        "observations": "",
         "user_id": 1,
         "isActive": true
     }

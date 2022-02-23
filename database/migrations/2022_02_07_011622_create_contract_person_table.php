@@ -14,7 +14,7 @@ class CreateContractPersonTable extends Migration
             $table->foreignId('person_id')->references('id')->on('people')->onUpdate('cascade');
             $table->enum('typeParticipant', ['NO DEFINIDO','ARRENDATARIO', 'DEUDOR', 'USUFRUCTUARIO', 'COMODATARIO', 'PROPIETARIO','REPRESENTANTE LEGAL'])->default('NO DEFINIDO');
             $table->enum('typePerson', ['NATURAL', 'JURIDICA'])->default('NATURAL');
-            $table->foreignId('legalPerson_id')->nullable();
+            $table->string('legalPersonOf')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isActive')->default(false);
             $table->timestamps();

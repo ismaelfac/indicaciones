@@ -41,7 +41,7 @@ class ContractPerson extends Model
      *
      * @var array
      */
-    protected $fillable = ['contract_id','person_id','typeParticipant','typePerson','user_id','isActive'];
+    protected $fillable = ['contract_id','person_id','typeParticipant','typePerson', 'legalPersonOf', 'user_id','isActive'];
 
 
     /**

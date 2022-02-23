@@ -60,7 +60,7 @@ class Contract extends Model
      */
     public function contractPerson()
     {
-        return $this->belongsToMany(Person::class)->withPivot('typePerson','typeParticipant')->wherePivot('isActive',1);
+        return $this->belongsToMany(Person::class)->withPivot('typePerson','typeParticipant','legalPersonOf')->wherePivot('isActive',1);
     }
 
     /**
