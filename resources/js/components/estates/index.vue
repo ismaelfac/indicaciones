@@ -63,8 +63,8 @@ export default {
         }
     },
     methods: {
-        changeFiles(){
-            console.log(this.$refs.documentsFile.files)
+        changeFiles(e){
+            console.log('entro', e.target.files[0]);
         }
     }
 }
