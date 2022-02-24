@@ -17,6 +17,7 @@ Route::get('indicaciones', function(){
 Route::resource('/people', PersonController::class);
 Route::resource('/estates', EstateController::class);
 Route::get('contracts/pdf/{id}', [ContractController::class, 'printPDF']);
+Route::get('contractsDocument/{id}', [ContractController::class, 'getContractDocuments']);
 Route::resource('/contracts', ContractController::class);
 Route::resource('contract-person', ContractPersonController::class);
 Route::resource('contract-estate', ContractEstateController::class);

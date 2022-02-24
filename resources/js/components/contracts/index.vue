@@ -95,51 +95,27 @@
                 </div>
             </div>
         </div>
-        contractDocument {{ this.contractDocument }}
         <hr class="my-4">
-        <h4 class="mb-1">Documentos del Contrato</h4>
-        <div class="row">
-            <ul class="row list-group list-group-flush">
-                <div v-if="documents">
-                    <li class="list-group-item" v-for="document in documentContract" :key="document.id">
-                        <div class="card text-center col-12">
-                            <div class="card-header">
-                                {{ document.title }}
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title" v-if="!isEditing">Special title treatment</h5>
-                                <input type="text" v-model="fileName" class="form-control" id="fileName" v-else>
-                                <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
-                                <a href="#" class="btn btn-primary">Cargar Documento</a>
-                            </div>
-                            <div class="card-footer text-muted">
-                                2 days ago
-                            </div>
-                        </div>
-                    </li>
-                </div>
-            </ul>
-        </div>
+        <Documents :documents="documents" :contract_id="contract_id" />
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
 
 <script>
+import Documents from "../documents/index.vue";
 export default {
     name:"contract",
-    props: ['contract','contractDocument','documents'],
-    computed: {
-        documentContract: function () {
-            return this.documents.filter(function (document) {
-                return document.category === 'CONTRATO';
-            });
-        }
+    props: ['contract','documents'],
+    components: {
+        Documents
     },
     data() {
-        return {        
+        return {       
+             
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
+            contract_id: this.contract ? this.contract[0].id : contract_id,
             asegurable: this.contract ? this.contract[0].asegurable : asegurable,
             domus: this.contract ? this.contract[0].domus : domus,
             ifAdminValue: this.contract[0].adminValue ? true : false,
@@ -153,11 +129,6 @@ export default {
             clause: this.contract ? this.contract[0].clause : clause,
             fileName: '',
             isEditing: true
-        }
-    },
-    methods: {
-        changeFiles(e){
-            console.log('entro', e.target.files[0]);
         }
     }
 }

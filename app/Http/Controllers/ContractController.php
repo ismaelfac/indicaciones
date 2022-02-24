@@ -32,6 +32,10 @@ class ContractController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }
 
+    public function getContractDocuments($contract_id){
+        return response()->json($contract_id);
+    }
+
     public function printPDF($contract_id)
     {
         $contract = Contract::find($contract_id);
