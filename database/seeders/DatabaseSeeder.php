@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'password_resets',
             'users',
             'contract_estate',
-            'contract_documents',
+            'contract_document',
             'contract_person',
             'contracts',
             'estates',

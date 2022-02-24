@@ -88,35 +88,38 @@
             <div class="col-12">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Clausulas</span>
-                    <input type="textarea" v-model="clause" class="form-control" id="username">
+                    <textarea v-model="clause" class="form-control" id="username"></textarea>
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
                 </div>
             </div>
         </div>
-
+        contractDocument {{ this.contractDocument }}
         <hr class="my-4">
-            <h4 class="mb-1">Documentos del Contrato</h4>
-                <ul class="row list-group mb-3">
-                    <div v-if="documents" class="row">
-                        <li class="list-group-item d-flex justify-content-between lh-sm col-12" v-for="document in documentContract" :key="document.id">
-                            <div class="card text-center">
-                                <div class="card-header">
-                                    {{ document.title }}
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Special title treatment</h5>
-                                    <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
-                                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                                </div>
-                                <div class="card-footer text-muted">
-                                    2 days ago
-                                </div>
+        <h4 class="mb-1">Documentos del Contrato</h4>
+        <div class="row">
+            <ul class="row list-group list-group-flush">
+                <div v-if="documents">
+                    <li class="list-group-item" v-for="document in documentContract" :key="document.id">
+                        <div class="card text-center col-12">
+                            <div class="card-header">
+                                {{ document.title }}
                             </div>
-                        </li>
-                    </div>
-                </ul>
+                            <div class="card-body">
+                                <h5 class="card-title" v-if="!isEditing">Special title treatment</h5>
+                                <input type="text" v-model="fileName" class="form-control" id="fileName" v-else>
+                                <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
+                                <a href="#" class="btn btn-primary">Cargar Documento</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                2 days ago
+                            </div>
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -124,7 +127,7 @@
 <script>
 export default {
     name:"contract",
-    props: ['contract','documents','contractDocument'],
+    props: ['contract','contractDocument','documents'],
     computed: {
         documentContract: function () {
             return this.documents.filter(function (document) {
@@ -147,7 +150,9 @@ export default {
             increment: this.contract ? this.contract[0].increment : increment,
             deliveryDate: this.contract ? this.contract[0].deliveryDate : deliveryDate,
             gradePeriod: this.contract ? this.contract[0].gracePeriod : gradePeriod,
-            clause: this.contract ? this.contract[0].clause : clause
+            clause: this.contract ? this.contract[0].clause : clause,
+            fileName: '',
+            isEditing: true
         }
     },
     methods: {

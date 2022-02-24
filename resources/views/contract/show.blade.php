@@ -21,13 +21,14 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-body">                        
+                    <div class="card-body">   
                         <example-component 
                             :documents="{{ json_encode($documents)}}"
+                            :contractDocuments="{{ $contract->contractDocuments[0] }}"
                             :contract="{{ json_encode($contract) }}" 
                             :estate="{{ json_encode($contract->contractEstates[0]) }}" 
-                            :participants="{{json_encode($contract->contractPerson ) }}">
+                            :participants="{{json_encode($contract->contractPerson) }}"
+                            >
                         </example-component>
                     </div>
                 </div>

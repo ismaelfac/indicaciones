@@ -30,7 +30,6 @@ class HomeController extends Controller
     {
         $contracts = Contract::paginate();
         $documents = Document::paginate();
-        //dd($contracts[0]->contractPerson);
         return view('home', compact('contracts', 'documents'))
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }

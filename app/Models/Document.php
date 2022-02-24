@@ -36,6 +36,10 @@ class Document extends Model
      */
     protected $fillable = ['title','category','user_id','isActive'];
 
+    public function contractDocuments()
+    {
+        return $this->hasMany('App\Models\ContractDocument', 'document_id', 'id');
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

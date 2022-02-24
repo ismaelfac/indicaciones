@@ -1,20 +1,20 @@
 <template>
-    <div>
-        <div class="row g-5">
-            <div class="col-md-5 col-lg-4 order-md-last">
-                <PanelContract 
-                        :contract="contract" 
-                        :participants="participants" 
-                        :estate="estate" 
-                        @ContractView="ContractView" 
-                        @EstateView="EstateView" />
-            </div>
-            <div class="col-md-7 col-lg-8">
-                <h4 class="mb-3"></h4>
-                <div v-if="contractOn"><ContractForm :contract="contractInject" :documents="documents.data"></ContractForm></div>
-                <div v-if="estateOn"><EstateForm :estate="estateInject" :documents="documents.data"></EstateForm></div>
-                <div v-if="personOn"><PersonForm :participant="participantInject" :documents="documents.data"></PersonForm></div>
-            </div>
+Inmuebles {{ this.estates }}
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <PanelContract 
+                    :contract="contract" 
+                    :contractDocuments="contractDocuments"
+                    :participants="participants" 
+                    :estate="estate" 
+                    @ContractView="ContractView" 
+                    @EstateView="EstateView" />
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3"></h4>
+            <div v-if="contractOn"><ContractForm :contract="this.contractInject" :contractDocument="contractDocuments" :documents="documents.data"></ContractForm></div>
+            <div v-if="estateOn"><EstateForm :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
+            <div v-if="personOn"><PersonForm :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
         </div>
     </div>
 </template>
@@ -26,7 +26,7 @@ import PersonForm from './components/person/index.vue';
 import PanelContract from './components/panelContract/index.vue';
 export default {
     name: 'App',
-    props: ['contract', 'documents', 'estate', 'participants'],
+    props: ['documents', 'contractDocuments','contract', 'estate', 'participants'],
     components: {
         PanelContract,
         ContractForm,
@@ -34,6 +34,7 @@ export default {
         PersonForm
     },
     mounted() {
+        this.contractDocuments;
         this.emitter.on('Person-View', (participant) =>{
             this.PersonView(participant);
         })
@@ -43,6 +44,7 @@ export default {
             contractInject: [],
             participantInject: [],
             estateInject: [],
+            contractDocumentsInject: [],
             contractOn: false,
             estateOn: false,
             personOn: false,
@@ -50,13 +52,14 @@ export default {
         }
     },
     methods: {
-        ContractView(contract){
+        ContractView(contract, contractDocuments){
             this.contractInject = [];
             this.contractOn = true;
             this.estateOn = false;
             this.personOn = false;
             this.contractInject.push(contract);
-            console.log(this.contractInject)
+            this.contractDocumentsInject.push(contractDocuments);
+            console.log(this.contractDocumentsInject)
         },
         EstateView(estate){
             this.estateInject = [];

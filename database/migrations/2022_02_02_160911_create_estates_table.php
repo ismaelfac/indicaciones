@@ -18,9 +18,7 @@ class CreateEstatesTable extends Migration
             $table->boolean('isSharedWaterMeter')->default(false);
             $table->boolean('isSharedGasMeter')->default(false);
             $table->boolean('isGarage')->default(false);
-            $table->string('address')->nullable();
             $table->boolean('isUseFulRoom')->default(false);
-            $table->string('address')->nullable();
             $table->mediumText('observations')->nullable();
             $table->boolean('isActive')->default(false);
             $table->timestamps();

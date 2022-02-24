@@ -52,7 +52,7 @@ class Contract extends Model
      */
     public function contractDocuments()
     {
-        return $this->hasMany(Document::class)->wherePivot('isActive',1);
+        return $this->belongsToMany(Document::class)->withPivot('fileName','route','isActive')->wherePivot('isActive',1);
     }
     
     /**

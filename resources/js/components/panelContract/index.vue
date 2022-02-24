@@ -4,7 +4,7 @@ import ListPerson from '../person/List.vue';
 import ListEstate from '../estates/List.vue';
 export default {
     name: 'panelContract',
-    props: ['participants', 'estate', 'contract'],
+    props: ['participants', 'contractDocuments', 'estate', 'contract'],
     emits: ['ContractView','EstateView'],
     inject: ['contractInject','estateInject', 'participantInject'],
     components: {
@@ -35,15 +35,13 @@ export default {
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm" v-if="!estate">
                 <h6 class="my-0"><a href="#" @click="ContractView" class="btn btn-link">Contracto</a></h6>
-
-            </li>
-            
+            </li>            
             <div v-if="contract">
                 <ListContract 
                     :id="contract.id" 
                     :asegurable="contract.asegurable" 
                     :domus="contract.domus" 
-                    @click="$emit('ContractView', contract)"/>
+                    @click="$emit('ContractView', [contract, contractDocuments])"/>
             </div>
         </ul>
         <hr class="my-4">
