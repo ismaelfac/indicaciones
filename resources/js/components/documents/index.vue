@@ -3,20 +3,25 @@
         <h4 class="mb-1">Documentos del Contrato</h4>
         <div class="row">
             <ul class="row list-group list-group-flush">
-                <div v-if="documents">
+                <div v-if="listDocuments">
                     <li class="list-group-item" v-for="document in documentContract" :key="document.id">
                         <div class="card text-center col-12">
                             <div class="card-header">
                                 {{ document.title }}
                             </div>
                             <div class="card-body">
-                                <h5 class="card-title" v-if="!linkedDocuments">Special title treatment</h5>
-                                <input type="text" v-model="fileName" class="form-control" id="fileName">
-                                <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">
-                                <a href="#" class="btn btn-primary">Cargar Documento</a>
+                                <div v-for="contractDocument in contractDocuments" :key="contractDocument.id">
+                                    <h5 class="card-title" v-if="contractDocument.pivot.fileName">{{ contractDocument.id === document.id ? contractDocument.pivot.fileName : '' }}</h5>
+                                    <h5 class="card-title" v-else>NO REGISTRA DOCUMENTO</h5>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon3">Titulo del Documento</span>
+                                    <input type="text" v-model="fileName" class="form-control" id="fileName">
+                                </div>                                
+                                <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">                                
                             </div>
                             <div class="card-footer text-muted">
-                                {{ contract_id }}-{{ info }}
+                                <a href="#" class="btn btn-primary">Cargar Documento</a>
                             </div>
                         </div>
                     </li>
@@ -26,35 +31,30 @@
     </div>
 </template>
 <script>
-export default {
-    name: 'document',
-    props: ['documents','contract_id'],
-    computed: {
-        documentContract: function () {
-            return this.documents.filter(function (document) {
-                return document.category === 'CONTRATO';
-            });
+    export default {
+        name: 'document',
+        props: ['listDocuments','contractDocuments'],
+        computed: {
+            documentContract: function () {
+                return this.listDocuments.filter(function (document) {
+                    return document.category === 'CONTRATO';
+                });
+            }        
         },
-        loadContractDocuments(){
-
-        }
-    },
-    mounted () {
-        axios
-            .get('/contractsDocument/',this.contract_id)
-            .then(response => (this.info = response.data));
-        console.log(this.info);
-    },
-    data() {
-        return{
-            linkedDocuments: [],
-            info: null
-        }
-    },
-    methods: {
-        changeFiles(e){
-            console.log('entro', e.target.files[0]);
+        mounted () {
+            
+        },
+        data() {
+            return{
+                linkedDocuments: [],
+                info: null,
+                fileName: ''
+            }
+        },
+        methods: {
+            changeFiles(e){
+                console.log('entro', e.target.files[0]);
+            }
         }
     }
-}
 </script>

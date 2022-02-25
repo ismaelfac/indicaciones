@@ -56,6 +56,7 @@
         </div>
 
         <hr class="my-4">
+        estates {{ estate }}
             <h4 class="mb-1">Documentos del Inmueble</h4>
             <ul class="list-group mb-3">
                 <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">

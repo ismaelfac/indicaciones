@@ -4,7 +4,6 @@ Inmuebles {{ this.estates }}
         <div class="col-md-5 col-lg-4 order-md-last">
             <PanelContract 
                     :contract="contract" 
-                    :contractDocuments="contractDocuments"
                     :participants="participants" 
                     :estate="estate" 
                     @ContractView="ContractView" 
@@ -12,7 +11,7 @@ Inmuebles {{ this.estates }}
         </div>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <div v-if="contractOn"><ContractForm :contract="this.contractInject" :documents="documents.data"></ContractForm></div>
+            <div v-if="contractOn"><ContractForm :contract="this.contract" :documents="documents.data"></ContractForm></div>
             <div v-if="estateOn"><EstateForm :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
             <div v-if="personOn"><PersonForm :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
         </div>
@@ -44,7 +43,6 @@ export default {
             contractInject: [],
             participantInject: [],
             estateInject: [],
-            contractDocumentsInject: [],
             contractOn: false,
             estateOn: false,
             personOn: false,
@@ -52,14 +50,12 @@ export default {
         }
     },
     methods: {
-        ContractView(contract, contractDocuments){
+        ContractView(contract){
             this.contractInject = [];
             this.contractOn = true;
             this.estateOn = false;
             this.personOn = false;
             this.contractInject.push(contract);
-            this.contractDocumentsInject.push(contractDocuments);
-            console.log(this.contractDocumentsInject)
         },
         EstateView(estate){
             this.estateInject = [];

@@ -144,7 +144,7 @@
         </div>
 
         <hr class="my-4">{{ this.participant[0]}}
-
+        
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar</button>
     </form>
 </template>

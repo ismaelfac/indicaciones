@@ -4,7 +4,7 @@ import ListPerson from '../person/List.vue';
 import ListEstate from '../estates/List.vue';
 export default {
     name: 'panelContract',
-    props: ['participants', 'contractDocuments', 'estate', 'contract'],
+    props: ['participants', 'estate', 'contract'],
     emits: ['ContractView','EstateView'],
     inject: ['contractInject','estateInject', 'participantInject'],
     components: {
@@ -41,7 +41,7 @@ export default {
                     :id="contract.id" 
                     :asegurable="contract.asegurable" 
                     :domus="contract.domus" 
-                    @click="$emit('ContractView', [contract, contractDocuments])"/>
+                    @click="$emit('ContractView', [contract])"/>
             </div>
         </ul>
         <hr class="my-4">

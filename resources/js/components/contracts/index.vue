@@ -96,7 +96,7 @@
             </div>
         </div>
         <hr class="my-4">
-        <Documents :documents="documents" :contract_id="contract_id" />
+        <Documents :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -115,18 +115,18 @@ export default {
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
-            contract_id: this.contract ? this.contract[0].id : contract_id,
-            asegurable: this.contract ? this.contract[0].asegurable : asegurable,
-            domus: this.contract ? this.contract[0].domus : domus,
-            ifAdminValue: this.contract[0].adminValue ? true : false,
-            cannon: this.contract ? this.contract[0].cannonLease : cannon,
-            adminValue: this.contract ? this.contract[0].adminValue : adminValue,
+            contract_id: this.contract ? this.contract.id : contract_id,
+            asegurable: this.contract ? this.contract.asegurable : asegurable,
+            domus: this.contract ? this.contract.domus : domus,
+            ifAdminValue: this.contract.adminValue ? true : false,
+            cannon: this.contract ? this.contract.cannonLease : cannon,
+            adminValue: this.contract ? this.contract.adminValue : adminValue,
             detailEstateDocumentView: true,
-            contractRights: this.contract ? this.contract[0].contractRights : contractRights,
-            increment: this.contract ? this.contract[0].increment : increment,
-            deliveryDate: this.contract ? this.contract[0].deliveryDate : deliveryDate,
-            gradePeriod: this.contract ? this.contract[0].gracePeriod : gradePeriod,
-            clause: this.contract ? this.contract[0].clause : clause,
+            contractRights: this.contract ? this.contract.contractRights : contractRights,
+            increment: this.contract ? this.contract.increment : increment,
+            deliveryDate: this.contract ? this.contract.deliveryDate : deliveryDate,
+            gradePeriod: this.contract ? this.contract.gracePeriod : gradePeriod,
+            clause: this.contract ? this.contract.clause : clause,
             fileName: '',
             isEditing: true
         }
