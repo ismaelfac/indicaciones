@@ -59,6 +59,13 @@ class ContractPerson extends Model
     {
         return $this->hasOne('App\Models\Person', 'id', 'person_id');
     }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contractPersonDocument()
+    {
+        return $this->belongsToMany(ContractPersonDocument::class)->withPivot('fileName','route','user_id','isActive','created_at')->wherePivot('isActive',1);
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

@@ -33,11 +33,11 @@
 <script>
     export default {
         name: 'document',
-        props: ['listDocuments','contractDocuments'],
+        props: ['component','listDocuments','contractDocuments'],
         computed: {
-            documentContract: function () {
+            documentContract: function (component) {
                 return this.listDocuments.filter(function (document) {
-                    return document.category === 'CONTRATO';
+                    return document.category === component.component;
                 });
             }        
         },
@@ -46,7 +46,7 @@
         },
         data() {
             return{
-                linkedDocuments: [],
+                linkedDocuments: 'CONTRATO',
                 info: null,
                 fileName: ''
             }

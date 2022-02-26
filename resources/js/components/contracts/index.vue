@@ -96,7 +96,7 @@
             </div>
         </div>
         <hr class="my-4">
-        <Documents :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+        <Documents component="CONTRATO" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>

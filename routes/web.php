@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{ContractController, ContractPersonController, ContractEstateController, ContractDocumentController, DocumentController ,EstateController, PersonController};
+use App\Http\Controllers\{ContractController, ContractPersonController, ContractEstateController, ContractDocumentController, DocumentController ,EstateController, PersonController };
 use Illuminate\Support\Facades\Route;
 
 

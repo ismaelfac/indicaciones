@@ -12,7 +12,7 @@ Inmuebles {{ this.estates }}
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
             <div v-if="contractOn"><ContractForm :contract="this.contract" :documents="documents.data"></ContractForm></div>
-            <div v-if="estateOn"><EstateForm :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
+            <div v-if="estateOn"><EstateForm :contract="this.contract" :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
             <div v-if="personOn"><PersonForm :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
         </div>
     </div>
