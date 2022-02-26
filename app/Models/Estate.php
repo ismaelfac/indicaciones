@@ -47,6 +47,11 @@ class Estate extends Model
     {
         return $this->belongsToMany(Contract::class)->wherePivot('isActive',1);
     }
+
+    public function garages()
+    {
+        return $this->hasMany('App\Models\Garage', 'estate_id', 'id');
+    }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

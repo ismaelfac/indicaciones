@@ -1,6 +1,5 @@
 <template>
     <div>        
-        <h4 class="mb-1">Documentos del Contrato</h4>
         <div class="row">
             <ul class="row list-group list-group-flush">
                 <div v-if="listDocuments">

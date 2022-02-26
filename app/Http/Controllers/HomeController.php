@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Contract, Document};
+use App\Models\{Contract, Document, Estate};
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\App;
@@ -30,6 +30,8 @@ class HomeController extends Controller
     {
         $contracts = Contract::paginate();
         $documents = Document::paginate();
+        //$estate = Estate::find($contracts->id);
+        //dd($estate->garages);
         return view('home', compact('contracts', 'documents'))
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }

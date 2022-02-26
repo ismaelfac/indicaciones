@@ -19,9 +19,8 @@
                         <option value="APARTAMENTO">APARTAMENTO</option>
                         <option value="APARTA-STUDIO">APARTA-STUDIO</option>
                         <option value="BODEGA">BODEGA</option>
-                        <option value="LOCAL COMERCIAL">LOCAL COMERCIAL</option>
-                        <option value="CASA COMERCIAL">CASA COMERCIAL</option>
-                        <option value="CASA VIVIENDA">CASA VIVIENDA</option>
+                        <option value="LOCAL">LOCAL</option>
+                        <option value="CASA">CASA</option>
                         <option value="NO DEFINIDO">NO DEFINIDO</option>
                     </select>
                 </div>
@@ -35,7 +34,7 @@
             <div class="col-4">
                 <div class="form-check form-switch">
                 <input class="form-check-input" v-model="isSharedWaterMeter" type="checkbox" role="switch" id="isSharedWaterMeter">
-                <label class="form-check-label" for="isSharedWaterMeter">Contador de Aguar Compartido</label>
+                <label class="form-check-label" for="isSharedWaterMeter">Contador de Agua Compartido</label>
                 </div>
             </div>
             <div class="col-4">
@@ -56,6 +55,7 @@
         </div>
 
         <hr class="my-4">
+        <h4 class="mb-1">Documentos del Inmueble</h4>
         <Documents component="INMUEBLE" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>

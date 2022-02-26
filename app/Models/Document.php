@@ -41,16 +41,6 @@ class Document extends Model
         return $this->hasMany('App\Models\ContractDocument', 'document_id', 'id');
     }
 
-    public function contractEstateDocuments()
-    {
-        return $this->hasMany('App\Models\ContractEstateDocument', 'document_id', 'id');
-    }
-
-    public function contractPersonDocuments()
-    {
-        return $this->hasMany('App\Models\ContractPersonDocument', 'document_id', 'id');
-    }
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

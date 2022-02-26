@@ -2,7 +2,7 @@
     {
         "address": "Cra 59 # 95-26 CASA 23",
         "realEstateRegistration": "4025300",
-        "typeEstate": "CASA COMERCIAL",
+        "typeEstate": "CASA",
         "user_id": 1,
         "isSharedElectricityMeter": false,
         "isSharedWaterMeter": true,
@@ -39,7 +39,7 @@
         "isSharedWaterMeter": false,
         "isSharedGasMeter": false,
         "observations": "El contador de la luz compartido con 2 locales mas",
-        "typeEstate": "LOCAL COMERCIAL",
+        "typeEstate": "LOCAL",
         "user_id": 1,
         "isActive": true
     },
@@ -47,7 +47,7 @@
         "address": "CLL 68 # 58 - 29",
         "realEstateRegistration": "4035210",
         "isSharedElectricityMeter": false,
-        "typeEstate": "CASA VIVIENDA",
+        "typeEstate": "CASA",
         "isSharedWaterMeter": false,
         "isSharedGasMeter": false,
         "observations": "",

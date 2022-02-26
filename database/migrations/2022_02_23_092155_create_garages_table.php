@@ -15,8 +15,12 @@ class CreateGaragesTable extends Migration
     {
         Schema::create('garages', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('estate_id')->references('id')->on('estates')->onUpdate('cascade');
             $table->string('realEstateLicensePlate');
+            $table->enum('typeGaraje', ['NO DEFINIDO','GARAJE', 'CUARTO UTIL'])->default('NO DEFINIDO');
             $table->mediumText('observations')->nullable();
+            $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
+            $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }

@@ -14,6 +14,8 @@ class CreateContractsTable extends Migration
             $table->string('domus')->unique()->nullable();
             $table->string('cannonLease');
             $table->string('adminValue')->nullable();
+            $table->enum('typeContract', ['NO DEFINIDO','VIVIENDA', 'COMERCIAL'])->default('NO DEFINIDO');
+            $table->string('contractDuration');
             $table->string('increment')->nullable();
             $table->string('contractRights')->nullable();
             $table->date('deliveryDate')->nullable();

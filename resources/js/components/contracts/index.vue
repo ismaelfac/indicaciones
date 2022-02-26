@@ -45,7 +45,25 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Tipo de Contrato</label>
+                    <select class="form-select" id="inputGroupSelect01" v-model="typeContract">
+                        <option selected>Seleccione un Tipo de Contrato...</option>
+                        <option value="VIVIENDA">VIVIENDA</option>
+                        <option value="COMERCIAL">COMERCIAL</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="input-group has-validation">
+                    <span class="input-group-text">Duración del contrato (EN MESES, SOLO NUMEROS)</span>
+                    <input type="text" v-model="contractDuration" class="form-control" id="contractDuration">
+                    <div class="invalid-feedback">
+                    Your username is required.
+                    </div>
+                </div>
+            </div>
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Incremento</span>
@@ -96,6 +114,7 @@
             </div>
         </div>
         <hr class="my-4">
+        <h4 class="mb-1">Documentos del Contrato</h4>
         <Documents component="CONTRATO" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
@@ -123,6 +142,8 @@ export default {
             adminValue: this.contract ? this.contract.adminValue : adminValue,
             detailEstateDocumentView: true,
             contractRights: this.contract ? this.contract.contractRights : contractRights,
+            typeContract: this.contract ? this.contract.typeContract : typeContract,
+            contractDuration: this.contract ? this.contract.contractDuration : contractDuration,
             increment: this.contract ? this.contract.increment : increment,
             deliveryDate: this.contract ? this.contract.deliveryDate : deliveryDate,
             gradePeriod: this.contract ? this.contract.gracePeriod : gradePeriod,

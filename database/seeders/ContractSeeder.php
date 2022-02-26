@@ -22,6 +22,8 @@ class ContractSeeder extends Seeder
                 'domus' => $value['domus'],
                 'cannonLease' => $value['cannonLease'],
                 'adminValue' => $value['adminValue'],
+                'typeContract' => $value['typeContract'],
+                'contractDuration' => $value['contractDuration'],
                 'increment' => $value['increment'],
                 'contractRights' => $value['contractRights'],
                 'deliveryDate' => Carbon::createFromFormat('d/m/Y',$value['deliveryDate'])->format('Y/m/d'),

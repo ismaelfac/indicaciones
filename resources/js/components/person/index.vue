@@ -46,7 +46,9 @@
                     </div>
                 </div>
             </div>
-            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipantPerson }}</button>
+
+            <hr class="my-4">
+            <h4 class="mb-1">SECCION SIN DEFINIR</h4>
             <div class="row">
                 <hr class="my-4">
                 <h4 class="mb-1">Información del {{ typeParticipantPerson }}</h4>
@@ -155,7 +157,7 @@ export default {
     data() {
         return {
             stateParticipante: 'CREAR',
-            typePerson: this.participant[0] ? this.participant[0].pivot.typePerson : typePerson,
+            typePersonPerson: this.participant[0] ? this.participant[0].pivot.typePerson : typePersonPerson,
             typeParticipantPerson: this.participant[0] ? this.participant[0].pivot.typeParticipant : typeParticipantPerson,
             dniPerson: this.participant[0] ? this.participant[0].dni : dniPerson,
             namesPerson: this.participant[0] ? this.participant[0].names : namesPerson,
