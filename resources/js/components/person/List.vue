@@ -17,7 +17,7 @@ export default {
 <template> 
     <li class="list-group-item d-flex justify-content-between lh-sm">
         <div>
-        <h6 class="my-0">{{ typeParticipant }} del {{ legalPersonOf }} </h6>
+        <h6 class="my-0">{{ typeParticipant === 'REPRESENTANTE LEGAL' ? `R LEGAL del ${legalPersonOf}` : typeParticipant }} </h6>
         <small class="text-muted">{{ names }} </small>
         </div>
         <span class="text-muted"><a href="#" :class="[ isActive ? active : inactive]">{{ (isActive) ? 'COMPLETADO': 'COMPLETAR'}}</a></span>

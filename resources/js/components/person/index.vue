@@ -46,12 +46,16 @@
                     </div>
                 </div>
             </div>
-
-            <hr class="my-4">
-            <h4 class="mb-1">SECCION SIN DEFINIR</h4>
-            <div class="row">
+            <div>
                 <hr class="my-4">
-                <h4 class="mb-1">Información del {{ typeParticipantPerson }}</h4>
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">INFORMACIÓN DEL {{ typeParticipantPerson }} </span>
+                        <div class="float-right">
+                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-12">
                     <div class="input-group has-validation input-group mb-3">
                         <span class="input-group-text">Nombres Completos</span>
@@ -88,66 +92,74 @@
                         Your username is required.
                         </div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
-            <hr class="my-4">
-            <div class="row">
-                <h4 class="mb-1">Documentos del {{ typeParticipantPerson }}</h4>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">RUT</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
+            <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">
+                <hr class="my-4">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">PARAMETROS DEL CONTRATO</span>
+                        <div class="float-right">
+                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
                         </div>
-                    </small>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">CAMARA DE COMERCIO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
+                <div class="col-4">
+                    <div class="input-group has-validation input-group mb-3"> 
+                        <span class="input-group-text">Porcentaje Division Renta</span>
+                        <input type="text" class="form-control" id="username">
+                    <div class="invalid-feedback">
+                        Your username is required.
                         </div>
-                    </small>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">SOLICITUD DE ARENDAMIENTO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" v-model="isResponsibleIVA" type="checkbox" role="switch" id="isResponsibleIVA">
+                    <label class="form-check-label" for="isResponsibleIVA">Responsable de IVA</label>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">INSPECCION E INVENTARIO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>     
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">ASEGURABLE O APROVADO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" v-model="isIntegralProtection" type="checkbox" role="switch" id="isIntegralProtection">
+                    <label class="form-check-label" for="isIntegralProtection">Amparo Integral</label>
+                    </div>
                 </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">INVENTARIO DE ENTREGA</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
+            </template>
+            <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">
+                <hr class="my-4">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">PARAMETROS DEL PAGO</span>
+                        <div class="float-right">
+                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
                         </div>
-                    </small>
-                </div>            
-            </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="input-group has-validation input-group mb-3"> 
+                        <span class="input-group-text">Porcentaje Division Renta</span>
+                        <input type="text" class="form-control" id="username">
+                    <div class="invalid-feedback">
+                        Your username is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" v-model="isResponsibleIVA" type="checkbox" role="switch" id="isResponsibleIVA">
+                    <label class="form-check-label" for="isResponsibleIVA">Responsable de IVA</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-check form-switch">
+                    <input class="form-check-input" v-model="isIntegralProtection" type="checkbox" role="switch" id="isIntegralProtection">
+                    <label class="form-check-label" for="isIntegralProtection">Amparo Integral</label>
+                    </div>
+                </div>
+            </template>
+            
         </div>
-
-        <hr class="my-4">{{ this.participant[0]}}
-        
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar</button>
     </form>
 </template>
 <script>
