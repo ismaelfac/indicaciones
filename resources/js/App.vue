@@ -1,5 +1,4 @@
 <template>
-Inmuebles {{ this.estates }}
     <div class="row g-5">
         <div class="col-md-5 col-lg-4 order-md-last">
             <PanelContract 

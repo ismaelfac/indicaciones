@@ -102,19 +102,11 @@ export default {
             </div>
         </ul>
         <hr class="my-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">Administración Inmueble</span>
-        <span class="badge bg-primary rounded-pill"></span>
-        </h4>
-        <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-                <h6 class="my-0"><a href="#" @click="newParticipant" class="btn btn-danger">Nueva Configuración</a></h6>
-            </div>
-        </li>
-            <div v-if="participants">
-                
-            </div>
-        </ul>
+        <template v-if="contract.adminValue">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Administración Inmueble</span>
+            <span class="badge"><a class="btn btn-success btn-sm">CONFIGURAR</a></span>
+            </h4>
+        </template>
     </div>
 </template>

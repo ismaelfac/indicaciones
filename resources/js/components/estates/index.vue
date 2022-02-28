@@ -43,10 +43,37 @@
                 <label class="form-check-label" for="isSharedGasMeter">Contador de Gas Compartido</label>
                 </div>
             </div>
+            <div class="col-4">
+                <div class="input-group has-validation">
+                    <span class="input-group-text">Poliza Agua</span>
+                    <input type="text" class="form-control" id="policyElectricity" v-model="policyElectricity">
+                    <div class="invalid-feedback">
+                    Your username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group has-validation">
+                    <span class="input-group-text">Poliza Luz</span>
+                    <input type="text" class="form-control" id="policyWater" v-model="policyWater">
+                    <div class="invalid-feedback">
+                    Your username is required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="input-group has-validation">
+                    <span class="input-group-text">Poliza Gas</span>
+                    <input type="text" class="form-control" id="policyGas" v-model="policyGas">
+                    <div class="invalid-feedback">
+                    Your username is required.
+                    </div>
+                </div>
+            </div>
             <div class="col-12">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Observaciones</span>
-                    <input type="textarea" v-model="observations" class="form-control" id="observations">
+                    <textarea v-model="observations" class="form-control" id="observations"></textarea>
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -57,7 +84,6 @@
         <hr class="my-4">
         <h4 class="mb-1">Documentos del Inmueble</h4>
         <Documents component="INMUEBLE" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
 <script>
