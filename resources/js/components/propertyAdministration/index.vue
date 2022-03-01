@@ -10,15 +10,29 @@ export default {
 }
 </script>
 <template>
-    <div>
+    <div class="row">
         <div class="card-header">
             <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span id="card_title">PARAMETROS DEL PAGO</span>
+                <span id="card_title">ADMINISTRACION</span>
                 <div class="float-right">
                     <a class="btn btn-success btn-sm" href="#"> Grabar</a>
                 </div>
             </div>
         </div>
+        <div class="col-6">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">Tipo de Inmueble</label>
+                    <select class="form-select" id="inputGroupSelect01" v-model="typeEstate">
+                        <option selected>Seleccione un Tipo de Inmueble...</option>
+                        <option value="APARTAMENTO">APARTAMENTO</option>
+                        <option value="APARTA-STUDIO">APARTA-STUDIO</option>
+                        <option value="BODEGA">BODEGA</option>
+                        <option value="LOCAL">LOCAL</option>
+                        <option value="CASA">CASA</option>
+                        <option value="NO DEFINIDO">NO DEFINIDO</option>
+                    </select>
+                </div>
+            </div>
         <div class="col-12">
             <div class="input-group has-validation input-group mb-3">
                 <span class="input-group-text">Participante</span>

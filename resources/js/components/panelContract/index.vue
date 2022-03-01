@@ -105,7 +105,7 @@ export default {
         <template v-if="contract.adminValue">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Administración Inmueble</span>
-            <span class="badge"><a class="btn btn-success btn-sm">CONFIGURAR</a></span>
+            <span class="badge"><a @click="$emit('EstateView', estate)" class="btn btn-success btn-sm">CONFIGURAR</a></span>
             </h4>
         </template>
     </div>

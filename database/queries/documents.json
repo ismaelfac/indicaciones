@@ -100,5 +100,17 @@
         "description": "",
         "category": "CONTRATO",
         "isActive": true
+    },
+    {
+        "title": "CARTA DE COMODATARIO",
+        "description": "",
+        "category": "COMODATARIO",
+        "isActive": true
+    },
+    {
+        "title": "CARTA DE USUFRUCTO",
+        "description": "",
+        "category": "USUFRUCTUARIO",
+        "isActive": true
     }
 ]

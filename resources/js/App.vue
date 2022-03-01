@@ -13,8 +13,8 @@
             <div v-if="contractOn"><ContractForm :contract="this.contract" :documents="documents.data"></ContractForm></div>
             <div v-if="estateOn"><EstateForm :contract="this.contract" :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
             <div v-if="personOn"><PersonForm :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
-            <div v-if="personParametersOn"><RealEstate /></div>
-            <div v-if="personPaymentsOn"><PropertyAdministration /></div>
+            <div v-if="inmobiliariaOn"><RealEstate /></div>
+            <div v-if="administrationOn"><PropertyAdministration /></div>
         </div>
     </div>
 </template>
@@ -51,26 +51,30 @@ export default {
             contractOn: false,
             estateOn: false,
             personOn: false,
-            personPaymentsOn: false,
-            personParametersOn: true,
+            administrationOn: false,
+            inmobiliariaOn: false,
             contractEditing: true,
         }
     },
     methods: {
         ContractView(contract){
             this.contractInject = [];
+            this.participantInject = [];
+            this.estateInject = [];
             this.contractOn = true;
-            this.personPaymentsOn = false;
-            this.personParametersOn = false;
+            this.administrationOn = false;
+            this.inmobiliariaOn = false;
             this.estateOn = false;
             this.personOn = false;
             this.contractInject.push(contract);
         },
         EstateView(estate){
+            this.participantInject = [];
             this.estateInject = [];
+            this.contractInject = [];
             this.estateOn = true;
-            this.personPaymentsOn = false;
-            this.personParametersOn = false;
+            this.administrationOn = false;
+            this.inmobiliariaOn = false;
             this.contractOn = false;
             this.personOn = false;
             this.estateInject.push(estate);
@@ -78,31 +82,35 @@ export default {
         },
         PersonView(participant){
             this.participantInject = [];
+            this.estateInject = [];
+            this.contractInject = [];
             this.personOn = true;
-            this.personPaymentsOn = false;
-            this.personParametersOn = false;
+            this.administrationOn = false;
+            this.inmobiliariaOn = false;
             this.contractOn = false;
             this.estateOn = false;
             this.participantInject.push(participant);
         },
-        PersonParamentersView(participant){
+        InmobiliariaView(){
             this.participantInject = [];
-            this.personParametersOn = true;
-            this.personPaymentsOn = false
+            this.estateInject = [];
+            this.contractInject = [];
+            this.inmobiliariaOn = true;
+            this.administrationOn = false
             this.personOn = false;
             this.contractOn = false;
             this.estateOn = false;
-            this.participantInject.push(participant);
         }
         ,
-        PersonPaymentsView(participant){
+        AdministrationView(){
             this.participantInject = [];
-            this.personPaymentsOn = true;
-            this.personParametersOn = false;
+            this.estateInject = [];
+            this.contractInject = [];
+            this.administrationOn = true;
+            this.inmobiliariaOn = false;
             this.personOn = true;
             this.contractOn = false;
             this.estateOn = false;
-            this.participantInject.push(participant);
         }
     }    
 }
