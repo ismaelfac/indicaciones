@@ -5,7 +5,7 @@ import ListEstate from '../estates/List.vue';
 export default {
     name: 'panelContract',
     props: ['participants', 'estate', 'contract'],
-    emits: ['ContractView','EstateView'],
+    emits: ['ContractView','EstateView','InmobiliariaView','AdministrationView'],
     inject: ['contractInject','estateInject', 'participantInject'],
     components: {
         ListContract,
@@ -89,23 +89,13 @@ export default {
         <hr class="my-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-primary">Inmobiliaria</span>
-        <span class="badge bg-primary rounded-pill"></span>
+        <span class="badge"><a @click="$emit('InmobiliariaView')" class="btn btn-success btn-sm">CONFIGURAR</a></span>
         </h4>
-        <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-                <h6 class="my-0"><a href="#" @click="newParticipant" class="btn btn-danger">Nueva Configuración</a></h6>
-            </div>
-        </li>
-            <div v-if="participants">
-                
-            </div>
-        </ul>
         <hr class="my-4">
         <template v-if="contract.adminValue">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Administración Inmueble</span>
-            <span class="badge"><a @click="$emit('EstateView', estate)" class="btn btn-success btn-sm">CONFIGURAR</a></span>
+            <span class="badge"><a @click="$emit('AdministrationView')" class="btn btn-success btn-sm">CONFIGURAR</a></span>
             </h4>
         </template>
     </div>

@@ -99,7 +99,7 @@
                     </div>
                 </div>          
             </div>   
-            <Documents :component="typeParticipantPerson" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+            
             <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">        
                 <div class="card">
                     <div class="card-header">
@@ -219,6 +219,9 @@
                     </div>
                 </div>        
             </template>    
+
+            <h4 class="mb-1">Documentos del {{ typeParticipantPerson }}</h4>
+            <Documents :component="typeParticipantPerson" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
         </div>
         
     </form>

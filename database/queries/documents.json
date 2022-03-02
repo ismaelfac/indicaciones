@@ -2,61 +2,121 @@
     {
         "title": "Solicitudes de arrendamiento",
         "description": "",
-        "category": "PERSONA_AD",
+        "category": "ARRENDATARIO",
         "isActive": true
     },
     {
         "title": "Asegurable o aprobado según el caso (direccion y valor deben coincidir con contrato)",
         "description": "",
-        "category": "PERSONA_AD",
+        "category": "ARRENDATARIO",
         "isActive": true
     },
     {
         "title": "Rut (P.Juridica) año corriente",
         "description": "",
-        "category": "PERSONA_AD",
+        "category": "ARRENDATARIO",
+        "isActive": true
+    },
+    {
+        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
+        "description": "",
+        "category": "ARRENDATARIO",
         "isActive": true
     },
     {
         "title": "Rut (P.Juridica) año corriente",
         "description": "",
-        "category": "PERSONA_PUC",
+        "category": "DEUDOR",
+        "isActive": true
+    },
+    {
+        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
+        "description": "",
+        "category": "DEUDOR",
+        "isActive": true
+    },
+    {
+        "title": "Rut (P.Juridica) año corriente",
+        "description": "",
+        "category": "PROPIETARIO",
         "isActive": true
     },
     {
         "title": "Convenio Administracion firmado",
         "description": "",
-        "category": "PERSONA_PUC",
+        "category": "PROPIETARIO",
         "isActive": true
-    },
-    {
-        "title": "Documento Usufructo (si aplica)",
-        "description": "",
-        "category": "PERSONA_PUC",
-        "isActive": true
-    },
+    },   
     {
         "title": "Camara de comercio (P.juridica). Vigencia 30 días",
         "description": "",
-        "category": "PERSONA_AD",
-        "isActive": true
-    },
-    {
-        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
-        "description": "",
-        "category": "PERSONA_PUC",
-        "isActive": true
-    },
-    {
-        "title": "Poder  (casos firmante no es el propietario)",
-        "description": "",
-        "category": "PERSONA_PUC",
+        "category": "PROPIETARIO",
         "isActive": true
     },
     {
         "title": "Certificado Tradicion o escritura o medidas y linderos especificos en caso de no estar el inmueble desenglobado ( Vigencia 30 dìas)",
         "description": "",
-        "category": "PERSONA_PUC",
+        "category": "PROPIETARIO",
+        "isActive": true
+    },
+    {
+        "title": "Rut (P.Juridica) año corriente",
+        "description": "",
+        "category": "USUFRUCTUARIO",
+        "isActive": true
+    },
+    {
+        "title": "Convenio Administracion firmado",
+        "description": "",
+        "category": "USUFRUCTUARIO",
+        "isActive": true
+    },
+    {
+        "title": "Documento Usufructo",
+        "description": "",
+        "category": "USUFRUCTUARIO",
+        "isActive": true
+    },    
+    {
+        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
+        "description": "",
+        "category": "USUFRUCTUARIO",
+        "isActive": true
+    },
+    {
+        "title": "Poder",
+        "description": "",
+        "category": "USUFRUCTUARIO",
+        "isActive": true
+    },
+    {
+        "title": "Rut (P.Juridica) año corriente",
+        "description": "",
+        "category": "COMODATARIO",
+        "isActive": true
+    },
+    {
+        "title": "Convenio Administracion firmado",
+        "description": "",
+        "category": "COMODATARIO",
+        "isActive": true
+    },
+    {
+        "title": "Documento Usufructo",
+        "description": "",
+        "category": "COMODATARIO",
+        "isActive": true
+    },    
+    {
+        "title": "Camara de comercio (P.juridica). Vigencia 30 días",
+        "description": "",
+        "category": "COMODATARIO",
+        "isActive": true
+    },
+    {
+        "title": "Poder",
+        "description": "",
+        "category": "COMODATARIO",
         "isActive": true
     },
     {
@@ -105,12 +165,6 @@
         "title": "CARTA DE COMODATARIO",
         "description": "",
         "category": "COMODATARIO",
-        "isActive": true
-    },
-    {
-        "title": "CARTA DE USUFRUCTO",
-        "description": "",
-        "category": "USUFRUCTUARIO",
         "isActive": true
     }
 ]

@@ -6,13 +6,15 @@
                     :participants="participants" 
                     :estate="estate" 
                     @ContractView="ContractView" 
-                    @EstateView="EstateView" />
+                    @EstateView="EstateView"
+                    @InmobiliariaView="InmobiliariaView"
+                    @AdministrationView="AdministrationView" />
         </div>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <div v-if="contractOn"><ContractForm :contract="contract" :documents="documents.data"></ContractForm></div>
-            <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
-            <div v-if="personOn"><PersonForm :contract="contract" :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
+            <div v-if="contractOn"><ContractForm :contract="contract" :documents="documents"></ContractForm></div>
+            <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents"></EstateForm></div>
+            <div v-if="personOn"><PersonForm :contract="contract" :participant="this.participantInject" :documents="documents"></PersonForm></div>
             <div v-if="inmobiliariaOn"><RealEstate /></div>
             <div v-if="administrationOn"><PropertyAdministration /></div>
         </div>
@@ -104,6 +106,7 @@ export default {
         }
         ,
         AdministrationView(){
+            console.log('AdministrationView entro')
             this.participantInject = [];
             this.estateInject = [];
             this.contractInject = [];

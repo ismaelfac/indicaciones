@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         $contracts = Contract::paginate();
-        $documents = Document::paginate();
+        $documents = Document::all();
         //$estate = Estate::find($contracts->id);
         //dd($estate->garages);
         return view('home', compact('contracts', 'documents'))

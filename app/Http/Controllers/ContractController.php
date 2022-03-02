@@ -27,8 +27,8 @@ class ContractController extends Controller
     public function index()
     {
         $contracts = Contract::paginate();
-        $documents = Document::paginate();
-        return view('contract.index', compact('contracts'))
+        $documents = Document::all();
+        return view('contract.index', compact('contracts','documents'))
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
     }
 
@@ -99,7 +99,7 @@ class ContractController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
-        $documents = Document::paginate();
+        $documents = Document::all();
         return view('contract.show', compact('contract','documents'));
     }
 
