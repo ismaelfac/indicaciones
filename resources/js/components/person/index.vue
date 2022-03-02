@@ -99,22 +99,21 @@
                     </div>
                 </div>          
             </div>   
-            <div>        
-                <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span id="card_title">PARAMETROS DEL CONTRATO</span>
-                        <div class="float-right">
-                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
-                        </div>
-                    </div>
-                </div>
+            <Documents :component="typeParticipantPerson" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+            <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">        
                 <div class="card">
                     <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">PARAMETROS DEL CONTRATO</span>
+                            <div class="float-right">
+                                <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="card-body">
                         <div class="alert alert-danger" role="alert">
                             {{ notificationParametersContract }}
                         </div>
-                    </div>
-                    <div class="card-body">
                         <div class="row g-3">
                             <div class="col-4">
                                 <div class="input-group has-validation input-group mb-3"> 
@@ -146,18 +145,16 @@
                         </div>
                     </div>
                 </div>        
-            </div>
-            <div>        
-                <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span id="card_title">CONFIGURACIÓN DE PAGOS</span>
-                        <div class="float-right">
-                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
-                        </div>
-                    </div>
-                </div>
+            </template>
+            <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">        
                 <div class="card">
                     <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">CONFIGURACIÓN DE PAGOS</span>
+                            <div class="float-right">
+                                <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
@@ -221,14 +218,19 @@
                         </div>
                     </div>
                 </div>        
-            </div>         
+            </template>    
         </div>
+        
     </form>
 </template>
 <script>
+import Documents from "../documents/index.vue";
 export default {
     name:'person',
-    props:['participant'],
+    props:['contract','participant', 'documents'],
+    components: {
+        Documents
+    },
     data() {
         return {
             stateParticipante: 'CREAR',

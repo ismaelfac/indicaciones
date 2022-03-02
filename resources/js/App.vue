@@ -10,9 +10,9 @@
         </div>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <div v-if="contractOn"><ContractForm :contract="this.contract" :documents="documents.data"></ContractForm></div>
-            <div v-if="estateOn"><EstateForm :contract="this.contract" :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
-            <div v-if="personOn"><PersonForm :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
+            <div v-if="contractOn"><ContractForm :contract="contract" :documents="documents.data"></ContractForm></div>
+            <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents.data"></EstateForm></div>
+            <div v-if="personOn"><PersonForm :contract="contract" :participant="this.participantInject" :documents="documents.data"></PersonForm></div>
             <div v-if="inmobiliariaOn"><RealEstate /></div>
             <div v-if="administrationOn"><PropertyAdministration /></div>
         </div>
@@ -57,7 +57,7 @@ export default {
         }
     },
     methods: {
-        ContractView(contract){
+        ContractView(){
             this.contractInject = [];
             this.participantInject = [];
             this.estateInject = [];
@@ -66,7 +66,8 @@ export default {
             this.inmobiliariaOn = false;
             this.estateOn = false;
             this.personOn = false;
-            this.contractInject.push(contract);
+            this.contractInject.push(this.contract);
+            console.log(this.contractInject[0]);
         },
         EstateView(estate){
             this.participantInject = [];
