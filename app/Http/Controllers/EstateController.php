@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Estate;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * Class EstateController
@@ -44,17 +43,10 @@ class EstateController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = Auth::id();
         request()->validate(Estate::$rules);
-        
-        $estate = new Estate;
-        $estate->address = $request->address;
-        $estate->realEstateRegistration = $request->realEstateRegistration;
-        $estate->typeEstate = $request->typeEstate;
-        $estate->user_id = $user_id;
-        $estate->isActive = true;
-        $estate->save();
-        
+
+        $estate = Estate::create($request->all());
+
         return redirect()->route('estates.index')
             ->with('success', 'Estate created successfully.');
     }

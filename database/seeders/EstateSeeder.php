@@ -26,7 +26,17 @@ class EstateSeeder extends Seeder
                 'isSharedElectricityMeter'=> $value['isSharedElectricityMeter'],
                 'isSharedWaterMeter'=> $value['isSharedWaterMeter'],
                 'isSharedGasMeter'=> $value['isSharedGasMeter'],
-                'observations'=> $value['observations'],
+                'hasAdministration' => $value['hasAdministration'],
+                'typeDni' => $value['typeDni'],
+                'dni' => $value['dni'],
+                'email' => $value['email'],
+                'phone' => $value['phone'],
+                'bankingEntity' => $value['bankingEntity'],
+                'accountType' => $value['accountType'],
+                'accountNumber' => $value['accountNumber'],
+                'namesAdministrator' => $value['namesAdministrator'],
+                'paymentDate' => $value['paymentDate'],
+                'annotations'=> $value['annotations'],
                 'user_id' => 1,
                 'isActive' => $value['isActive']
             ]);

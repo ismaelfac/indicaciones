@@ -220,8 +220,8 @@
                 </div>        
             </template>    
 
-            <h4 class="mb-1">Documentos del {{ typeParticipantPerson }}</h4>
-            <Documents :component="typeParticipantPerson" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+            <h4 class="mb-1">Documentos del {{ typePersonPerson }}</h4>
+            <Documents :component="typeParticipantPerson" :typePerson="typePersonPerson" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
         </div>
         
     </form>

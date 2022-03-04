@@ -12,6 +12,7 @@ class CreateDocumentsTable extends Migration
             $table->id();
             $table->string('title');
             $table->enum('category', ['NO DEFINIDO','ARRENDATARIO','DEUDOR', 'PROPIETARIO', 'INMUEBLE','CONTRATO','USUFRUCTUARIO','COMODATARIO'])->default('NO DEFINIDO');
+            $table->enum('typePerson', ['NO DEFINIDO','NATURAL', 'JURIDICA'])->default('NO DEFINIDO');
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isActive')->default(false);
             $table->timestamps();

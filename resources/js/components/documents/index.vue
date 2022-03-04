@@ -32,17 +32,16 @@
 <script>
     export default {
         name: 'document',
-        props: ['component','listDocuments','contractDocuments'],
+        props: ['component','typePerson','listDocuments','contractDocuments'],
         computed: {
             documentContract: function (component) {
-                console.log('componentes',component.component)
                 return this.listDocuments.filter(function (document) {
-                    return document.category === component.component;
+                    return (document.category === component.component);
                 });
             }        
         },
         mounted () {
-            
+
         },
         data() {
             return{

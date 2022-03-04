@@ -36,10 +36,27 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>DIRECCIÓN</th>
-										<th>MATRICULA INMOBILIARIA</th>
-										<th>TIPO DE INMUEBLE</th>
-										<th>ESTADO</th>
+										<th>Address</th>
+										<th>Realestateregistration</th>
+										<th>Typeestate</th>
+										<th>Issharedelectricitymeter</th>
+										<th>Issharedwatermeter</th>
+										<th>Issharedgasmeter</th>
+										<th>Isgarage</th>
+										<th>Isusefulroom</th>
+										<th>Hasadministration</th>
+										<th>Typedni</th>
+										<th>Dni</th>
+										<th>Email</th>
+										<th>Phone</th>
+										<th>Bankingentity</th>
+										<th>Accounttype</th>
+										<th>Accountnumber</th>
+										<th>Paymentdate</th>
+										<th>Namesadministrator</th>
+										<th>Annotations</th>
+										<th>User Id</th>
+										<th>Isactive</th>
 
                                         <th></th>
                                     </tr>
@@ -52,6 +69,23 @@
 											<td>{{ $estate->address }}</td>
 											<td>{{ $estate->realEstateRegistration }}</td>
 											<td>{{ $estate->typeEstate }}</td>
+											<td>{{ $estate->isSharedElectricityMeter }}</td>
+											<td>{{ $estate->isSharedWaterMeter }}</td>
+											<td>{{ $estate->isSharedGasMeter }}</td>
+											<td>{{ $estate->isGarage }}</td>
+											<td>{{ $estate->isUseFulRoom }}</td>
+											<td>{{ $estate->hasAdministration }}</td>
+											<td>{{ $estate->typeDni }}</td>
+											<td>{{ $estate->dni }}</td>
+											<td>{{ $estate->email }}</td>
+											<td>{{ $estate->phone }}</td>
+											<td>{{ $estate->bankingEntity }}</td>
+											<td>{{ $estate->accountType }}</td>
+											<td>{{ $estate->accountNumber }}</td>
+											<td>{{ $estate->paymentDate }}</td>
+											<td>{{ $estate->namesAdministrator }}</td>
+											<td>{{ $estate->annotations }}</td>
+											<td>{{ $estate->user_id }}</td>
 											<td>{{ $estate->isActive }}</td>
 
                                             <td>

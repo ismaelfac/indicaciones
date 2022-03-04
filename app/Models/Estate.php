@@ -11,12 +11,29 @@ use Illuminate\Database\Eloquent\Model;
  * @property $address
  * @property $realEstateRegistration
  * @property $typeEstate
+ * @property $isSharedElectricityMeter
+ * @property $isSharedWaterMeter
+ * @property $isSharedGasMeter
+ * @property $isGarage
+ * @property $isUseFulRoom
+ * @property $hasAdministration
+ * @property $typeDni
+ * @property $dni
+ * @property $email
+ * @property $phone
+ * @property $bankingEntity
+ * @property $accountType
+ * @property $accountNumber
+ * @property $paymentDate
+ * @property $namesAdministrator
+ * @property $annotations
  * @property $user_id
  * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
  * @property ContractEstate[] $contractEstates
+ * @property Garage[] $garages
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -28,6 +45,17 @@ class Estate extends Model
 		'address' => 'required',
 		'realEstateRegistration' => 'required',
 		'typeEstate' => 'required',
+		'isSharedElectricityMeter' => 'required',
+		'isSharedWaterMeter' => 'required',
+		'isSharedGasMeter' => 'required',
+		'isGarage' => 'required',
+		'isUseFulRoom' => 'required',
+		'hasAdministration' => 'required',
+		'typeDni' => 'required',
+		'bankingEntity' => 'required',
+		'accountType' => 'required',
+		'user_id' => 'required',
+		'isActive' => 'required',
     ];
 
     protected $perPage = 20;
@@ -37,7 +65,7 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address','realEstateRegistration','typeEstate','user_id','isActive'];
+    protected $fillable = ['address','realEstateRegistration','typeEstate','isSharedElectricityMeter','isSharedWaterMeter','isSharedGasMeter','isGarage','isUseFulRoom','hasAdministration','typeDni','dni','email','phone','bankingEntity','accountType','accountNumber','paymentDate','namesAdministrator','annotations','user_id','isActive'];
 
 
     /**
@@ -45,9 +73,12 @@ class Estate extends Model
      */
     public function contractEstates()
     {
-        return $this->belongsToMany(Contract::class)->wherePivot('isActive',1);
+        return $this->hasMany('App\Models\ContractEstate', 'estate_id', 'id');
     }
-
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function garages()
     {
         return $this->hasMany('App\Models\Garage', 'estate_id', 'id');

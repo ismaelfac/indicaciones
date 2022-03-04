@@ -21,6 +21,7 @@ class DocumentSeeder extends Seeder
             Document::create([
                 'title' => $value['title'],
                 'category' => $value['category'],
+                'typePerson' => $value['typePerson'],
                 'user_id' => 1,
                 'isActive' => $value['isActive']
             ]);

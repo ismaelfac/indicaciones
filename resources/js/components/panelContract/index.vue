@@ -41,6 +41,7 @@ export default {
                     :id="contract.id" 
                     :asegurable="contract.asegurable" 
                     :domus="contract.domus" 
+                    :isActive="contract.isActive"
                     @click="$emit('ContractView', [contract])"/>
             </div>
         </ul>
@@ -51,9 +52,7 @@ export default {
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm" v-if="!estate">
                 <h6 class="my-0"><a href="#" @click="EstateView" class="btn btn-link">Inmueble</a></h6>
-
-            </li>
-            
+            </li>            
             <div v-if="estate">
                 <ListEstate 
                     :id="estate.id" 
@@ -65,15 +64,18 @@ export default {
         </ul>
         <hr class="my-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-primary">Inmobiliaria</span>
+            <span class="badge"><a @click="$emit('InmobiliariaView')" class="btn btn-success btn-sm">CONFIGURAR</a></span>
+        </h4>
+        <hr class="my-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-primary">Participantes</span>
         <span class="badge bg-primary rounded-pill"></span>
         </h4>
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
                 <h6 class="my-0"><a href="#" @click="newParticipant" class="btn btn-danger">Nuevo Participante</a></h6>
-            </div>
-        </li>
+            </li>
             <div v-if="participants">
                 <ListPerson v-for="participant in participants" 
                             :key="participant.id" 
@@ -87,15 +89,10 @@ export default {
             </div>
         </ul>
         <hr class="my-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">Inmobiliaria</span>
-        <span class="badge"><a @click="$emit('InmobiliariaView')" class="btn btn-success btn-sm">CONFIGURAR</a></span>
-        </h4>
-        <hr class="my-4">
         <template v-if="contract.adminValue">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-primary">Administración Inmueble</span>
-            <span class="badge"><a @click="$emit('AdministrationView')" class="btn btn-success btn-sm">CONFIGURAR</a></span>
+            <span class="badge"><a @click="$emit('AdministrationView',estate)" class="btn btn-success btn-sm">CONFIGURAR</a></span>
             </h4>
         </template>
     </div>

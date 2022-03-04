@@ -16,7 +16,7 @@
             <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents"></EstateForm></div>
             <div v-if="personOn"><PersonForm :contract="contract" :participant="this.participantInject" :documents="documents"></PersonForm></div>
             <div v-if="inmobiliariaOn"><RealEstate /></div>
-            <div v-if="administrationOn"><PropertyAdministration /></div>
+            <div v-if="administrationOn"><PropertyAdministration :estate="this.estateInject" /></div>
         </div>
     </div>
 </template>
@@ -105,14 +105,15 @@ export default {
             this.estateOn = false;
         }
         ,
-        AdministrationView(){
+        AdministrationView(estate){
             console.log('AdministrationView entro')
             this.participantInject = [];
             this.estateInject = [];
             this.contractInject = [];
+            this.estateInject.push(estate);
             this.administrationOn = true;
             this.inmobiliariaOn = false;
-            this.personOn = true;
+            this.personOn = false;
             this.contractOn = false;
             this.estateOn = false;
         }
