@@ -6,7 +6,6 @@
             <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ optionBtnEstate }}</button>
             </div>
         </div>
-        {{ estateResult}}
         <div class="row g-3">
             <h4 class="mb-1">Información de Inmueble</h4>            
             <div class="col-12">
@@ -83,6 +82,9 @@
                 <label class="form-check-label" for="optionPaymentInFavorOfAdministration">Tiene Administración</label>
                 </div>
             </div>
+            <template v-if="itIsGaraje">
+
+            </template>
             <template class="card" v-if="estateResult.optionPaymentInFavorOfAdministration">
                 <div class="card-header">
                     Información de la Administración
@@ -188,9 +190,11 @@
                 </div>
             </template>
 
-            <hr class="my-4">
-            <h4 class="mb-1">Documentos del Inmueble</h4>
-            <Documents component="INMUEBLE" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+            <div>
+                <hr class="my-4">
+                <h4 class="mb-1">Documentos del Inmueble</h4>
+                <Documents component="INMUEBLE" :listDocuments="documents"/>
+            </div>
         </div>
         
 
@@ -217,15 +221,18 @@
 import Documents from "../documents/index.vue";
 export default {
     name:"estate",
-    props: ['contract','documents'],
+    props: ['contract','estate','documents'],
     data() {
         return {        
             estateResult: {
                 address: '',
                 typeEstate: '',
                 isSharedElectricityMeter: false,
+                policyElectricity: '',
                 isSharedWaterMeter: false,
+                policyWater: '',
                 isSharedGasMeter: false,
+                policyGas: '',
                 observations: '',
                 optionPaymentInFavorOfAdministration: false,
                 typeDniPerson: '',
@@ -242,17 +249,32 @@ export default {
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
-                       
+            itIsGaraje: true
         }
     },
     mounted() {
-        axios.get('/estates/1').then(response => ([
+        const urlId = `/estates/${this.estate[0]}`;
+        console.log('link',urlId)
+        axios.get(urlId).then(response => ([
             this.estateResult.address = response.data.address,
             this.estateResult.typeEstate = response.data.typeEstate,
             this.estateResult.isSharedElectricityMeter = (response.data.isSharedElectricityMeter ? true : false),
+            this.estateResult.policyElectricity = response.data.policyElectricity,
             this.estateResult.isSharedWaterMeter = (response.data.isSharedWaterMeter ? true : false),
+            this.estateResult.policyWater = response.data.policyWater,
             this.estateResult.isSharedGasMeter = (response.data.isSharedGasMeter ? true : false),
-            this.estateResult.phone = response.data.phone
+            this.estateResult.policyGas = response.data.policyGas,
+            this.estateResult.observations = response.data.observations,
+            this.estateResult.optionPaymentInFavorOfAdministration = (response.data.hasAdministration ? true : false),
+            this.estateResult.typeDniPerson = response.data.typeDni,
+            this.estateResult.dni = response.data.dni,
+            this.estateResult.email = response.data.email,
+            this.estateResult.phone = response.data.phone,
+            this.estateResult.bankingEntity = response.data.bankingEntity,
+            this.estateResult.accountType = response.data.accountType,
+            this.estateResult.accountNumber = response.data.accountNumber,
+            this.estateResult.namesAdministrator = response.data.namesAdministrator,
+            this.estateResult.annotations = response.data.annotations
         ])).catch(error => console.log(error));
         console.log('desde mounted: ',this.estateResult)
         

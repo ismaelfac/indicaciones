@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Estate;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 
 class EstateSeeder extends Seeder
 {
@@ -15,7 +14,6 @@ class EstateSeeder extends Seeder
      */
     public function run()
     {
-        $user_id = Auth::id();
         $data = file_get_contents("database/Queries/estates.json");
         $estates = json_decode($data, true);
         foreach ($estates as $value) {
@@ -24,8 +22,11 @@ class EstateSeeder extends Seeder
                 'realEstateRegistration' => $value['realEstateRegistration'],
                 'typeEstate' => $value['typeEstate'],
                 'isSharedElectricityMeter'=> $value['isSharedElectricityMeter'],
+                'policyElectricity' => $value['policyElectricity'],
                 'isSharedWaterMeter'=> $value['isSharedWaterMeter'],
+                'policyWater' => $value['policyWater'],
                 'isSharedGasMeter'=> $value['isSharedGasMeter'],
+                'policyGas' => $value['policyGas'],
                 'hasAdministration' => $value['hasAdministration'],
                 'paymentInFavorOf' => $value['paymentInFavorOf'],
                 'typeDni' => $value['typeDni'],

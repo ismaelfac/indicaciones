@@ -22,14 +22,29 @@
             {!! $errors->first('isSharedElectricityMeter', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('policyElectricity') }}
+            {{ Form::text('policyElectricity', $estate->policyElectricity, ['class' => 'form-control' . ($errors->has('policyElectricity') ? ' is-invalid' : ''), 'placeholder' => 'Policyelectricity']) }}
+            {!! $errors->first('policyElectricity', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('isSharedWaterMeter') }}
             {{ Form::text('isSharedWaterMeter', $estate->isSharedWaterMeter, ['class' => 'form-control' . ($errors->has('isSharedWaterMeter') ? ' is-invalid' : ''), 'placeholder' => 'Issharedwatermeter']) }}
             {!! $errors->first('isSharedWaterMeter', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('policyWater') }}
+            {{ Form::text('policyWater', $estate->policyWater, ['class' => 'form-control' . ($errors->has('policyWater') ? ' is-invalid' : ''), 'placeholder' => 'Policywater']) }}
+            {!! $errors->first('policyWater', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('isSharedGasMeter') }}
             {{ Form::text('isSharedGasMeter', $estate->isSharedGasMeter, ['class' => 'form-control' . ($errors->has('isSharedGasMeter') ? ' is-invalid' : ''), 'placeholder' => 'Issharedgasmeter']) }}
             {!! $errors->first('isSharedGasMeter', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('policyGas') }}
+            {{ Form::text('policyGas', $estate->policyGas, ['class' => 'form-control' . ($errors->has('policyGas') ? ' is-invalid' : ''), 'placeholder' => 'Policygas']) }}
+            {!! $errors->first('policyGas', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('isGarage') }}

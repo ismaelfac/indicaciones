@@ -41,7 +41,7 @@ export default {
                     :typeEstate="estate.typeEstate" 
                     :address="estate.address" 
                     :isActive="estate.isActive" 
-                    @click="$emit('EstateView', estate)"/>
+                    @click="$emit('EstateView', estate.id)"/>
             </div>
         </ul>
         <hr class="my-4">

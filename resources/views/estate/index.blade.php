@@ -40,8 +40,11 @@
 										<th>Realestateregistration</th>
 										<th>Typeestate</th>
 										<th>Issharedelectricitymeter</th>
+										<th>Policyelectricity</th>
 										<th>Issharedwatermeter</th>
+										<th>Policywater</th>
 										<th>Issharedgasmeter</th>
+										<th>Policygas</th>
 										<th>Isgarage</th>
 										<th>Isusefulroom</th>
 										<th>Hasadministration</th>
@@ -71,8 +74,11 @@
 											<td>{{ $estate->realEstateRegistration }}</td>
 											<td>{{ $estate->typeEstate }}</td>
 											<td>{{ $estate->isSharedElectricityMeter }}</td>
+											<td>{{ $estate->policyElectricity }}</td>
 											<td>{{ $estate->isSharedWaterMeter }}</td>
+											<td>{{ $estate->policyWater }}</td>
 											<td>{{ $estate->isSharedGasMeter }}</td>
+											<td>{{ $estate->policyGas }}</td>
 											<td>{{ $estate->isGarage }}</td>
 											<td>{{ $estate->isUseFulRoom }}</td>
 											<td>{{ $estate->hasAdministration }}</td>

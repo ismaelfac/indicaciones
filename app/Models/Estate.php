@@ -12,8 +12,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property $realEstateRegistration
  * @property $typeEstate
  * @property $isSharedElectricityMeter
+ * @property $policyElectricity
  * @property $isSharedWaterMeter
+ * @property $policyWater
  * @property $isSharedGasMeter
+ * @property $policyGas
  * @property $isGarage
  * @property $isUseFulRoom
  * @property $hasAdministration
@@ -47,8 +50,11 @@ class Estate extends Model
 		'realEstateRegistration' => 'required',
 		'typeEstate' => 'required',
 		'isSharedElectricityMeter' => 'required',
+		'policyElectricity' => 'required',
 		'isSharedWaterMeter' => 'required',
+		'policyWater' => 'required',
 		'isSharedGasMeter' => 'required',
+		'policyGas' => 'required',
 		'isGarage' => 'required',
 		'isUseFulRoom' => 'required',
 		'hasAdministration' => 'required',
@@ -67,7 +73,7 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address','realEstateRegistration','typeEstate','isSharedElectricityMeter','isSharedWaterMeter','isSharedGasMeter','isGarage','isUseFulRoom','hasAdministration','paymentInFavorOf','typeDni','dni','email','phone','bankingEntity','accountType','accountNumber','paymentDate','namesAdministrator','annotations','user_id','isActive'];
+    protected $fillable = ['address','realEstateRegistration','typeEstate','isSharedElectricityMeter','policyElectricity','isSharedWaterMeter','policyWater','isSharedGasMeter','policyGas','isGarage','isUseFulRoom','hasAdministration','paymentInFavorOf','typeDni','dni','email','phone','bankingEntity','accountType','accountNumber','paymentDate','namesAdministrator','annotations','user_id','isActive'];
 
 
     /**

@@ -37,12 +37,24 @@
                             {{ $estate->isSharedElectricityMeter }}
                         </div>
                         <div class="form-group">
+                            <strong>Policyelectricity:</strong>
+                            {{ $estate->policyElectricity }}
+                        </div>
+                        <div class="form-group">
                             <strong>Issharedwatermeter:</strong>
                             {{ $estate->isSharedWaterMeter }}
                         </div>
                         <div class="form-group">
+                            <strong>Policywater:</strong>
+                            {{ $estate->policyWater }}
+                        </div>
+                        <div class="form-group">
                             <strong>Issharedgasmeter:</strong>
                             {{ $estate->isSharedGasMeter }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Policygas:</strong>
+                            {{ $estate->policyGas }}
                         </div>
                         <div class="form-group">
                             <strong>Isgarage:</strong>
