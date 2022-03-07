@@ -57,6 +57,10 @@
                             {{ $estate->hasAdministration }}
                         </div>
                         <div class="form-group">
+                            <strong>Paymentinfavorof:</strong>
+                            {{ $estate->paymentInFavorOf }}
+                        </div>
+                        <div class="form-group">
                             <strong>Typedni:</strong>
                             {{ $estate->typeDni }}
                         </div>

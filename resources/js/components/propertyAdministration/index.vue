@@ -9,28 +9,21 @@ export default {
             optionPaymentInFavorOfParticipant: false,
             address: this.estate ? this.estate[0].address : '',
             typeEstate: this.estate ? this.estate[0].typeEstate : '',
-            nit : this.estate ? this.estate[0].nit : '',
+            typeDni: this.estate ? this.estate[0].typeDni : '',
+            dni : this.estate ? this.estate[0].dni : '',
             email: this.estate ? this.estate[0].email : '',
             phone: this.estate ? this.estate[0].phone : '',
+            paymentInFavorOf: this.estate ? this.estate[0].paymentInFavorOf : '',
             bankingEntity : this.estate ? this.estate[0].bankingEntity : '',
             accountType: this.estate ? this.estate[0].accountType : '',
             accountNumber: this.estate ? this.estate[0].accountNumber : '',
             namesAdministrator: this.estate ? this.estate[0].namesAdministrator : '',
             isConsignmentPayment: this.estate[0].isConsignmentPayment ? true : false,
-            nit: this.estate ? this.estate[0].nit : '',
-            annotations: ''
+            annotations: this.estate ? this.estate[0].annotations : ''
         }
     },
     methods: {
-        optionPaymentInFavorOf() {
-            if(this.paymentInFavorOf === 'administratation') {
-                this.optionPaymentInFavorOfAdministration = true;
-                this.optionPaymentInFavorOfParticipant = false;
-            }else{
-                this.optionPaymentInFavorOfAdministration = false;
-                this.optionPaymentInFavorOfParticipant = true;
-            }
-        }
+
     }
 }
 </script>
@@ -52,28 +45,22 @@ export default {
         </div>
         <div class="col-6">
             <div class="input-group mb-3">
-                <span class="input-group-text">Tipo de Inmueble</span>
-                <input type="text" v-model="typeEstate" class="form-control" id="typeEstate" disabled>
-            </div>
-        </div>
-        <div class="col-6">
-            <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Pago a favor de</label>
-                <select class="form-select" id="inputGroupSelect01" v-model="paymentInFavorOf" @change="optionPaymentInFavorOf">
-                    <option value="administratation">Administración</option>
-                    <option value="participant">Propietario / Beneficiario</option>
+                <select class="form-select" id="inputGroupSelect01" v-model="paymentInFavorOf">
+                    <option value="ADMINISTRACION">ADMINISTRACIÓN</option>
+                    <option value="TITULAR">Propietario / Beneficiario</option>
                 </select>
             </div>
         </div>
-        <template class="card" v-if="optionPaymentInFavorOfAdministration">
+        <template class="card" v-if="paymentInFavorOf === 'ADMINISTRACION'">
             <div class="card-header">
                 Información de la Administración
             </div>
             <div class="card-body row">
                 <div class="col-6">
                     <div class="input-group mb-3">
-                        <span class="input-group-text">Nit</span>
-                        <input type="text" v-model="nit" class="form-control" id="nit" disabled>
+                        <span class="input-group-text">{{ typeDni }}</span>
+                        <input type="text" v-model="dni" class="form-control" id="dni" disabled>
                     </div>
                 </div>
                 <div class="col-6">
@@ -159,31 +146,32 @@ export default {
                 </div>
             </div>
         </template>
-    </div>
-    <div class="row" v-if="optionPaymentInFavorOfParticipant">
-        <div class="card-header">
-            Información del Participante
-        </div>
-        <div class="card-body row">
-            <div class="col-12">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Pago a favor del Participante</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeContract">
-                        <option selected>Seleccione un Tipo de Contrato...</option>
-                        <option value="ISMAEL ENRIQUE LASTRE ALVAREZ">ISMAEL ENRIQUE LASTRE ALVAREZ</option>
-                        <option value="VALERIA VASQUEZ CUESTA">VALERIA VASQUEZ CUESTA</option>
-                    </select>
-                </div>
+        <template class="row" v-if="paymentInFavorOf === 'TITULAR'">
+            <div class="card-header">
+                Información del Participante
             </div>
-            <div class="col-12">
-                <div class="input-group has-validation">
-                    <span class="input-group-text">Anotaciones</span>
-                    <textarea v-model="annotations" class="form-control" id="annotations"></textarea>
-                    <div class="invalid-feedback">
-                    Your username is required.
+            <div class="card-body row">
+                <div class="col-12">
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Pago a favor del Participante</label>
+                        <select class="form-select" id="inputGroupSelect01" v-model="typeContract">
+                            <option selected>Seleccione un Tipo de Contrato...</option>
+                            <option value="ISMAEL ENRIQUE LASTRE ALVAREZ">ISMAEL ENRIQUE LASTRE ALVAREZ</option>
+                            <option value="VALERIA VASQUEZ CUESTA">VALERIA VASQUEZ CUESTA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="input-group has-validation">
+                        <span class="input-group-text">Anotaciones</span>
+                        <textarea v-model="annotations" class="form-control" id="annotations"></textarea>
+                        <div class="invalid-feedback">
+                        Your username is required.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </template>
     </div>
+    
 </template>

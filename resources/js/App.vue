@@ -81,7 +81,7 @@ export default {
             this.contractOn = false;
             this.personOn = false;
             this.estateInject.push(estate);
-            console.log(this.estateInject[0])
+            
         },
         PersonView(participant){
             this.participantInject = [];

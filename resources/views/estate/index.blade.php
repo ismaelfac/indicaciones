@@ -45,6 +45,7 @@
 										<th>Isgarage</th>
 										<th>Isusefulroom</th>
 										<th>Hasadministration</th>
+										<th>Paymentinfavorof</th>
 										<th>Typedni</th>
 										<th>Dni</th>
 										<th>Email</th>
@@ -75,6 +76,7 @@
 											<td>{{ $estate->isGarage }}</td>
 											<td>{{ $estate->isUseFulRoom }}</td>
 											<td>{{ $estate->hasAdministration }}</td>
+											<td>{{ $estate->paymentInFavorOf }}</td>
 											<td>{{ $estate->typeDni }}</td>
 											<td>{{ $estate->dni }}</td>
 											<td>{{ $estate->email }}</td>

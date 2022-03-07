@@ -47,6 +47,11 @@
             {!! $errors->first('hasAdministration', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
+            {{ Form::label('paymentInFavorOf') }}
+            {{ Form::text('paymentInFavorOf', $estate->paymentInFavorOf, ['class' => 'form-control' . ($errors->has('paymentInFavorOf') ? ' is-invalid' : ''), 'placeholder' => 'Paymentinfavorof']) }}
+            {!! $errors->first('paymentInFavorOf', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
             {{ Form::label('typeDni') }}
             {{ Form::text('typeDni', $estate->typeDni, ['class' => 'form-control' . ($errors->has('typeDni') ? ' is-invalid' : ''), 'placeholder' => 'Typedni']) }}
             {!! $errors->first('typeDni', '<div class="invalid-feedback">:message</p>') !!}

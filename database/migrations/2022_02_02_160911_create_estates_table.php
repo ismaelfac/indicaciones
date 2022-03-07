@@ -14,11 +14,15 @@ class CreateEstatesTable extends Migration
             $table->string('realEstateRegistration');
             $table->enum('typeEstate', ['NO DEFINIDO','APARTAMENTO', 'LOCAL', 'CASA', 'BODEGA', 'APARTA-STUDIO', 'GARAJE', 'CUARTO UTIL'])->default('NO DEFINIDO');
             $table->boolean('isSharedElectricityMeter')->default(false);
+            $table->string('policyElectricity');
             $table->boolean('isSharedWaterMeter')->default(false);
+            $table->string('policyWater');
             $table->boolean('isSharedGasMeter')->default(false);
+            $table->string('policyGas');
             $table->boolean('isGarage')->default(false);
             $table->boolean('isUseFulRoom')->default(false);
             $table->boolean('hasAdministration')->default(false);
+            $table->enum('paymentInFavorOf', ['NO DEFINIDO','ADMINISTRACION', 'TITULAR'])->default('NO DEFINIDO');
             $table->enum('typeDni', ['NO DEFINIDO','CEDULA DE CIUDADANIA', 'NIT', 'CEDULA DE EXTRANJERIA', 'PASAPORTE'])->default('NO DEFINIDO');
             $table->string('dni')->nullable();
             $table->string('email')->nullable();

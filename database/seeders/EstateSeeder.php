@@ -27,6 +27,7 @@ class EstateSeeder extends Seeder
                 'isSharedWaterMeter'=> $value['isSharedWaterMeter'],
                 'isSharedGasMeter'=> $value['isSharedGasMeter'],
                 'hasAdministration' => $value['hasAdministration'],
+                'paymentInFavorOf' => $value['paymentInFavorOf'],
                 'typeDni' => $value['typeDni'],
                 'dni' => $value['dni'],
                 'email' => $value['email'],

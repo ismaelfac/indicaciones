@@ -29,6 +29,23 @@ export default {
 <template>
     <div>
         <h4 class="d-flex justify-content-between align-items-center mb-3">
+        <span class="text-primary">Inmueble</span>
+        </h4>
+        <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-sm" v-if="!estate">
+                <h6 class="my-0"><a href="#" @click="$emit('EstateView')" class="btn btn-success">Configurar Inmueble</a></h6>
+            </li>            
+            <div v-if="estate">
+                <ListEstate 
+                    :id="estate.id" 
+                    :typeEstate="estate.typeEstate" 
+                    :address="estate.address" 
+                    :isActive="estate.isActive" 
+                    @click="$emit('EstateView', estate)"/>
+            </div>
+        </ul>
+        <hr class="my-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-primary">Contrato No</span>
         <span class="badge bg-primary rounded-pill">{{ contract ? contract.id : '' }}</span>
         </h4>
@@ -43,23 +60,6 @@ export default {
                     :domus="contract.domus" 
                     :isActive="contract.isActive"
                     @click="$emit('ContractView', [contract])"/>
-            </div>
-        </ul>
-        <hr class="my-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-primary">Inmueble</span>
-        </h4>
-        <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-sm" v-if="!estate">
-                <h6 class="my-0"><a href="#" @click="EstateView" class="btn btn-link">Inmueble</a></h6>
-            </li>            
-            <div v-if="estate">
-                <ListEstate 
-                    :id="estate.id" 
-                    :typeEstate="estate.typeEstate" 
-                    :address="estate.address" 
-                    :isActive="estate.isActive" 
-                    @click="$emit('EstateView', estate)"/>
             </div>
         </ul>
         <hr class="my-4">
@@ -89,11 +89,13 @@ export default {
             </div>
         </ul>
         <hr class="my-4">
-        <template v-if="contract.adminValue">
-            <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary">Administración Inmueble</span>
-            <span class="badge"><a @click="$emit('AdministrationView',estate)" class="btn btn-success btn-sm">CONFIGURAR</a></span>
-            </h4>
+        <template v-if="contract">
+            <div v-if="contract.adminValue">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-primary">Administración Inmueble</span>
+                <span class="badge"><a @click="$emit('AdministrationView',estate)" class="btn btn-success btn-sm">CONFIGURAR</a></span>
+                </h4>
+            </div>
         </template>
     </div>
 </template>

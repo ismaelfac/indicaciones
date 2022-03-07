@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $isGarage
  * @property $isUseFulRoom
  * @property $hasAdministration
+ * @property $paymentInFavorOf
  * @property $typeDni
  * @property $dni
  * @property $email
@@ -51,6 +52,7 @@ class Estate extends Model
 		'isGarage' => 'required',
 		'isUseFulRoom' => 'required',
 		'hasAdministration' => 'required',
+		'paymentInFavorOf' => 'required',
 		'typeDni' => 'required',
 		'bankingEntity' => 'required',
 		'accountType' => 'required',
@@ -65,7 +67,7 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address','realEstateRegistration','typeEstate','isSharedElectricityMeter','isSharedWaterMeter','isSharedGasMeter','isGarage','isUseFulRoom','hasAdministration','typeDni','dni','email','phone','bankingEntity','accountType','accountNumber','paymentDate','namesAdministrator','annotations','user_id','isActive'];
+    protected $fillable = ['address','realEstateRegistration','typeEstate','isSharedElectricityMeter','isSharedWaterMeter','isSharedGasMeter','isGarage','isUseFulRoom','hasAdministration','paymentInFavorOf','typeDni','dni','email','phone','bankingEntity','accountType','accountNumber','paymentDate','namesAdministrator','annotations','user_id','isActive'];
 
 
     /**
