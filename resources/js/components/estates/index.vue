@@ -1,98 +1,117 @@
 <template>
-    <form class="needs-validation" novalidate>
-        <div class="col-12">
-            <div class="input-group mb-3">
-            <input type="text" class="form-control" v-model="estateResult.address">
-            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ optionBtnEstate }}</button>
-            </div>
-        </div>
+    <form class="needs-validation" @submit.prevent="createEstate" novalidate>
         <div class="row g-3">
-            <h4 class="mb-1">Información de Inmueble</h4>            
-            <div class="col-12">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Tipo de Inmueble</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="estateResult.typeEstate">
-                        <option selected>Seleccione un Tipo de Inmueble...</option>
-                        <option value="APARTAMENTO">APARTAMENTO</option>
-                        <option value="APARTA-STUDIO">APARTA-STUDIO</option>
-                        <option value="BODEGA">BODEGA</option>
-                        <option value="LOCAL">LOCAL</option>
-                        <option value="CASA">CASA</option>
-                        <option value="NO DEFINIDO">NO DEFINIDO</option>
-                    </select>
+             <div class="card">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">INFORMACIÓN DEL INMUEBLE</span>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success btn-sm"> Grabar</button>
+                        </div>
+                    </div>                        
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="form-check form-switch">
-                <input class="form-check-input" v-model="estateResult.isSharedElectricityMeter" type="checkbox" role="switch" id="isSharedElectricityMeter">
-                <label class="form-check-label" for="isSharedElectricityMeter">Contador de Luz Compartido</label>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-check form-switch">
-                <input class="form-check-input" v-model="estateResult.isSharedWaterMeter" type="checkbox" role="switch" id="isSharedWaterMeter">
-                <label class="form-check-label" for="isSharedWaterMeter">Contador de Agua Compartido</label>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="form-check form-switch">
-                <input class="form-check-input" v-model="estateResult.isSharedGasMeter" type="checkbox" role="switch" id="isSharedGasMeter">
-                <label class="form-check-label" for="isSharedGasMeter">Contador de Gas Compartido</label>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="input-group has-validation">
-                    <span class="input-group-text">Poliza Agua</span>
-                    <input type="text" class="form-control" id="policyElectricity" v-model="estateResult.policyElectricity">
-                    <div class="invalid-feedback">
-                    Your username is required.
+                <div class="card-body row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="estateAddress">Dirección del Inmueble</label>
+                            <input type="text" class="form-control" id="estateAddress" v-model="estateResult.address">
+                            <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">{{ optionBtnEstate }}</button>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo de Inmueble</label>
+                            <select class="form-select" id="inputGroupSelect01" v-model="estateResult.typeEstate">
+                                <option selected>Seleccione un Tipo de Inmueble...</option>
+                                <option value="APARTAMENTO">APARTAMENTO</option>
+                                <option value="APARTA-STUDIO">APARTA-STUDIO</option>
+                                <option value="BODEGA">BODEGA</option>
+                                <option value="LOCAL">LOCAL</option>
+                                <option value="CASA">CASA</option>
+                                <option value="NO DEFINIDO">NO DEFINIDO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="realEstateRegistration">Matricula Inmobiliaria</label>
+                            <input type="text" class="form-control" id="realEstateRegistration" v-model="estateResult.realEstateRegistration">
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" v-model="estateResult.isSharedElectricityMeter" type="checkbox" role="switch" id="isSharedElectricityMeter">
+                        <label class="form-check-label" for="isSharedElectricityMeter">Contador de Luz Compartido</label>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" v-model="estateResult.isSharedWaterMeter" type="checkbox" role="switch" id="isSharedWaterMeter">
+                        <label class="form-check-label" for="isSharedWaterMeter">Contador de Agua Compartido</label>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" v-model="estateResult.isSharedGasMeter" type="checkbox" role="switch" id="isSharedGasMeter">
+                        <label class="form-check-label" for="isSharedGasMeter">Contador de Gas Compartido</label>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">Poliza Agua</span>
+                            <input type="text" class="form-control" id="policyElectricity" v-model="estateResult.policyElectricity">
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">Poliza Luz</span>
+                            <input type="text" class="form-control" id="policyWater" v-model="estateResult.policyWater">
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mb-3">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">Poliza Gas</span>
+                            <input type="text" class="form-control" id="policyGas" v-model="estateResult.policyGas">
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9 mb-3">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">Observaciones</span>
+                            <textarea v-model="estateResult.observations" class="form-control" id="observations"></textarea>
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" v-model="estateResult.hasAdministration" type="checkbox" role="switch" id="hasAdministration">
+                        <label class="form-check-label" for="hasAdministration">Tiene Administración</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-4">
-                <div class="input-group has-validation">
-                    <span class="input-group-text">Poliza Luz</span>
-                    <input type="text" class="form-control" id="policyWater" v-model="estateResult.policyWater">
-                    <div class="invalid-feedback">
-                    Your username is required.
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <div class="input-group has-validation">
-                    <span class="input-group-text">Poliza Gas</span>
-                    <input type="text" class="form-control" id="policyGas" v-model="estateResult.policyGas">
-                    <div class="invalid-feedback">
-                    Your username is required.
-                    </div>
-                </div>
-            </div>
-            <div class="col-9 mb-3">
-                <div class="input-group has-validation">
-                    <span class="input-group-text">Observaciones</span>
-                    <textarea v-model="estateResult.observations" class="form-control" id="observations"></textarea>
-                    <div class="invalid-feedback">
-                    Your username is required.
-                    </div>
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="form-check form-switch">
-                <input class="form-check-input" v-model="estateResult.optionPaymentInFavorOfAdministration" type="checkbox" role="switch" id="optionPaymentInFavorOfAdministration">
-                <label class="form-check-label" for="optionPaymentInFavorOfAdministration">Tiene Administración</label>
-                </div>
-            </div>
+             </div>         
+            
             <template v-if="itIsGaraje">
 
             </template>
-            <template class="card" v-if="estateResult.optionPaymentInFavorOfAdministration">
+            <template class="card" v-if="estateResult.hasAdministration">
                 <div class="card-header">
                     Información de la Administración
                 </div>
                 <div class="col-6">
                     <div class="input-group mb-3">
                         <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
-                        <select class="form-select" id="inputGroupSelect01" v-model="estateResult.typeDniPerson">
+                        <select class="form-select" id="inputGroupSelect01" v-model="estateResult.typeDni">
                             <option selected>Eliga una opción...</option>
                             <option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
                             <option value="NIT">NIT</option>
@@ -218,6 +237,7 @@
     </form>
 </template>
 <script>
+import swal from 'sweetalert';
 import Documents from "../documents/index.vue";
 export default {
     name:"estate",
@@ -227,6 +247,7 @@ export default {
             estateResult: {
                 address: '',
                 typeEstate: '',
+                realEstateRegistration: '',
                 isSharedElectricityMeter: false,
                 policyElectricity: '',
                 isSharedWaterMeter: false,
@@ -234,8 +255,8 @@ export default {
                 isSharedGasMeter: false,
                 policyGas: '',
                 observations: '',
-                optionPaymentInFavorOfAdministration: false,
-                typeDniPerson: '',
+                hasAdministration: false,
+                typeDni: '',
                 dni: '',
                 email: '',
                 phone: '',
@@ -258,6 +279,7 @@ export default {
         axios.get(urlId).then(response => ([
             this.estateResult.address = response.data.address,
             this.estateResult.typeEstate = response.data.typeEstate,
+            this.estateResult.realEstateRegistration = response.data.realEstateRegistration,
             this.estateResult.isSharedElectricityMeter = (response.data.isSharedElectricityMeter ? true : false),
             this.estateResult.policyElectricity = response.data.policyElectricity,
             this.estateResult.isSharedWaterMeter = (response.data.isSharedWaterMeter ? true : false),
@@ -265,8 +287,8 @@ export default {
             this.estateResult.isSharedGasMeter = (response.data.isSharedGasMeter ? true : false),
             this.estateResult.policyGas = response.data.policyGas,
             this.estateResult.observations = response.data.observations,
-            this.estateResult.optionPaymentInFavorOfAdministration = (response.data.hasAdministration ? true : false),
-            this.estateResult.typeDniPerson = response.data.typeDni,
+            this.estateResult.hasAdministration = (response.data.hasAdministration ? true : false),
+            this.estateResult.typeDni = response.data.typeDni,
             this.estateResult.dni = response.data.dni,
             this.estateResult.email = response.data.email,
             this.estateResult.phone = response.data.phone,
@@ -276,16 +298,22 @@ export default {
             this.estateResult.namesAdministrator = response.data.namesAdministrator,
             this.estateResult.annotations = response.data.annotations
         ])).catch(error => console.log(error));
-        console.log('desde mounted: ',this.estateResult)
-        
-
-    },
+        },
     components: {
         Documents
     },
     methods: {
         changeFiles(e){
             console.log('entro', e.target.files[0]);
+        },
+        createEstate(){
+            axios.post('/estates/', this.estateResult).then(response => (
+                                                                console.log('Respuesta del envio', response)))
+                                                           .catch(err => console.log(err))
+                                                           .finally(() => this.loading = false)
+            swal("Are you sure you want to do this?", {
+            buttons: ["Oh noez!", true],
+            });
         }
     }
 }

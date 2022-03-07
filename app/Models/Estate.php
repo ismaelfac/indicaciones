@@ -55,15 +55,7 @@ class Estate extends Model
 		'policyWater' => 'required',
 		'isSharedGasMeter' => 'required',
 		'policyGas' => 'required',
-		'isGarage' => 'required',
-		'isUseFulRoom' => 'required',
 		'hasAdministration' => 'required',
-		'paymentInFavorOf' => 'required',
-		'typeDni' => 'required',
-		'bankingEntity' => 'required',
-		'accountType' => 'required',
-		'user_id' => 'required',
-		'isActive' => 'required',
     ];
 
     protected $perPage = 20;

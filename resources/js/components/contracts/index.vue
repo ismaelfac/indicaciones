@@ -4,7 +4,7 @@
             <div class="col-6">
                 <div class="input-group has-validation" v-if="contractEditing">
                     <span class="input-group-text">ASEGURABLE</span>
-                    <input type="text" v-model="asegurable" class="form-control" id="asegurable">
+                    <input type="text" v-model="contract.asegurable" class="form-control" id="asegurable">
                 <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -13,7 +13,7 @@
             <div class="col-6">
                 <div class="input-group has-validation" v-if="contractEditing"> 
                     <span class="input-group-text">COD DOMUS</span>
-                    <input type="text" class="form-control" id="domus" v-model="domus">
+                    <input type="text" class="form-control" id="domus" v-model="contract.domus">
                 <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -24,7 +24,7 @@
             <div class="col-4">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Valor Cannon</span>
-                    <input type="text" class="form-control" id="cannon" v-model="cannon">
+                    <input type="text" class="form-control" id="cannon" v-model="contract.cannon">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -32,14 +32,14 @@
             </div>
             <div class="col-4">
                 <div class="form-check form-switch">
-                <input class="form-check-input" v-model="ifAdminValue" type="checkbox" role="switch" id="ifAdminValue">
+                <input class="form-check-input" v-model="contract.ifAdminValue" type="checkbox" role="switch" id="ifAdminValue">
                 <label class="form-check-label" for="ifAdminValue">Con Administración</label>
                 </div>
             </div>
             <div class="col-4" v-if="ifAdminValue">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Valor Admin</span>
-                    <input type="text" v-model="adminValue" class="form-control" id="adminValue">
+                    <input type="text" v-model="contract.adminValue" class="form-control" id="adminValue">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -48,7 +48,7 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Contrato</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeContract">
+                    <select class="form-select" id="inputGroupSelect01" v-model="contract.typeContract">
                         <option selected>Seleccione un Tipo de Contrato...</option>
                         <option value="VIVIENDA">VIVIENDA</option>
                         <option value="COMERCIAL">COMERCIAL</option>
@@ -58,7 +58,7 @@
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Duración del contrato (EN MESES, SOLO NUMEROS)</span>
-                    <input type="text" v-model="contractDuration" class="form-control" id="contractDuration">
+                    <input type="text" v-model="contract.contractDuration" class="form-control" id="contractDuration">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -67,7 +67,7 @@
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Incremento</span>
-                    <input type="text" v-model="increment" class="form-control" id="username">
+                    <input type="text" v-model="contract.increment" class="form-control" id="username">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -77,7 +77,7 @@
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Derechos de contrato</span>
-                    <input type="text" v-model="contractRights" class="form-control" id="username">
+                    <input type="text" v-model="contract.contractRights" class="form-control" id="username">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -87,7 +87,7 @@
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Fecha de Entrega</span>
-                    <input type="date" v-model="deliveryDate" class="form-control" format="dd-mm-yyyy" id="username">
+                    <input type="date" v-model="contract.deliveryDate" class="form-control" format="dd-mm-yyyy" id="username">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -97,7 +97,7 @@
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Periodo de Gracia</span>
-                    <input type="text" v-model="gradePeriod" class="form-control" id="gradePeriod">
+                    <input type="text" v-model="contract.gradePeriod" class="form-control" id="gradePeriod">
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -106,7 +106,7 @@
             <div class="col-12">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Clausulas</span>
-                    <textarea v-model="clause" class="form-control" id="username"></textarea>
+                    <textarea v-model="contract.clause" class="form-control" id="username"></textarea>
                     <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -115,7 +115,7 @@
         </div>
         <hr class="my-4">
         <h4 class="mb-1">Documentos del Contrato</h4>
-        <Documents component="CONTRATO" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+        <Documents component="CONTRATO" :listDocuments="documents"/>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
 </template>
@@ -130,27 +130,51 @@ export default {
     },
     data() {
         return {       
-             
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
-            contract_id: this.contract ? this.contract.id : '',
-            asegurable: this.contract ? this.contract.asegurable : '',
-            domus: this.contract ? this.contract.domus : '',
-            ifAdminValue: this.contract.adminValue ? true : false,
-            cannon: this.contract ? this.contract.cannonLease : '',
-            adminValue: this.contract ? this.contract.adminValue : '',
-            detailEstateDocumentView: true,
-            contractRights: this.contract ? this.contract.contractRights : '',
-            typeContract: this.contract ? this.contract.typeContract : '',
-            contractDuration: this.contract ? this.contract.contractDuration : '',
-            increment: this.contract ? this.contract.increment : '',
-            deliveryDate: this.contract ? this.contract.deliveryDate : '',
-            gradePeriod: this.contract ? this.contract.gracePeriod : '',
-            clause: this.contract ? this.contract.clause : '',
+            contract:{
+                contract_id:  '',
+                asegurable: '',
+                domus: '',
+                ifAdminValue: false,
+                cannon: '',
+                adminValue: '',
+                detailEstateDocumentView: true,
+                contractRights: '',
+                typeContract: '',
+                contractDuration: '',
+                increment: '',
+                deliveryDate: '',
+                gradePeriod: '',
+                clause: '',
+            },
             fileName: '',
             isEditing: true
         }
-    }
+    },
+    
+    mounted() {
+        const urlId = `/contract/${this.contract[0]}`;
+        console.log('link',urlId)
+        axios.get(urlId).then(response => ([
+            this.contract.contract_id = response.data.contract_id,
+            this.contract.asegurable = response.data.asegurable,
+            this.contract.domus = response.data.domus,
+            this.contract.ifAdminValue = (response.data.ifAdminValue ? true : false),
+            this.contract.cannon = response.data.cannon,
+            this.contract.policyWater = response.data.policyWater,
+            this.contract.adminValue = response.data.adminValue,
+            this.contract.detailEstateDocumentView = (response.data.detailEstateDocumentView ? true : false),
+            this.contract.contractRights = response.data.contractRights,
+            this.contract.typeContract = response.data.typeContract,
+            this.contract.contractDuration = response.data.contractDuration,
+            this.contract.increment = response.data.increment,
+            this.contract.deliveryDate = response.data.deliveryDate,
+            this.contract.gradePeriod = response.data.gradePeriod,
+            this.contract.clause = response.data.clause
+        ])).catch(error => console.log(error));
+        console.log('desde mounted: ',this.contract)     
+    },
 }
 </script>

@@ -44,11 +44,9 @@ class EstateController extends Controller
     public function store(Request $request)
     {
         request()->validate(Estate::$rules);
-
         $estate = Estate::create($request->all());
-
-        return redirect()->route('estates.index')
-            ->with('success', 'Estate created successfully.');
+        return response()->json($estate);        
+        //return redirect()->route('estates.index')->with('success', 'Estate created successfully.');
     }
 
     /**

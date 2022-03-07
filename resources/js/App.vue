@@ -59,7 +59,7 @@ export default {
         }
     },
     methods: {
-        ContractView(){
+        ContractView(contract){
             this.contractInject = [];
             this.participantInject = [];
             this.estateInject = [];
@@ -68,8 +68,7 @@ export default {
             this.inmobiliariaOn = false;
             this.estateOn = false;
             this.personOn = false;
-            this.contractInject.push(this.contract);
-            console.log(this.contractInject[0]);
+            this.contractInject.push(contract);
         },
         EstateView(estate){
             this.participantInject = [];
