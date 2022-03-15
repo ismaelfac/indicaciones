@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+use App\Models\{Contract, Person};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -76,9 +76,10 @@ class PersonController extends Controller
      */
     public function show($id)
     {
-        $person = Person::find($id);
-
-        return view('person.show', compact('person'));
+        $contract = Contract::find($id);
+        //$personContract = $person->contractPeoples();
+        return response()->json($contract->contractPerson);
+        //return view('person.show', compact('person'));
     }
 
     /**

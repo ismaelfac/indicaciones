@@ -1,4 +1,3 @@
-import Vue from 'vue';
-const bus = new Vue();
+import { EventEmitter } from 'events'
 
-export default bus;
+export const EV = new EventEmitter

@@ -1,11 +1,12 @@
 <script>
+ import { EV } from '../../helpers/eventBus';
 import ListContract from '../contracts/List.vue';
 import ListPerson from '../person/List.vue';
 import ListEstate from '../estates/List.vue';
 export default {
     name: 'panelContract',
     props: ['participants', 'estate', 'contract'],
-    emits: ['ContractView','EstateView','InmobiliariaView','AdministrationView'],
+    emits: ['ContractView','EstateView','InmobiliariaView','AdministrationView', 'PersonView'],
     inject: ['contractInject','estateInject', 'participantInject'],
     components: {
         ListContract,
@@ -19,9 +20,6 @@ export default {
     methods: {
         loadParticipant(participant){
             this.emitter.emit('Person-View', participant);
-        },
-        newParticipant(){
-            console.log('new Participant')
         }
     }
 }
@@ -74,7 +72,7 @@ export default {
         </h4>
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <h6 class="my-0"><a href="#" @click="newParticipant" class="btn btn-danger">Nuevo Participante</a></h6>
+                <h6 class="my-0"><a @click="$emit('PersonView')" class="btn btn-danger">Asignar Participante</a></h6>
             </li>
             <div v-if="participants">
                 <ListPerson v-for="participant in participants" 
@@ -85,7 +83,7 @@ export default {
                             :names="participant.names" 
                             :bussinessName="participant.bussinessName" 
                             :isActive="participant.isActive"
-                            @click="loadParticipant(participant)"/>
+                            @click="loadParticipant(participant.id)"/>
             </div>
         </ul>
         <hr class="my-4">

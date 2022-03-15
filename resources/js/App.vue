@@ -7,6 +7,7 @@
                     :estate="estate" 
                     @ContractView="ContractView" 
                     @EstateView="EstateView"
+                    @PersonView="PersonView"
                     @InmobiliariaView="InmobiliariaView"
                     @AdministrationView="AdministrationView" />
         </div>
@@ -14,7 +15,7 @@
             <h4 class="mb-3"></h4>
             <div v-if="contractOn"><ContractForm :contract="contract" :documents="documents"></ContractForm></div>
             <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents"></EstateForm></div>
-            <div v-if="personOn"><PersonForm :contract="contract" :participant="this.participantInject" :documents="documents"></PersonForm></div>
+            <div v-if="personOn"><PersonForm :contractId="contractInject" :participant="this.participantInject" :documents="documents"></PersonForm></div>
             <div v-if="inmobiliariaOn"><RealEstate /></div>
             <div v-if="administrationOn"><PropertyAdministration :estate="this.estateInject" /></div>
         </div>
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+ import { EV } from './helpers/eventBus';
 import ContractForm from './components/contracts/index.vue';
 import EstateForm from './components/estates/index.vue';
 import PersonForm from './components/person/index.vue';
@@ -42,6 +44,7 @@ export default {
     mounted() {
         this.contractDocuments;
         this.emitter.on('Person-View', (participant) =>{
+            console.log('participant desde app.vue',participant);
             this.PersonView(participant);
         })
     },
@@ -91,7 +94,9 @@ export default {
             this.inmobiliariaOn = false;
             this.contractOn = false;
             this.estateOn = false;
+            console.log(participant)
             this.participantInject.push(participant);
+            this.contractInject.push(this.contract.id);
         },
         InmobiliariaView(){
             this.participantInject = [];

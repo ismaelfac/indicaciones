@@ -20,7 +20,7 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect02">Tipo de persona</label>
-                    <select class="form-select" id="inputGroupSelect02" v-model="typePersonPerson">
+                    <select class="form-select" id="inputGroupSelect02" v-model="participantResult.typePerson">
                         <option selected>Eliga una opción...</option>
                         <option value="NATURAL">NATURAL</option>
                         <option value="JURIDICA">JURIDICA</option>
@@ -30,7 +30,7 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeDniPerson">
+                    <select class="form-select" id="inputGroupSelect01" v-model="participantResult.typeDni">
                         <option selected>Eliga una opción...</option>
                         <option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
                         <option value="NIT">NIT</option>
@@ -40,7 +40,7 @@
             <div class="col-6">
                 <div class="input-group has-validation input-group mb-3"> 
                     <span class="input-group-text">Número de Identificación</span>
-                    <input type="text" class="form-control" id="username" v-model="dniPerson">
+                    <input type="text" class="form-control" id="username" v-model="participantResult.dni">
                 <div class="invalid-feedback">
                     Your username is required.
                     </div>
@@ -61,7 +61,7 @@
                         <div class="col-12">
                             <div class="input-group has-validation input-group mb-3">
                                 <span class="input-group-text">Nombres Completos</span>
-                                <input type="text" class="form-control" id="namesPerson" v-model="namesPerson">
+                                <input type="text" class="form-control" id="namesPerson" v-model="participantResult.names">
                                 <div class="invalid-feedback">
                                 Your username is required.
                                 </div>
@@ -71,7 +71,7 @@
                         <div class="col-12">
                             <div class="input-group has-validation input-group mb-3">
                                 <span class="input-group-text">Dirección de contacto</span>
-                                <input type="text" class="form-control" id="addressPerson" v-model="addressPerson">
+                                <input type="text" class="form-control" id="addressPerson" v-model="participantResult.address">
                                 <div class="invalid-feedback">
                                 Your username is required.
                                 </div>
@@ -80,7 +80,7 @@
                         <div class="col-12">
                             <div class="input-group has-validation input-group mb-3">
                                 <span class="input-group-text">correo de contacto</span>
-                                <input type="text" class="form-control" id="emailPerson" v-model="emailPerson" >
+                                <input type="text" class="form-control" id="emailPerson" v-model="participantResult.email" >
                                 <div class="invalid-feedback">
                                 Your username is required.
                                 </div>
@@ -89,7 +89,7 @@
                         <div class="col-4">
                             <div class="input-group has-validation input-group mb-3">
                                 <span class="input-group-text">Telefono</span>
-                                <input type="text" class="form-control" id="phonePerson" v-model="phonePerson" >
+                                <input type="text" class="form-control" id="phonePerson" v-model="participantResult.phone" >
                                 <div class="invalid-feedback">
                                 Your username is required.
                                 </div>
@@ -100,7 +100,7 @@
                 </div>          
             </div>   
             
-            <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">        
+            <template>        
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -146,7 +146,7 @@
                     </div>
                 </div>        
             </template>
-            <template v-if="this.participant[0].pivot.typeParticipant === 'USUFRUCTUARIO' || this.participant[0].pivot.typeParticipant === 'PROPIETARIO' || this.participant[0].pivot.typeParticipant === 'COMODATARIO'">        
+            <template>        
                 <div class="card">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
@@ -220,8 +220,7 @@
                 </div>        
             </template>    
 
-            <h4 class="mb-1">Documentos del {{ typePersonPerson }}</h4>
-            <Documents :component="typeParticipantPerson" :typePerson="typePersonPerson" :listDocuments="documents" :contractDocuments="contract.contract_documents"/>
+            <h4 class="mb-1">Documentos del {{ participantResult.typePerson }}</h4>
         </div>
         
     </form>
@@ -230,33 +229,43 @@
 import Documents from "../documents/index.vue";
 export default {
     name:'person',
-    props:['contract','participant', 'documents'],
+    props:['contractId','participant', 'documents'],
     components: {
         Documents
     },
     data() {
         return {
             stateParticipante: 'CREAR',
-            typePersonPerson: this.participant[0] ? this.participant[0].pivot.typePerson : typePersonPerson,
-            typeParticipantPerson: this.participant[0] ? this.participant[0].pivot.typeParticipant : typeParticipantPerson,
-            dniPerson: this.participant[0] ? this.participant[0].dni : dniPerson,
-            namesPerson: this.participant[0] ? this.participant[0].names : namesPerson,
-            typeDniPerson: this.participant[0] ? this.participant[0].typeDni : typeDniPerson,
-            addressPerson: this.participant[0] ? this.participant[0].address : addressPerson,
-            phonePerson: this.participant[0] ? this.participant[0].phone : phonePerson,
-            emailPerson: this.participant[0] ? this.participant[0].email : emailPerson,
-            rentSplitPercentage: this.participant[0] ? this.participant[0].pivot.rentSplitPercentage : rentSplitPercentage,
-            isIVAResponsible: this.participant[0].pivot.isIVAResponsible ? true : false,
-            isIntegralProtection: this.participant[0].pivot.isIntegralProtection ? true : false,
-            itIsGuaranteed: this.participant[0].pivot.itIsGuaranteed ? true : false,
-            bankingEntity: this.participant[0] ? this.participant[0].pivot.bankingEntity : bankingEntity,
-            accountType: this.participant[0] ? this.participant[0].pivot.accountType : accountType,
-            accountNumber: this.participant[0] ? this.participant[0].pivot.accountNumber : accountNumber,
-            isConsignmentPayment: this.participant[0].pivot.isConsignmentPayment ? true : false,
-            detailPersonView: false,
-            detailPersonDocumentView: false,
-            notificationParametersContract: 'IMPORTANTE: Este contrato estan suscritos (3) participantes como propietarios, asigne el porcentaje de comision para cada participante'
+            detailPersonView : false,
+            detailPersonDocumentView : false,
+            notificationParametersContract : 'IMPORTANTE: Este contrato estan suscritos (3) participantes como propietarios, asigne el porcentaje de comision para cada participante',        
+            participantResult: {
+                typePerson: '',
+                typeParticipant: '',
+                dni: '',
+                names: '',
+                typeDni: '',
+                address: '',
+                phone: '',
+                email: '',
+                rentSplitPercentage: '',
+                isIVAResponsible: false,
+                isIntegralProtection: false,
+                itIsGuaranteed: false,
+                bankingEntity: '',
+                accountType: '',
+                accountNumber: '',
+                isConsignmentPayment: ''
+            }
         }
+    },
+    mounted () {
+        console.log('contrato recibido',this.contractId[0])
+        const urlId = `/people/${this.participant}`;
+        console.log('link',urlId)
+        axios.get(urlId).then(response => ([
+           console.log(response.data),
+            ])).catch(error => console.log(error));
     },
     methods: {
         findOnCreatePerson() {

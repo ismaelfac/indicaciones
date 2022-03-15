@@ -107,18 +107,18 @@
             <template class="card" v-if="estateResult.hasAdministration">
                 <div class="card-header">
                     Información de la Administración
-                </div>
-                <div class="col-6">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
-                        <select class="form-select" id="inputGroupSelect01" v-model="estateResult.typeDni">
-                            <option selected>Eliga una opción...</option>
-                            <option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
-                            <option value="NIT">NIT</option>
-                        </select>
-                    </div>
-                </div>
+                </div>                
                 <div class="card-body row">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
+                            <select class="form-select" id="inputGroupSelect01" v-model="estateResult.typeDni">
+                                <option selected>Eliga una opción...</option>
+                                <option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
+                                <option value="NIT">NIT</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="col-6">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Número</span>

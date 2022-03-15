@@ -1,6 +1,14 @@
 <template>
     <form class="needs-validation" novalidate>
         <div class="row g-3">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01"> Inmueble</label>
+                    <select class="form-select" id="inputGroupSelect01" v-model="contract.contractEstate">
+                        <option v-for="estate in listEstate" :key="estate.id">{{ estate.address}}</option>
+                    </select>
+                </div>
+            </div>
             <div class="col-6">
                 <div class="input-group has-validation" v-if="contractEditing">
                     <span class="input-group-text">ASEGURABLE</span>
@@ -115,6 +123,7 @@
         </div>
         <hr class="my-4">
         <h4 class="mb-1">Documentos del Contrato</h4>
+        
         <Documents component="CONTRATO" :listDocuments="documents"/>
         <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
     </form>
@@ -133,6 +142,10 @@ export default {
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
+            listEstate: [
+                {id: 1, address: 'Cll 84B # 37 -69'},
+                {id: 2, address: 'Cll 23B # 37 -23'}
+            ],
             contract:{
                 contract_id:  '',
                 asegurable: '',

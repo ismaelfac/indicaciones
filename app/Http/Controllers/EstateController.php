@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class EstateController
@@ -43,6 +44,8 @@ class EstateController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
+        dd($request->all());
         request()->validate(Estate::$rules);
         $estate = Estate::create($request->all());
         return response()->json($estate);        

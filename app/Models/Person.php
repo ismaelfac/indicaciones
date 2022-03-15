@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\{Contract};
 /**
  * Class Person
  *
@@ -50,10 +50,15 @@ class Person extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contractPeoples()
+    public function personContract()
     {
-        return $this->hasMany('App\Models\ContractPerson', 'person_id', 'id');
+        return $this->belongsToMany(Contract::class)->withPivot('typePerson','typeParticipant','legalPersonOf','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);;
     }
+
+    // public function contractPerson()
+    // {
+    //     return $this->belongsToMany(Contract::class)->withPivot('typePerson','typeParticipant','legalPersonOf','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);
+    // }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
