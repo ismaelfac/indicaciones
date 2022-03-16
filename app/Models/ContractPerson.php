@@ -52,11 +52,6 @@ class ContractPerson extends Model
 
     protected $perPage = 20;
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
     protected $fillable = ['contract_id','person_id','typeParticipant','typePerson','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive'];
 
 
@@ -83,6 +78,4 @@ class ContractPerson extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    
-
 }

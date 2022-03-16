@@ -77,8 +77,10 @@ class PersonController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
-        //$personContract = $person->contractPeoples();
-        return response()->json($contract->contractPerson);
+        $personContract = $contract->contractPerson;
+        $personContract2 = Person::find($id);
+        //return response()->json($personContract);
+        return response()->json($personContract2->personContract);
         //return view('person.show', compact('person'));
     }
 
