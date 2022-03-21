@@ -1,5 +1,4 @@
 <script>
- import { EV } from '../../helpers/eventBus';
 import ListContract from '../contracts/List.vue';
 import ListPerson from '../person/List.vue';
 import ListEstate from '../estates/List.vue';
@@ -40,6 +39,7 @@ export default {
                     :address="estate.address" 
                     :isActive="estate.isActive" 
                     @click="$emit('EstateView', estate.id)"/>
+                    <a class="btn btn-danger btn-sm btn-block" @click="$emit('DocumentsView',estate.id)">VER DOCUMENTOS</a>
             </div>
         </ul>
         <hr class="my-4">
@@ -58,6 +58,7 @@ export default {
                     :domus="contract.domus" 
                     :isActive="contract.isActive"
                     @click="$emit('ContractView', contract.id)"/>
+                    <a class="btn btn-danger btn-sm btn-block" @click="$emit('DocumentsView',contract.id)">VER DOCUMENTOS</a>
             </div>
         </ul>
         <hr class="my-4">

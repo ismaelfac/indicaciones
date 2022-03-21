@@ -15,15 +15,13 @@
                             Datos de {{ $contract->asegurable }}
                             </span>
                             <div class="float-right">
-                                <a class="btn btn-primary btn-sm" href="{{ route('contracts.index') }}"> Cancelar</a>
-                                <a class="btn btn-sm btn-danger" href="{{ url('contracts/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('indicators.index') }}"> Cancelar</a>
+                                <a class="btn btn-sm btn-danger" href="{{ url('indicators/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">   
                         <example-component 
-                            :documents="{{ json_encode($documents)}}"
-                            :contractDocuments="{{ $contract->contractDocuments }}"
                             :contract="{{ json_encode($contract) }}" 
                             :estate="{{ json_encode($contract->contractEstates[0]) }}" 
                             :participants="{{json_encode($contract->contractPerson) }}"

@@ -208,12 +208,6 @@
                     </div>
                 </div>
             </template>
-
-            <div>
-                <hr class="my-4">
-                <h4 class="mb-1">Documentos del Inmueble</h4>
-                <Documents component="INMUEBLE" :listDocuments="documents"/>
-            </div>
         </div>
         
 
@@ -238,7 +232,6 @@
 </template>
 <script>
 import swal from 'sweetalert';
-import Documents from "../documents/index.vue";
 export default {
     name:"estate",
     props: ['contract','estate','documents'],
@@ -298,9 +291,6 @@ export default {
             this.estateResult.namesAdministrator = response.data.namesAdministrator,
             this.estateResult.annotations = response.data.annotations
         ])).catch(error => console.log(error));
-        },
-    components: {
-        Documents
     },
     methods: {
         changeFiles(e){

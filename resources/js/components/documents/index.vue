@@ -2,6 +2,7 @@
     <div>        
         <div class="row">
             <ul class="row list-group list-group-flush">
+                <h5>Listado de Documentos</h5>
                 <div v-if="listDocuments">
                     <li class="list-group-item" v-for="document in documentContract" :key="document.id">
                         <div class="card text-center col-12">

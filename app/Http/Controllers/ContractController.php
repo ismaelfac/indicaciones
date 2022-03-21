@@ -99,8 +99,10 @@ class ContractController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
-        $documents = Document::all();
-        return view('contract.show', compact('contract','documents'));
+        $contractEstate = $contract->contractEstates;
+        return response()->json([
+            'contract' => $contract
+        ]);
     }
 
     /**

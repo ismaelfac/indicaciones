@@ -133,7 +133,7 @@
 import Documents from "../documents/index.vue";
 export default {
     name:"contract",
-    props: ['contract','documents'],
+    props: ['contractId','documents'],
     components: {
         Documents
     },
@@ -147,6 +147,7 @@ export default {
                 {id: 2, address: 'Cll 23B # 37 -23'}
             ],
             contract:{
+                contractEstate: '',
                 contract_id:  '',
                 asegurable: '',
                 domus: '',
@@ -168,24 +169,25 @@ export default {
     },
     
     mounted() {
-        const urlId = `/contract/${this.contract[0]}`;
+        const urlId = `/contracts/${this.contractId}`;
         console.log('link',urlId)
         axios.get(urlId).then(response => ([
-            this.contract.contract_id = response.data.contract_id,
-            this.contract.asegurable = response.data.asegurable,
-            this.contract.domus = response.data.domus,
-            this.contract.ifAdminValue = (response.data.ifAdminValue ? true : false),
-            this.contract.cannon = response.data.cannon,
-            this.contract.policyWater = response.data.policyWater,
-            this.contract.adminValue = response.data.adminValue,
-            this.contract.detailEstateDocumentView = (response.data.detailEstateDocumentView ? true : false),
-            this.contract.contractRights = response.data.contractRights,
-            this.contract.typeContract = response.data.typeContract,
-            this.contract.contractDuration = response.data.contractDuration,
-            this.contract.increment = response.data.increment,
-            this.contract.deliveryDate = response.data.deliveryDate,
-            this.contract.gradePeriod = response.data.gradePeriod,
-            this.contract.clause = response.data.clause
+            this.contract.contractEstate = response.data.contract.contract_estates[0].address,
+            this.contract.contract_id = response.data.contract.id,
+            this.contract.asegurable = response.data.contract.asegurable,
+            this.contract.domus = response.data.contract.domus,
+            this.contract.ifAdminValue = (response.data.contract.ifAdminValue ? true : false),
+            this.contract.cannon = response.data.contract.cannonLease,
+            this.contract.policyWater = response.data.contract.policyWater,
+            this.contract.adminValue = response.data.contract.adminValue,
+            this.contract.detailEstateDocumentView = (response.data.contract.detailEstateDocumentView ? true : false),
+            this.contract.contractRights = response.data.contract.contractRights,
+            this.contract.typeContract = response.data.contract.typeContract,
+            this.contract.contractDuration = response.data.contract.contractDuration,
+            this.contract.increment = response.data.contract.increment,
+            this.contract.deliveryDate = response.data.contract.deliveryDate,
+            this.contract.gradePeriod = response.data.contract.gracePeriod,
+            this.contract.clause = response.data.contract.clause
         ])).catch(error => console.log(error));
         console.log('desde mounted: ',this.contract)     
     },

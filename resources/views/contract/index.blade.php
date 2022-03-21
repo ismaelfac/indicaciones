@@ -56,8 +56,7 @@
                                         
                                         <td>
                                             <form action="{{ route('contracts.destroy',$contract->id) }}" method="POST">
-                                                <a class="btn btn-sm btn-primary " href="{{ route('contracts.show',$contract->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                                                <a class="btn btn-sm btn-success" href="{{ route('contracts.edit',$contract->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                <a class="btn btn-sm btn-primary " href="{{ route('indicators.show',$contract->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
                                                 <a class="btn btn-sm btn-danger" href="{{ url('contracts/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
                                                 @csrf
                                                 @method('DELETE')

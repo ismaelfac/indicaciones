@@ -4,7 +4,8 @@
             <PanelContract 
                     :contract="contract" 
                     :participants="participants" 
-                    :estate="estate" 
+                    :estate="estate"
+                    @DocumentsView="DocumentsView" 
                     @ContractView="ContractView" 
                     @EstateView="EstateView"
                     @PersonView="PersonView"
@@ -13,23 +14,24 @@
         </div>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <div v-if="contractOn"><ContractForm :contract="contract" :documents="documents"></ContractForm></div>
+            <div v-if="contractOn"><ContractForm :contractId="contractInject" :documents="documents"></ContractForm></div>
             <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents"></EstateForm></div>
             <div v-if="personOn"><PersonForm :contractId="contractInject" :participant="this.participantInject" :documents="documents"></PersonForm></div>
             <div v-if="inmobiliariaOn"><RealEstate /></div>
             <div v-if="administrationOn"><PropertyAdministration :estate="this.estateInject" /></div>
+            <div v-if="documentsOn"><Documents/></div>
         </div>
     </div>
 </template>
 
 <script>
- import { EV } from './helpers/eventBus';
 import ContractForm from './components/contracts/index.vue';
 import EstateForm from './components/estates/index.vue';
 import PersonForm from './components/person/index.vue';
 import RealEstate from "./components/realEstate/index.vue";
 import PropertyAdministration from "./components/propertyAdministration/index.vue";
 import PanelContract from './components/panelContract/index.vue';
+import Documents from "./components/documents/index.vue";
 export default {
     name: 'App',
     props: ['documents', 'contractDocuments','contract', 'estate', 'participants'],
@@ -39,7 +41,8 @@ export default {
         EstateForm,
         PersonForm,
         RealEstate,
-        PropertyAdministration
+        PropertyAdministration,
+        Documents
     },
     mounted() {
         this.contractDocuments;
@@ -50,12 +53,13 @@ export default {
     },
     data() {
         return {
-            contractInject: [],
+            contractInject: '',
             participantInject: [],
             estateInject: [],
             contractOn: false,
             estateOn: false,
             personOn: false,
+            documentsOn: false,
             administrationOn: false,
             inmobiliariaOn: false,
             contractEditing: true,
@@ -71,7 +75,8 @@ export default {
             this.inmobiliariaOn = false;
             this.estateOn = false;
             this.personOn = false;
-            this.contractInject.push(contract);
+            this.contractInject=contract;
+            console.log('contractInject',this.contractInject);
         },
         EstateView(estate){
             this.participantInject = [];
@@ -107,8 +112,7 @@ export default {
             this.personOn = false;
             this.contractOn = false;
             this.estateOn = false;
-        }
-        ,
+        },
         AdministrationView(estate){
             console.log('AdministrationView entro')
             this.participantInject = [];
@@ -120,6 +124,18 @@ export default {
             this.personOn = false;
             this.contractOn = false;
             this.estateOn = false;
+        },
+        DocumentsView(id){
+            console.log('entro a DocumentsView', id)
+            this.participantInject = [];
+            this.estateInject = [];
+            this.contractInject = [];
+            this.inmobiliariaOn = false;
+            this.administrationOn = false
+            this.personOn = false;
+            this.contractOn = false;
+            this.estateOn = false;
+            this.documentsOn = true;
         }
     }    
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{ContractController, ContractPersonController, ContractEstateController, ContractDocumentController, DocumentController ,EstateController, PersonController };
+use App\Http\Controllers\{ContractController, ContractPersonController, ContractEstateController, ContractDocumentController, DocumentController ,EstateController, IndicatorsController, PersonController };
 use Illuminate\Support\Facades\Route;
 
 
@@ -14,6 +14,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('indicaciones', function(){
     return view('indicaciones');
 });
+Route::resource('/indicators', IndicatorsController::class);
 Route::resource('/people', PersonController::class);
 Route::resource('/estates', EstateController::class);
 Route::get('contracts/pdf/{id}', [ContractController::class, 'printPDF']);
