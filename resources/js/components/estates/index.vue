@@ -99,15 +99,19 @@
                         </div>
                     </div>
                 </div>
-             </div>         
-            
+             </div>                     
             <template v-if="itIsGaraje">
 
             </template>
             <template class="card" v-if="estateResult.hasAdministration">
                 <div class="card-header">
-                    Información de la Administración
-                </div>                
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">INFORMACIÓN DE ADMINISTRACION</span>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success btn-sm"> Grabar</button>
+                        </div>
+                    </div>                        
+                </div>              
                 <div class="card-body row">
                     <div class="col-6">
                         <div class="input-group mb-3">

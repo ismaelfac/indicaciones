@@ -21,8 +21,8 @@
         </div>
         <span class="text-muted">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-            <a :class="[ isActive ? active : inactive]" class="btn-sm">{{ (isActive) ? 'EDITAR': 'INACTIVO'}}</a>
-            
+                <a :class="[ isActive ? active : inactive]" class="btn-sm">{{ (isActive) ? 'EDITAR': 'INACTIVO'}}</a>
+                <a class="btn btn-danger btn-sm btn-block" @click="$emit('DocumentsView',estate.id)">DOCUMENTOS</a>
             </div>
         </span>
     </li>

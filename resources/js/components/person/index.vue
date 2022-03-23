@@ -13,7 +13,6 @@
                         <option value="COMODATARIO">COMODATARIO</option>
                         <option value="USUFRUCTUARIO">USUFRUCTUARIO</option>
                         <option value="REPRESENTANTE LEGAL">REPRESENTANTE LEGAL</option>
-
                     </select>
                 </div>
             </div>
