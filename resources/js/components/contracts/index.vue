@@ -5,12 +5,12 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01"> Inmueble</label>
                     <select class="form-select" id="inputGroupSelect01" v-model="contract.contractEstate">
-                        <option v-for="estate in listEstate" :key="estate.id">{{ estate.address}}</option>
+                        <option v-for="estate in listEstate" :value="estate.address" :key="estate.id">{{estate.address}}</option>
                     </select>
                 </div>
             </div>
             <div class="col-6">
-                <div class="input-group has-validation" v-if="contractEditing">
+                <div class="input-group has-validation">
                     <span class="input-group-text">ASEGURABLE</span>
                     <input type="text" v-model="contract.asegurable" class="form-control" id="asegurable">
                 <div class="invalid-feedback">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="input-group has-validation" v-if="contractEditing"> 
+                <div class="input-group has-validation"> 
                     <span class="input-group-text">COD DOMUS</span>
                     <input type="text" class="form-control" id="domus" v-model="contract.domus">
                 <div class="invalid-feedback">
@@ -81,7 +81,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Derechos de contrato</span>
@@ -91,7 +90,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Fecha de Entrega</span>
@@ -101,7 +99,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-6">
                 <div class="input-group has-validation">
                     <span class="input-group-text">Periodo de Gracia</span>
@@ -142,10 +139,7 @@ export default {
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
-            listEstate: [
-                {id: 1, address: 'Cll 84B # 37 -69'},
-                {id: 2, address: 'Cll 23B # 37 -23'}
-            ],
+            listEstate: [],
             contract:{
                 contractEstate: '',
                 contract_id:  '',
@@ -170,6 +164,9 @@ export default {
     
     mounted() {
         const urlId = `/contracts/${this.contractId}`;
+        axios.get('/estates').then(response => (
+            this.listEstate = response.data
+        ));
         console.log('link',urlId)
         axios.get(urlId).then(response => ([
             this.contract.contractEstate = response.data.contract.contract_estates[0].address,

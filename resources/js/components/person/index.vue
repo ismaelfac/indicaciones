@@ -4,7 +4,7 @@
             <div class="col-6">
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Tipo de participante</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeParticipantPerson">
+                    <select class="form-select" id="inputGroupSelect01" v-model="participantResult.typeParticipant">
                         <option selected>Eliga una opción...</option>
                         <option value="NO DEFINIDO">NO DEFINIDO</option>
                         <option value="ARRENDATARIO">ARRENDATARIO</option>
@@ -264,7 +264,14 @@ export default {
         const urlId = `/people/${this.participant}`;
         console.log('link',urlId)
         axios.get(urlId).then(response => ([
-           console.log(response.data),
+            this.participantResult.typePerson = response.data.person.person_contract[0].pivot.typePerson,
+            this.participantResult.typeParticipant = response.data.person.person_contract[0].pivot.typeParticipant,
+            this.participantResult.typeDni = response.data.person.typeDni,
+            this.participantResult.dni = response.data.person.dni,
+            this.participantResult.names = response.data.person.names,
+           this.participantResult.address = response.data.person.address,
+           this.participantResult.email = response.data.person.email,
+           this.participantResult.phone = response.data.person.phone
             ])).catch(error => console.log(error));
     },
     methods: {

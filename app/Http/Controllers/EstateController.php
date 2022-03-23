@@ -19,10 +19,9 @@ class EstateController extends Controller
      */
     public function index()
     {
-        $estates = Estate::paginate();
-
-        return view('estate.index', compact('estates'))
-            ->with('i', (request()->input('page', 1) - 1) * $estates->perPage());
+        $estates = Estate::select('id','address')->get();
+        return response()->json($estates);
+        //return view('estate.index', compact('estates'))->with('i', (request()->input('page', 1) - 1) * $estates->perPage());
     }
 
     /**
