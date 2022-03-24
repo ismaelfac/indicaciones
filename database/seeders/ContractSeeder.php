@@ -29,6 +29,8 @@ class ContractSeeder extends Seeder
                 'deliveryDate' => Carbon::createFromFormat('d/m/Y',$value['deliveryDate'])->format('Y/m/d'),
                 'gracePeriod' => $value['gracePeriod'],
                 'clause' => $value['clause'],
+                'commissionPercentage' => $value['commissionPercentage'],
+                'marketingPercentage' => $value['marketingPercentage'],
                 'user_id' => 1,
                 'isActive' => $value['isActive']
             ]);

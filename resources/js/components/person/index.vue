@@ -76,7 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12">
+                        <div class="col-6">
                             <div class="input-group has-validation input-group mb-3">
                                 <span class="input-group-text">correo de contacto</span>
                                 <input type="text" class="form-control" id="emailPerson" v-model="participantResult.email" >
@@ -85,7 +85,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="input-group has-validation input-group mb-3">
                                 <span class="input-group-text">Telefono</span>
                                 <input type="text" class="form-control" id="phonePerson" v-model="participantResult.phone" >

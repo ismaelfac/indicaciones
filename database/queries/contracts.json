@@ -11,6 +11,8 @@
         "deliveryDate": "22/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
+        "commissionPercentage": "13%",
+        "marketingPercentage": "3%",
         "isActive": true
     },
     {
@@ -25,6 +27,8 @@
         "deliveryDate": "15/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
+        "commissionPercentage": "13%",
+        "marketingPercentage": "3%",
         "isActive": true
     },
     {
@@ -39,6 +43,8 @@
         "deliveryDate": "22/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
+        "commissionPercentage": "13%",
+        "marketingPercentage": "3%",
         "isActive": true
     },
     {
@@ -53,6 +59,8 @@
         "deliveryDate": "12/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
+        "commissionPercentage": "13%",
+        "marketingPercentage": "3%",
         "isActive": true
     },
     {
@@ -67,6 +75,8 @@
         "deliveryDate": "18/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
+        "commissionPercentage": "13%",
+        "marketingPercentage": "3%",
         "isActive": true
     }
 ]

@@ -141,6 +141,46 @@
                     </div>
                 </div>
             </div>
+            <hr class="my-2">
+            <div class="card">            
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">INMOBILIARIA</span>
+                        <div class="float-right">
+                            <button type="submit" class="btn btn-success btn-sm"> Grabar</button>
+                        </div>
+                    </div>                        
+                </div>
+                <div class="card-body row">
+                    <div class="col-4">
+                        <div class="input-group has-validation input-group mb-3"> 
+                            <span class="input-group-text">Porcentaje de Comisión</span>
+                            <input type="text" class="form-control" id="username">
+                        <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group has-validation input-group mb-3"> 
+                            <span class="input-group-text">Porcentaje de Mercadeo</span>
+                            <input type="text" class="form-control" id="username">
+                        <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>      
+                    <div class="col-12 mb-3">
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">Observaciones</span>
+                            <textarea v-model="contract.clause" class="form-control" id="clause"></textarea>
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>              
+                </div>
+            </div>
         </div>
     </form>
 </template>

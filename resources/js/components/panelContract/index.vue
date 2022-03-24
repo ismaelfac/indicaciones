@@ -62,11 +62,6 @@ export default {
         </ul>
         <hr class="my-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-primary">Inmobiliaria</span>
-            <span class="badge"><a @click="$emit('InmobiliariaView')" class="btn btn-success btn-sm">CONFIGURAR</a></span>
-        </h4>
-        <hr class="my-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
         <span class="text-primary">Participantes</span>
         <span class="badge bg-primary rounded-pill"></span>
         </h4>
@@ -86,14 +81,5 @@ export default {
                             @click="loadParticipant(participant.id)"/>
             </div>
         </ul>
-        <hr class="my-4">
-        <template v-if="contract">
-            <div v-if="contract.adminValue">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                <span class="text-primary">Administración Inmueble</span>
-                <span class="badge"><a @click="$emit('AdministrationView',estate)" class="btn btn-success btn-sm">CONFIGURAR</a></span>
-                </h4>
-            </div>
-        </template>
     </div>
 </template>
