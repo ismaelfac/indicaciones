@@ -74,6 +74,14 @@ class PersonController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+    public function findDni($dni)
+    {
+        $person = Person::with('personContract')->where('dni',$dni)->get();
+        //$personContract = $person->personContract;
+        return response()->json([
+            'person' => $person
+        ]);
+    }
     public function show($id)
     {
         $contract = Contract::find($id);

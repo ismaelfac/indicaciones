@@ -67,7 +67,7 @@ export default {
         </h4>
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm">
-                <h6 class="my-0"><a @click="$emit('PersonView')" class="btn btn-danger">Asignar Participante</a></h6>
+                <h6 class="my-0"><a @click="$emit('PersonView', 0)" class="btn btn-danger">Asignar Participante</a></h6>
             </li>
             <div v-if="participants">
                 <ListPerson v-for="participant in participants" 

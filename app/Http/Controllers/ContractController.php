@@ -43,7 +43,7 @@ class ContractController extends Controller
         $contractEstate = $contract->contractEstates;
         //dd($contract->contractEstates);
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('contract.pdf2', ['contract'=>$contract]);
+        $pdf->loadView('contract.pdf2', ['contract'=>$contract])->stream($contract->contractEstates[0]->address,'.pdf');
     
         return $pdf->stream();
     }

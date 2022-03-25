@@ -15,8 +15,8 @@
                             Datos de {{ $contract->asegurable }}
                             </span>
                             <div class="float-right">
-                                <a class="btn btn-primary btn-sm" href="{{ route('indicators.index') }}"> Cancelar</a>
-                                <a class="btn btn-sm btn-danger" href="{{ url('indicators/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('indicators.index') }}"> Volver al Listado de Contratos</a>
+                                <a class="btn btn-sm btn-danger" href="{{ url('contracts/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>

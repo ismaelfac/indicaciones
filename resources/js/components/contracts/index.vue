@@ -4,7 +4,7 @@
             <div class="card">            
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span id="card_title">INFORMACIÓN DEL INMUEBLE</span>
+                        <span id="card_title">INMUEBLE ADSCRITO AL CONTRATO</span>
                         <div class="float-right">
                             <button type="submit" class="btn btn-success btn-sm"> Grabar</button>
                         </div>
@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01"> Inmueble</label>
-                            <select class="form-select" id="inputGroupSelect01" v-model="contract.contractEstate">
+                            <select class="form-select" id="inputGroupSelect01" v-model="contract.contractEstate" disabled>
                                 <option v-for="estate in listEstate" :value="estate.address" :key="estate.id">{{estate.address}}</option>
                             </select>
                         </div>
@@ -155,7 +155,7 @@
                     <div class="col-4">
                         <div class="input-group has-validation input-group mb-3"> 
                             <span class="input-group-text">Porcentaje de Comisión</span>
-                            <input type="text" class="form-control" id="username">
+                            <input type="text" v-model="contract.commissionPercentage" class="form-control" id="commissionPercentage">
                         <div class="invalid-feedback">
                             Your username is required.
                             </div>
@@ -164,7 +164,7 @@
                     <div class="col-4">
                         <div class="input-group has-validation input-group mb-3"> 
                             <span class="input-group-text">Porcentaje de Mercadeo</span>
-                            <input type="text" class="form-control" id="username">
+                            <input type="text" v-model="contract.marketingPercentage" class="form-control" id="marketingPercentage">
                         <div class="invalid-feedback">
                             Your username is required.
                             </div>
@@ -173,7 +173,7 @@
                     <div class="col-12 mb-3">
                         <div class="input-group has-validation">
                             <span class="input-group-text">Observaciones</span>
-                            <textarea v-model="contract.clause" class="form-control" id="clause"></textarea>
+                            <textarea v-model="contract.observationsCommissionAndMarketing" class="form-control" id="clause"></textarea>
                             <div class="invalid-feedback">
                             Your username is required.
                             </div>
@@ -186,13 +186,9 @@
 </template>
 
 <script>
-import Documents from "../documents/index.vue";
 export default {
     name:"contract",
     props: ['contractId','documents'],
-    components: {
-        Documents
-    },
     data() {
         return {       
             active: 'btn btn-success btn-sm',
@@ -215,6 +211,9 @@ export default {
                 deliveryDate: '',
                 gradePeriod: '',
                 clause: '',
+                commissionPercentage: '',
+                marketingPercentage: '',
+                observationsCommissionAndMarketing: ''
             },
             fileName: '',
             isEditing: true
@@ -234,7 +233,6 @@ export default {
             this.contract.domus = response.data.contract.domus,
             this.contract.ifAdminValue = (response.data.contract.contract_estates[0].hasAdministration ? true : false),
             this.contract.cannon = response.data.contract.cannonLease,
-            this.contract.policyWater = response.data.contract.policyWater,
             this.contract.adminValue = response.data.contract.adminValue,
             this.contract.detailEstateDocumentView = (response.data.contract.detailEstateDocumentView ? true : false),
             this.contract.contractRights = response.data.contract.contractRights,
@@ -243,7 +241,10 @@ export default {
             this.contract.increment = response.data.contract.increment,
             this.contract.deliveryDate = response.data.contract.deliveryDate,
             this.contract.gradePeriod = response.data.contract.gracePeriod,
-            this.contract.clause = response.data.contract.clause
+            this.contract.clause = response.data.contract.clause,
+            this.contract.commissionPercentage = response.data.contract.commissionPercentage,
+            this.contract.marketingPercentage = response.data.contract.marketingPercentage,
+            this.contract.observationsCommissionAndMarketing = response.data.contract.observationsCommissionAndMarketing
         ])).catch(error => console.log(error));
         console.log('desde mounted: ',this.contract)     
     },

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Contrato {{ $contract->contractEstates[0]->address }}</title>
+    <title>{{ $contract->deliveryDate }} - {{ $contract->contractEstates[0]->address }}</title>
     <link rel="stylesheet" href="style.css" media="all" />
     <style>
         .clearfix:after {
@@ -158,17 +158,17 @@
   </head>
   <body>
     <header class="clearfix">
-        <h1>Contrato {{ $contract->contractEstates[0]->address }} </h1>
+        <h1>{{ $contract->deliveryDate }} - {{ $contract->contractEstates[0]->address }}</h1>
         <div id="company" class="clearfix">
             <div>INMUEBLE: {{$contract->contractEstates[0]->address }} </div>
             <div>TIPO DE INMUEBLE {{ $contract->contractEstates[0]->typeEstate }}</div>
-            <div>MATRICULA INMOBILIARIA: <b>{{ $contract->typeContract }}</b></div>
-            <div>ADMINISTRACION: <b>{{ $contract->typeContract }}</b></div>
+            <div>MATRICULA: <b>{{ $contract->contractEstates[0]->realEstateRegistration }}</b></div>
+            <div>ADMINISTRACION: <b>$ {{ number_format($contract->adminValue, 0) }} COP</b></div>
         </div>
         <div id="project" >
-            <div><span>POLIZA AGUA:</span> Website development</div>
-            <div><span>POLIZA LUZ</span> John Doe</div>
-            <div><span>POLIZA GAS</span> 796 Silver Harbour, TX 79273, US</div>
+            <div><span>POLIZA AGUA:</span> {{ $contract->contractEstates[0]->policyWater }}</div>
+            <div><span>POLIZA LUZ</span> {{ $contract->contractEstates[0]->policyElectricity }}</div>
+            <div><span>POLIZA GAS</span> {{ $contract->contractEstates[0]->policyGas }}</div>
             <div><span>EMAIL</span> <a href="mailto:john@example.com">john@example.com</a></div>
             <div><span>DATE</span> August 17, 2015</div>
             <div><span>DUE DATE</span> September 17, 2015</div>

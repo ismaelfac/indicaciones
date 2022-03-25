@@ -13,6 +13,7 @@
         "clause": "",
         "commissionPercentage": "13%",
         "marketingPercentage": "3%",
+        "observationsCommissionAndMarketing": "Se fijo el 13% con acuerdo de Gerencia",
         "isActive": true
     },
     {
@@ -27,8 +28,9 @@
         "deliveryDate": "15/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
-        "commissionPercentage": "13%",
+        "commissionPercentage": "25%",
         "marketingPercentage": "3%",
+        "observationsCommissionAndMarketing": "Se fijo el 25% con acuerdo de Gerencia",
         "isActive": true
     },
     {
@@ -45,6 +47,7 @@
         "clause": "",
         "commissionPercentage": "13%",
         "marketingPercentage": "3%",
+        "observationsCommissionAndMarketing": "Se fijo el 13% con acuerdo de Gerencia",
         "isActive": true
     },
     {
@@ -59,8 +62,9 @@
         "deliveryDate": "12/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
-        "commissionPercentage": "13%",
+        "commissionPercentage": "18%",
         "marketingPercentage": "3%",
+        "observationsCommissionAndMarketing": "Se fijo el 18% con acuerdo de Gerencia",
         "isActive": true
     },
     {
@@ -75,8 +79,9 @@
         "deliveryDate": "18/03/2022",
         "gracePeriod": "3 MESES",
         "clause": "",
-        "commissionPercentage": "13%",
+        "commissionPercentage": "",
         "marketingPercentage": "3%",
+        "observationsCommissionAndMarketing": "",
         "isActive": true
     }
 ]

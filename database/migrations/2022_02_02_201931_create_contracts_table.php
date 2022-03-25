@@ -23,6 +23,7 @@ class CreateContractsTable extends Migration
             $table->mediumText('clause')->nullable();
             $table->string('commissionPercentage');
             $table->string('marketingPercentage');
+            $table->mediumText('observationsCommissionAndMarketing')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isActive')->default(false);
             $table->timestamps();

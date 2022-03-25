@@ -31,6 +31,7 @@ class ContractSeeder extends Seeder
                 'clause' => $value['clause'],
                 'commissionPercentage' => $value['commissionPercentage'],
                 'marketingPercentage' => $value['marketingPercentage'],
+                'observationsCommissionAndMarketing' => $value['observationsCommissionAndMarketing'],
                 'user_id' => 1,
                 'isActive' => $value['isActive']
             ]);
