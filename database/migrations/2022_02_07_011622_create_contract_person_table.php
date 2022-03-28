@@ -14,7 +14,8 @@ class CreateContractPersonTable extends Migration
             $table->foreignId('person_id')->references('id')->on('people')->onUpdate('cascade');
             $table->enum('typeParticipant', ['NO DEFINIDO','ARRENDATARIO', 'DEUDOR', 'USUFRUCTUARIO', 'COMODATARIO', 'PROPIETARIO','REPRESENTANTE LEGAL'])->default('NO DEFINIDO');
             $table->enum('typePerson', ['NATURAL', 'JURIDICA'])->default('NATURAL');
-            $table->string('legalPersonOf')->nullable();
+            $table->string('legalPersonOfContractId')->nullable();
+            $table->string('legalPersonOfPersonId')->nullable();
             $table->string('rentSplitPercentage')->nullable();
             $table->boolean('isIVAResponsible')->default(false);
             $table->boolean('isIntegralProtection')->default(false);

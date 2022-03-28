@@ -40,7 +40,8 @@
 										<th>Person Id</th>
 										<th>Typeparticipant</th>
 										<th>Typeperson</th>
-										<th>Legalpersonof</th>
+										<th>Legalpersonofcontractid</th>
+										<th>Legalpersonofpersonid</th>
 										<th>Rentsplitpercentage</th>
 										<th>Isivaresponsible</th>
 										<th>Isintegralprotection</th>
@@ -64,7 +65,8 @@
 											<td>{{ $contractPerson->person_id }}</td>
 											<td>{{ $contractPerson->typeParticipant }}</td>
 											<td>{{ $contractPerson->typePerson }}</td>
-											<td>{{ $contractPerson->legalPersonOf }}</td>
+											<td>{{ $contractPerson->legalPersonOfContractId }}</td>
+											<td>{{ $contractPerson->legalPersonOfPersonId }}</td>
 											<td>{{ $contractPerson->rentSplitPercentage }}</td>
 											<td>{{ $contractPerson->isIVAResponsible }}</td>
 											<td>{{ $contractPerson->isIntegralProtection }}</td>

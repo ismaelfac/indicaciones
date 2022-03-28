@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\{Contract, Person};
+use App\Models\Person;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 /**
  * Class PersonController
@@ -13,10 +11,6 @@ use Illuminate\Support\Str;
  */
 class PersonController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -49,20 +43,9 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = Auth::id();
         request()->validate(Person::$rules);
 
-        $person = new Person;
-        $person->names = $request->names;
-        $person->slug = Str::slug($request->names);
-        $person->address = $request->address;
-        $person->dni =$request->dni;
-        $person->typeDni = $request->typeDni;
-        $person->phone = $request->phone;
-        $person->email = $request->email;
-        $person->user_id = $user_id;
-        $person->isActive = true;
-        $person->save();
+        $person = Person::create($request->all());
 
         return redirect()->route('people.index')
             ->with('success', 'Person created successfully.');
@@ -74,22 +57,13 @@ class PersonController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function findDni($dni)
-    {
-        $person = Person::with('personContract')->where('dni',$dni)->get();
-        //$personContract = $person->personContract;
-        return response()->json([
-            'person' => $person
-        ]);
-    }
     public function show($id)
     {
-        $contract = Contract::find($id);
-        $personContract2 = Person::find($id);
-        $personContract = $personContract2->personContract;
-        //return response()->json($personContract);
+        $person = Person::find($id);
+        $contractPeople = $person->contractPerson;
+        //dd($person);
         return response()->json([
-            'person' => $personContract2
+            'person' => $person
         ]);
         //return view('person.show', compact('person'));
     }

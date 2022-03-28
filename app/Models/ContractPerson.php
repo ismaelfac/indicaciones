@@ -12,7 +12,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property $person_id
  * @property $typeParticipant
  * @property $typePerson
- * @property $legalPersonOf
+ * @property $legalPersonOfContractId
+ * @property $legalPersonOfPersonId
  * @property $rentSplitPercentage
  * @property $isIVAResponsible
  * @property $isIntegralProtection
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ContractPerson extends Model
 {
-    protected $table = 'contract_person';
+    protected $table = "contract_person";
     static $rules = [
 		'contract_id' => 'required',
 		'person_id' => 'required',
@@ -52,7 +53,12 @@ class ContractPerson extends Model
 
     protected $perPage = 20;
 
-    protected $fillable = ['contract_id','person_id','typeParticipant','typePerson','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive'];
+    /**
+     * Attributes that should be mass-assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['contract_id','person_id','typeParticipant','typePerson','legalPersonOfContractId','legalPersonOfPersonId','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive'];
 
 
     /**
@@ -78,4 +84,6 @@ class ContractPerson extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+    
+
 }

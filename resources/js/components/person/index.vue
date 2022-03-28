@@ -119,11 +119,11 @@
                 </div>          
             </template>   
 
-            <template v-if="!createPersonOn">
+            <template v-if="participantResult.typePerson === 'JURIDICA'">
                 <hr class="my-4">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span id="card_title">INFORMACIÓN DEL {{ participantResult.typeParticipant }} </span>
+                        <span id="card_title">INFORMACIÓN DEL REPRESENTANTE LEGAL DEL {{ participantResult.typeParticipant }} </span>
                         <div class="float-right">
                             <a class="btn btn-success btn-sm" href="#"> Grabar</a>
                         </div>
@@ -131,36 +131,17 @@
                 </div>
                 <div class="card-body row">                    
                     <div class="col-12">
-                        <div class="input-group has-validation input-group mb-3">
-                            <span class="input-group-text">Nombres Completos</span>
-                            <input type="text" class="form-control" id="namesPerson" v-model="participantResult.names">
-                            <div class="invalid-feedback">
-                            Your username is required.
-                            </div>
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01"> Identificación</label>
+                            <select class="form-select" id="inputGroupSelect01" v-model="participantResult.names">
+                                <option >1</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="input-group has-validation input-group mb-3">
-                            <span class="input-group-text">Dirección de contacto</span>
-                            <input type="text" class="form-control" id="addressPerson" v-model="participantResult.address">
-                            <div class="invalid-feedback">
-                            Your username is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="input-group has-validation input-group mb-3">
-                            <span class="input-group-text">correo de contacto</span>
-                            <input type="text" class="form-control" id="emailPerson" v-model="participantResult.email" >
-                            <div class="invalid-feedback">
-                            Your username is required.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="input-group has-validation input-group mb-3">
-                            <span class="input-group-text">Telefono</span>
-                            <input type="text" class="form-control" id="phonePerson" v-model="participantResult.phone" >
+                            <span class="input-group-text">Nombres Completos</span>
+                            <input type="text" class="form-control" id="namesPerson" v-model="participantResult.names">
                             <div class="invalid-feedback">
                             Your username is required.
                             </div>
@@ -332,8 +313,8 @@ export default {
             console.log('link',urlId)
             axios.get(urlId).then(response => ([
             
-            this.participantResult.typePerson = response.data.person.person_contract[0].pivot.typePerson,
-            this.participantResult.typeParticipant = response.data.person.person_contract[0].pivot.typeParticipant,
+            this.participantResult.typePerson = response.data.person.contract_person[0].typePerson,
+            this.participantResult.typeParticipant = response.data.person.contract_person[0].typeParticipant,
             this.participantResult.typeDni = response.data.person.typeDni,
             this.participantResult.dni = response.data.person.dni,
             this.participantResult.names = response.data.person.names,
@@ -359,8 +340,8 @@ export default {
                swal(`El documento ya se encuentra registrado a nombre de ${response.data.person[0].names}, desea registrarlo al contrato?`, {
                     buttons: ["Si", true],
                 }),
-                this.participantResult.typePerson = response.data.person[0].person_contract[0].pivot.typePerson,
-                this.participantResult.typeParticipant = response.data.person[0].person_contract[0].pivot.typeParticipant,
+                this.participantResult.typePerson = response.data.person[0].contract_person[0].typePerson,
+                this.participantResult.typeParticipant = response.data.person[0].contract_person[0].typeParticipant,
                 this.participantResult.typeDni = response.data.person[0].typeDni,
                 this.participantResult.dni = response.data.person[0].dni,
                 this.participantResult.names = response.data.person[0].names,

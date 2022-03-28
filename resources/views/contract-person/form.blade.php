@@ -22,9 +22,14 @@
             {!! $errors->first('typePerson', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('legalPersonOf') }}
-            {{ Form::text('legalPersonOf', $contractPerson->legalPersonOf, ['class' => 'form-control' . ($errors->has('legalPersonOf') ? ' is-invalid' : ''), 'placeholder' => 'Legalpersonof']) }}
-            {!! $errors->first('legalPersonOf', '<div class="invalid-feedback">:message</p>') !!}
+            {{ Form::label('legalPersonOfContractId') }}
+            {{ Form::text('legalPersonOfContractId', $contractPerson->legalPersonOfContractId, ['class' => 'form-control' . ($errors->has('legalPersonOfContractId') ? ' is-invalid' : ''), 'placeholder' => 'Legalpersonofcontractid']) }}
+            {!! $errors->first('legalPersonOfContractId', '<div class="invalid-feedback">:message</p>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('legalPersonOfPersonId') }}
+            {{ Form::text('legalPersonOfPersonId', $contractPerson->legalPersonOfPersonId, ['class' => 'form-control' . ($errors->has('legalPersonOfPersonId') ? ' is-invalid' : ''), 'placeholder' => 'Legalpersonofpersonid']) }}
+            {!! $errors->first('legalPersonOfPersonId', '<div class="invalid-feedback">:message</p>') !!}
         </div>
         <div class="form-group">
             {{ Form::label('rentSplitPercentage') }}

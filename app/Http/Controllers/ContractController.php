@@ -103,6 +103,7 @@ class ContractController extends Controller
     {
         $contract = Contract::find($id);
         $contractEstate = $contract->contractEstates;
+        $contractPerson = $contract->contractPerson;
         return response()->json([
             'contract' => $contract
         ]);

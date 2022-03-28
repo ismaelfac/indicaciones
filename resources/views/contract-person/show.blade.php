@@ -37,8 +37,12 @@
                             {{ $contractPerson->typePerson }}
                         </div>
                         <div class="form-group">
-                            <strong>Legalpersonof:</strong>
-                            {{ $contractPerson->legalPersonOf }}
+                            <strong>Legalpersonofcontractid:</strong>
+                            {{ $contractPerson->legalPersonOfContractId }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Legalpersonofpersonid:</strong>
+                            {{ $contractPerson->legalPersonOfPersonId }}
                         </div>
                         <div class="form-group">
                             <strong>Rentsplitpercentage:</strong>

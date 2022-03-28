@@ -13,15 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span id="card_title">
-                                {{ __('Editar Persona') }}
-                            </span>
-
-                            <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('people.index') }}"> Cancelar</a>
-                            </div>
-                        </div>
+                        <span class="card-title">Update Person</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('people.update', $person->id) }}"  role="form" enctype="multipart/form-data">

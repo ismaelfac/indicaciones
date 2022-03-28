@@ -60,7 +60,7 @@ class Contract extends Model
      */
     public function contractPerson()
     {
-        return $this->belongsToMany(Person::class)->withPivot('typePerson','typeParticipant','legalPersonOf','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);
+        return $this->belongsToMany(Person::class)->withPivot('typePerson','typeParticipant','legalPersonOfContractId','legalPersonOfPersonId','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);
     }
 
     /**

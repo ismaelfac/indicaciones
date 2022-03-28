@@ -94,6 +94,7 @@ class IndicatorsController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
+        $contract_person = $contract->contractPerson;
         return view('contract.show', compact('contract'));
     }
 

@@ -14,7 +14,7 @@
                     <div class="col-12">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01"> Inmueble</label>
-                            <select class="form-select" id="inputGroupSelect01" v-model="contract.contractEstate" disabled>
+                            <select class="form-select" id="inputGroupSelect01" v-model="contract.contractEstate">
                                 <option v-for="estate in listEstate" :value="estate.address" :key="estate.id">{{estate.address}}</option>
                             </select>
                         </div>

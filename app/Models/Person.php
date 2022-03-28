@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{Contract};
+
 /**
  * Class Person
  *
@@ -20,7 +20,7 @@ use App\Models\{Contract};
  * @property $created_at
  * @property $updated_at
  *
- * @property ContractPerson[] $contractPeoples
+ * @property ContractPerson[] $contractPeople
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -34,7 +34,8 @@ class Person extends Model
 		'typeDni' => 'required',
 		'phone' => 'required',
 		'email' => 'required',
-		'isActive' => 'required'
+		'isActive' => 'required',
+		'user_id' => 'required',
     ];
 
     protected $perPage = 20;
@@ -50,15 +51,10 @@ class Person extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function personContract()
+    public function contractPerson()
     {
-        return $this->belongsToMany(Contract::class)->withPivot('typePerson','typeParticipant','legalPersonOf','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);;
+        return $this->hasMany('App\Models\ContractPerson', 'person_id', 'id');
     }
-
-    // public function contractPerson()
-    // {
-    //     return $this->belongsToMany(Contract::class)->withPivot('typePerson','typeParticipant','legalPersonOf','legalPersonOf','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);
-    // }
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

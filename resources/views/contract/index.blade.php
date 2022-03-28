@@ -50,9 +50,6 @@
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $contract->asegurable }}</td>
                                         <td><a href="{{ url('contract-estate',$contract->id) }}" class="{{ $contract->contractEstates ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> @foreach($contract->contractEstates as $estate){{ $estate->address ? $estate->address : 'Asignar'  }}@endforeach</a> </td>
-                                        <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> @foreach($contract->contractPerson as $person) {{ $person->pivot->typeParticipant <> 'ARRENDATARIO' ?: $person->names  }}@endforeach </a> </td>
-                                        <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">@foreach($contract->contractPerson as $person) {{ $person->pivot->typeParticipant <> 'DEUDORES' ?: $person->names  }}@endforeach</a></td>
-                                        <td><a href="#" class="{{ $contract->person ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">@foreach($contract->contractPerson as $person) {{ $person->pivot->typeParticipant <> 'PROPIETARIO' ?: $person->names}}@endforeach</a></td>											
                                         
                                         <td>
                                             <form action="{{ route('contracts.destroy',$contract->id) }}" method="POST">
