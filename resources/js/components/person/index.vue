@@ -123,7 +123,7 @@
                 <hr class="my-4">
                 <div class="card-header">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span id="card_title">INFORMACIÓN DEL REPRESENTANTE LEGAL DEL {{ participantResult.typeParticipant }} </span>
+                        <span id="card_title">REPRESENTANTE LEGAL DEL {{ participantResult.typeParticipant }} </span>
                         <div class="float-right">
                             <a class="btn btn-success btn-sm" href="#"> Grabar</a>
                         </div>
@@ -132,16 +132,18 @@
                 <div class="card-body row">                    
                     <div class="col-12">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01"> Identificación</label>
-                            <select class="form-select" id="inputGroupSelect01" v-model="participantResult.names">
-                                <option >1</option>
-                            </select>
+                            <span class="input-group-text">Ingrese el numero de identificación</span>
+                            <input type="text" class="form-control" v-model="participantResult.legalPersonDni">
+                            <button class="btn btn-primary" type="button" @click="findLegalPerson()">
+                                <span v-if="loadingPerson" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                {{ stateBtnCreatePerson }}
+                            </button>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="input-group has-validation input-group mb-3">
                             <span class="input-group-text">Nombres Completos</span>
-                            <input type="text" class="form-control" id="namesPerson" v-model="participantResult.names">
+                            <input type="text" class="form-control" id="legalPersonNames" v-model="participantResult.legalPersonNames">
                             <div class="invalid-feedback">
                             Your username is required.
                             </div>
@@ -300,7 +302,9 @@ export default {
                 bankingEntity: '',
                 accountType: '',
                 accountNumber: '',
-                isConsignmentPayment: ''
+                isConsignmentPayment: '',
+                legalPersonDni: '',
+                legalPersonNames: ''
             }
         }
     },
@@ -359,6 +363,22 @@ export default {
                 this.createPersonOn = false,
                 this.loadingPerson = false,
                 this.stateBtnCreatePerson = ' CREAR'
+           ])).catch(error => console.log(error));
+        },
+        findLegalPerson() {
+            this.loadingPerson = true;
+           this.stateBtnCreatePerson = '  Cargando...';
+           const urlIdPerson = `/findLegalPerson/${this.participantResult.dni}`;
+           axios.get(urlIdPerson).then(response => ([
+               swal({
+                    buttons: {
+                        cancel: true,
+                        confirm: true,
+                    },
+                }),
+               swal(`El documento ya se encuentra registrado a nombre de ${response.data.legalPerson }, desea registrarlo al contrato?`, {
+                    buttons: ["Si", true],
+                })
            ])).catch(error => console.log(error));
         }
     }

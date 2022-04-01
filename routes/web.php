@@ -17,6 +17,7 @@ Route::get('indicaciones', function(){
 Route::resource('/indicators', IndicatorsController::class);
 Route::resource('/people', PersonController::class);
 Route::get('personDni/{dni}', [PersonController::class, 'findDni']);
+Route::get('findLegalPerson/{dni}', [PersonController::class, 'findLegalPerson']);
 Route::resource('/estates', EstateController::class);
 Route::get('contracts/pdf/{id}', [ContractController::class, 'printPDF']);
 Route::get('contractsDocument/{id}', [ContractController::class, 'getContractDocuments']);

@@ -68,6 +68,23 @@ class PersonController extends Controller
         //return view('person.show', compact('person'));
     }
 
+    public function findDni($dni)
+    {
+        $person = Person::where('dni',$dni)->get();
+        return response()->json([
+            'person' => $person
+        ]);
+    }
+
+    public function findLegalPerson($dni)
+    {
+        $person = Person::with('contractPerson')->where('dni',$dni)->get();
+        //$legalPerson = Person::where('dni',$person->contract_person[0]->legalPersonOfContractId)->get();
+        return response()->json([
+            'legalPerson' => $person->contract_person[0]->legalPersonOfContractId
+        ]);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
