@@ -168,7 +168,7 @@
                             <div class="col-4">
                                 <div class="input-group has-validation input-group mb-3"> 
                                     <span class="input-group-text">Porcentaje Division Renta</span>
-                                    <input type="text" class="form-control" id="rentSplitPercentage" v-model="rentSplitPercentage">
+                                    <input type="text" class="form-control" id="rentSplitPercentage" v-model="participantResult.rentSplitPercentage">
                                 <div class="invalid-feedback">
                                     Your username is required.
                                     </div>
@@ -176,19 +176,19 @@
                             </div>
                             <div class="col-4">
                                 <div class="form-check form-switch">
-                                <input class="form-check-input" v-model="isIVAResponsible" type="checkbox" role="switch" id="isIVAResponsible">
+                                <input class="form-check-input" v-model="participantResult.isIVAResponsible" type="checkbox" role="switch" id="isIVAResponsible">
                                 <label class="form-check-label" for="isIVAResponsible">Responsable de IVA</label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-check form-switch">
-                                <input class="form-check-input" v-model="isIntegralProtection" type="checkbox" role="switch" id="isIntegralProtection">
+                                <input class="form-check-input" v-model="participantResult.isIntegralProtection" type="checkbox" role="switch" id="isIntegralProtection">
                                 <label class="form-check-label" for="isIntegralProtection">Amparo Integral</label>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-check form-switch">
-                                <input class="form-check-input" v-model="itIsGuaranteed" type="checkbox" role="switch" id="itIsGuaranteed">
+                                <input class="form-check-input" v-model="participantResult.itIsGuaranteed" type="checkbox" role="switch" id="itIsGuaranteed">
                                 <label class="form-check-label" for="itIsGuaranteed">Garantizado</label>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                             <div class="col-6">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="bankingEntity">Entidad Bancaria</label>
-                                    <select class="form-select" id="bankingEntity" v-model="bankingEntity">
+                                    <select class="form-select" id="bankingEntity" v-model="participantResult.bankingEntity">
                                         <option value="BANCAMIA S.A.">BANCAMIA S.A.</option>
                                         <option value="BANCO AGRARIO">BANCO AGRARIO</option>
                                         <option value="BANCO AV VILLAS">BANCO AV VILLAS</option>
@@ -244,7 +244,7 @@
                             <div class="col-6">
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="accountType">Tipo de Cuenta</label>
-                                    <select class="form-select" id="accountType" v-model="accountType">
+                                    <select class="form-select" id="accountType" v-model="participantResult.accountType">
                                         <option value="AHORROS">AHORROS</option>
                                         <option value="CORRIENTE">CORRIENTE</option>
                                     </select>
@@ -253,7 +253,7 @@
                             <div class="col-6">
                                 <div class="input-group has-validation input-group mb-3"> 
                                     <span class="input-group-text">Numero de Cuenta</span>
-                                    <input type="text" class="form-control" id="accountNumber" v-model="accountNumber">
+                                    <input type="text" class="form-control" id="accountNumber" v-model="participantResult.accountNumber">
                                 <div class="invalid-feedback">
                                     Your username is required.
                                     </div>
@@ -261,7 +261,7 @@
                             </div>    
                             <div class="col-4">
                                 <div class="form-check form-switch">
-                                <input class="form-check-input" v-model="isConsignmentPayment" type="checkbox" role="switch" id="isConsignmentPayment">
+                                <input class="form-check-input" v-model="participantResult.isConsignmentPayment" type="checkbox" role="switch" id="isConsignmentPayment">
                                 <label class="form-check-label" for="isConsignmentPayment">Pago por Consignación</label>
                                 </div>
                             </div>
@@ -321,6 +321,14 @@ export default {
             this.participantResult.address = response.data.person.address,
             this.participantResult.email = response.data.person.email,
             this.participantResult.phone = response.data.person.phone,
+            this.participantResult.rentSplitPercentage = response.data.person.contract_person[0].rentSplitPercentage,
+            this.participantResult.isIVAResponsible = (response.data.person.contract_person[0].isIVAResponsible ? true : false),
+            this.participantResult.isIntegralProtection = (response.data.person.contract_person[0].isIntegralProtection ? true : false),
+            this.participantResult.itIsGuaranteed = (response.data.person.contract_person[0].itIsGuaranteed ? true : false),
+            this.participantResult.bankingEntity = response.data.person.contract_person[0].bankingEntity,
+            this.participantResult.accountType = response.data.person.contract_person[0].accountType,
+            this.participantResult.accountNumber = response.data.person.contract_person[0].accountNumber,
+            this.participantResult.isConsignmentPayment = (response.data.person.contract_person[0].isConsignmentPayment ? true : false),
             this.createPersonOn = false
             ])).catch(error => console.log(error));
         }
