@@ -107,12 +107,12 @@
                 </div>
              </div>                     
             <template v-if="estateResult.itIsGaraje">
-                <div class="card">
+                <div class="card" v-for="garaje in estateResult.garajes" :key="garaje.id">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">INFORMACIÓN DEL GARAJE</span>
                             <div class="float-right">
-                                <button type="submit" class="btn btn-success btn-sm"> Grabar</button>
+                                <button type="button" class="btn btn-success btn-sm" @click="addGarajes"> Agregar Otro Garaje</button>
                             </div>
                         </div>                        
                     </div>
@@ -306,7 +306,11 @@ export default {
                 namesAdministrator: '',
                 annotations: '',
                 itIsGaraje: false,
-                garajes: []
+                garajes: {
+                    typeGaraje: '',
+                    realEstateRegistrationGarajes: '',
+                    observations: ''
+                }
             },
             optionBtnEstate: this.estateResult ? 'CAMBIAR DE INMUEBLE' : 'CREAR / BUSCAR INMUEBLE',
             active: 'btn btn-success btn-sm',
@@ -352,6 +356,9 @@ export default {
             swal("Are you sure you want to do this?", {
             buttons: ["Oh noez!", true],
             });
+        },
+        addGarajes(){
+            this.estateResult.garajes++;
         }
     }
 }
