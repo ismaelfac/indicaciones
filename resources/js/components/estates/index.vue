@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-9 mb-3">
+                    <div class="col-6 mb-3">
                         <div class="input-group has-validation">
                             <span class="input-group-text">Observaciones</span>
                             <textarea v-model="estateResult.observations" class="form-control" id="observations"></textarea>
@@ -98,10 +98,53 @@
                         <label class="form-check-label" for="hasAdministration">Tiene Administración</label>
                         </div>
                     </div>
+                    <div class="col-3">
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" v-model="estateResult.itIsGaraje" type="checkbox" role="switch" id="itIsGaraje">
+                        <label class="form-check-label" for="itIsGaraje">Tiene Garaje</label>
+                        </div>
+                    </div>
                 </div>
              </div>                     
-            <template v-if="itIsGaraje">
-
+            <template v-if="estateResult.itIsGaraje">
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">INFORMACIÓN DEL GARAJE</span>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-success btn-sm"> Grabar</button>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-6">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Inmueble</label>
+                                <select class="form-select" id="inputGroupSelect01" v-model="estateResult.garajes.typeGaraje">
+                                    <option selected>Seleccione un Tipo de Inmueble...</option>
+                                    <option value="CUARTO UTIL">CUARTO UTIL</option>
+                                    <option value="GARAJE">GARAJE</option>
+                                    <option value="NO DEFINIDO">NO DEFINIDO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="realEstateRegistration">Matricula Inmobiliaria</label>
+                                <input type="text" class="form-control" id="realEstateRegistration" v-model="estateResult.garajes.realEstateRegistrationGarajes">
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <div class="input-group has-validation">
+                                <span class="input-group-text">Observaciones</span>
+                                <textarea v-model="estateResult.garajes.observations" class="form-control" id="observations"></textarea>
+                                <div class="invalid-feedback">
+                                Your username is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
             </template>
             <template class="card" v-if="estateResult.hasAdministration">
                 <div class="card-header">
@@ -261,13 +304,14 @@ export default {
                 accountType: '',
                 accountNumber: '',
                 namesAdministrator: '',
-                annotations: '' 
+                annotations: '',
+                itIsGaraje: false,
+                garajes: []
             },
             optionBtnEstate: this.estateResult ? 'CAMBIAR DE INMUEBLE' : 'CREAR / BUSCAR INMUEBLE',
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
-            contractEditing: true,
-            itIsGaraje: true
+            contractEditing: true
         }
     },
     mounted() {

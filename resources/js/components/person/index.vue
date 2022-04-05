@@ -282,7 +282,7 @@ export default {
     data() {
         return {
             createPersonOn: true,
-            stateBtnCreatePerson: 'CREAR',
+            stateBtnCreatePerson: 'ASIGNAR',
             loadingPerson : false,
             detailPersonDocumentView : false,
             notificationParametersContract : 'IMPORTANTE: Este contrato estan suscritos (3) participantes como propietarios, asigne el porcentaje de comision para cada participante',        
@@ -367,9 +367,9 @@ export default {
         },
         findLegalPerson() {
             this.loadingPerson = true;
-           this.stateBtnCreatePerson = '  Cargando...';
-           const urlIdPerson = `/findLegalPerson/${this.participantResult.dni}`;
-           axios.get(urlIdPerson).then(response => ([
+            this.stateBtnCreatePerson = '  Cargando...';
+            const urlIdPerson = `/findLegalPerson/${this.participantResult.legalPersonDni}`;
+            axios.get(urlIdPerson).then(response => ([
                swal({
                     buttons: {
                         cancel: true,

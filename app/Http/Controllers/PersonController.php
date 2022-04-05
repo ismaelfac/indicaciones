@@ -75,13 +75,14 @@ class PersonController extends Controller
             'person' => $person
         ]);
     }
-
+// llamaron del 6013905475 y dieron el numero 3850456 en Barranquilla para reportar el caso.
     public function findLegalPerson($dni)
     {
         $person = Person::with('contractPerson')->where('dni',$dni)->get();
+        $person_result = $person->contractPerson;
         //$legalPerson = Person::where('dni',$person->contract_person[0]->legalPersonOfContractId)->get();
         return response()->json([
-            'legalPerson' => $person->contract_person[0]->legalPersonOfContractId
+            'legalPerson' => $person
         ]);
     }
 
