@@ -15,7 +15,7 @@
             <div v-if="contractOn"><ContractForm :contractId="contractInject" :documents="documents"></ContractForm></div>
             <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents"></EstateForm></div>
             <div v-if="personOn"><PersonForm :contractId="contractInject" :participant="this.participantInject" :documents="documents"></PersonForm></div>
-            <div v-if="documentsOn"><Documents/></div>
+            <div v-if="documentsOn"><Documents :typeDocuments="typeDocuments" :id="id"/></div>
         </div>
     </div>
 </template>
@@ -24,7 +24,6 @@
 import ContractForm from './components/contracts/index.vue';
 import EstateForm from './components/estates/index.vue';
 import PersonForm from './components/person/index.vue';
-import PropertyAdministration from "./components/propertyAdministration/index.vue";
 import PanelContract from './components/panelContract/index.vue';
 import Documents from "./components/documents/index.vue";
 export default {
@@ -35,7 +34,6 @@ export default {
         ContractForm,
         EstateForm,
         PersonForm,
-        PropertyAdministration,
         Documents
     },
     mounted() {
@@ -96,8 +94,9 @@ export default {
             this.participantInject.push(participant);
             this.contractInject.push(this.contract.id);
         },
-        DocumentsView(id){
-            console.log('entro a DocumentsView', id)
+        DocumentsView(typeDocuments, id){
+            console.log('entro con typeDocuments: ', typeDocuments);
+            console.log('entro con id: ', id);
             this.participantInject = [];
             this.estateInject = [];
             this.contractInject = [];

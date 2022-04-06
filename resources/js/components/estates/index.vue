@@ -111,7 +111,7 @@
                     <div class="container-fluid">
                         <a class="navbar-brand">Garajes / Cuarto Util</a>
                         <div class="d-flex">
-                            <button type="button" class="btn btn-success btn-sm" @click="addGarajes"> Agregar Garaje / Cuarto Util Externo</button>
+                            <button type="button" class="btn btn-success btn-sm" @click="addGarajes()"> Agregar Garaje / Cuarto Util Externo</button>
                         </div>                        
                     </div>
                 </nav>
@@ -120,14 +120,14 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">INFORMACIÓN DEL {{ garaje.typeGaraje }} No {{ garaje.id }}</span>
                             <div class="float-right">
-                                <button type="button" class="btn btn-danger btn-sm" @click="removeGarajes(garaje.id)"> Eliminar</button>
+                                <button type="button" class="btn btn-danger btn-sm" @click="removeGarajes(this.iteratorEstate ,garaje.id)"> Eliminar</button>
                             </div>
                         </div>                        
                     </div>
                     <div class="card-body row">
                         <div class="col-12">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" id="garage_id" v-model="garaje.garage_id" disabled hidden>
+                                <input type="text" class="form-control" id="garage_id" v-model="garaje.id" disabled hidden>
                             </div>
                         </div>
                         <div class="col-6">
@@ -324,7 +324,7 @@ export default {
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
             contractEditing: true,
-            iteratorEstate: 1
+            iteratorEstate: 0
         }
     },
     mounted() {
@@ -369,31 +369,31 @@ export default {
             });
         },
         loadGarajes(garages){
-            garages.map((garages) => {
+            garages.map((garage) => {
+                this.iteratorEstate = this.estateResult.garajes.length
                 this.estateResult.garajes.push({
-                    'id': this.iteratorEstate,
-                    'garage_id' : garages.id,
-                    'realEstateRegistrationGarajes' : garages.realEstateLicensePlate,
-                    'typeGaraje' : garages.typeGaraje,
-                    'observations' : garages.observations
+                    'id' : garage.id,
+                    'realEstateRegistrationGarajes' : garage.realEstateLicensePlate,
+                    'typeGaraje' : garage.typeGaraje,
+                    'observations' : garage.observations
                 });
-                this.iteratorEstate++;
+                console.log('iteratorEstate', this.iteratorEstate)
             });            
         },
         addGarajes(){
             this.estateResult.garajes.push({
-                'id': this.iteratorEstate,
-                'garage_id' : '',
+                'id' : this.iteratorEstate,
                 'realEstateRegistrationGarajes' : '',
                 'typeGaraje' : '',
                 'observations' : ''
             });
             this.iteratorEstate++;
         },
-        removeGarajes(id){
+        removeGarajes(iterator, id){
             console.log('id: '+id);
-            this.estateResult.garajes.splice(0,id);
-            this.iteratorEstate--;
+            console.log('iteratorEstate', iterator);
+            this.estateResult.garajes.splice(iterator, id);
+            this.iteratorEstate = this.estateResult.garajes.length;
         }
     }
 }
