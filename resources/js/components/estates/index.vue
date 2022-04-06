@@ -107,21 +107,33 @@
                 </div>
              </div>                     
             <template v-if="estateResult.itIsGaraje">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                        <a class="navbar-brand">Garajes / Cuarto Util</a>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-success btn-sm" @click="addGarajes"> Agregar Garaje / Cuarto Util Externo</button>
+                        </div>                        
+                    </div>
+                </nav>
                 <div class="card" v-for="garaje in estateResult.garajes" :key="garaje.id">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span id="card_title">INFORMACIÓN DEL {{ garaje.typeGaraje }}</span>
+                            <span id="card_title">INFORMACIÓN DEL {{ garaje.typeGaraje }} No {{ garaje.id }}</span>
                             <div class="float-right">
-                                <button type="button" class="btn btn-success btn-sm" @click="addGarajes"> Agregar Otro Garaje</button>
+                                <button type="button" class="btn btn-danger btn-sm" @click="removeGarajes(garaje.id)"> Eliminar</button>
                             </div>
                         </div>                        
                     </div>
                     <div class="card-body row">
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="garage_id" v-model="garaje.garage_id" disabled hidden>
+                            </div>
+                        </div>
                         <div class="col-6">
                             <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Garaje</label>
+                                <label class="input-group-text" for="inputGroupSelect01">Tipo</label>
                                 <select class="form-select" id="inputGroupSelect01" v-model="garaje.typeGaraje">
-                                    <option selected>Seleccione un Tipo de Inmueble...</option>
                                     <option value="CUARTO UTIL">CUARTO UTIL</option>
                                     <option value="GARAJE">GARAJE</option>
                                     <option value="NO DEFINIDO">NO DEFINIDO</option>
@@ -311,7 +323,8 @@ export default {
             optionBtnEstate: this.estateResult ? 'CAMBIAR DE INMUEBLE' : 'CREAR / BUSCAR INMUEBLE',
             active: 'btn btn-success btn-sm',
             inactive: 'btn btn-danger btn-sm',
-            contractEditing: true
+            contractEditing: true,
+            iteratorEstate: 1
         }
     },
     mounted() {
@@ -358,15 +371,29 @@ export default {
         loadGarajes(garages){
             garages.map((garages) => {
                 this.estateResult.garajes.push({
-                    'id' : garages.id,
+                    'id': this.iteratorEstate,
+                    'garage_id' : garages.id,
                     'realEstateRegistrationGarajes' : garages.realEstateLicensePlate,
                     'typeGaraje' : garages.typeGaraje,
                     'observations' : garages.observations
-                })
+                });
+                this.iteratorEstate++;
             });            
         },
         addGarajes(){
-            this.estateResult.garajes;
+            this.estateResult.garajes.push({
+                'id': this.iteratorEstate,
+                'garage_id' : '',
+                'realEstateRegistrationGarajes' : '',
+                'typeGaraje' : '',
+                'observations' : ''
+            });
+            this.iteratorEstate++;
+        },
+        removeGarajes(id){
+            console.log('id: '+id);
+            this.estateResult.garajes.splice(0,id);
+            this.iteratorEstate--;
         }
     }
 }

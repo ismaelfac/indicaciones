@@ -75,17 +75,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 mb-3">
+                    <div class="col-5 mb-3">
                         <div class="input-group mb-3">
                             <label class="input-group-text" for="inputGroupSelect01">Tipo de Contrato</label>
                             <select class="form-select" id="inputGroupSelect01" v-model="contract.typeContract">
-                                <option selected>Seleccione un Tipo de Contrato...</option>
                                 <option value="VIVIENDA">VIVIENDA</option>
                                 <option value="COMERCIAL">COMERCIAL</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-6 mb-3">
+                    <div class="col-7 mb-3">
                         <div class="input-group has-validation">
                             <span class="input-group-text">Duración del contrato (EN MESES, SOLO NUMEROS)</span>
                             <input type="text" v-model="contract.contractDuration" class="form-control" id="contractDuration">
@@ -152,7 +151,7 @@
                     </div>                        
                 </div>
                 <div class="card-body row">
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="input-group has-validation input-group mb-3"> 
                             <span class="input-group-text">Porcentaje de Comisión</span>
                             <input type="text" v-model="contract.commissionPercentage" class="form-control" id="commissionPercentage">
@@ -161,7 +160,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="input-group has-validation input-group mb-3"> 
                             <span class="input-group-text">Porcentaje de Mercadeo</span>
                             <input type="text" v-model="contract.marketingPercentage" class="form-control" id="marketingPercentage">

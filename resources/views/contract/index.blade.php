@@ -37,7 +37,7 @@
                                     <th>No</th>
                                     <th>Asegurable</th>
                                     <th>Dirección Inmueble</th>
-
+                                    <th>Revisión</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -47,7 +47,7 @@
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $contract->asegurable }}</td>
                                         <td><a href="{{ url('contract-estate',$contract->id) }}" class="{{ $contract->contractEstates ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}"> @foreach($contract->contractEstates as $estate){{ $estate->address ? $estate->address : 'Asignar'  }}@endforeach</a> </td>
-                                        
+                                        <td> <a class="btn btn-sm btn-info ">2/3</a></td>
                                         <td>
                                             <form action="{{ route('contracts.destroy',$contract->id) }}" method="POST">
                                                 <a class="btn btn-sm btn-primary " href="{{ route('indicators.show',$contract->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
