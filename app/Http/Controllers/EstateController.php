@@ -60,7 +60,11 @@ class EstateController extends Controller
     public function show($id)
     {
         $estate = Estate::find($id);
-        return response()->json($estate);
+        $garages = $estate->garages;
+        return response()->json([
+            'estate' => $estate,
+            'garages' => $garages
+        ]);
         //return view('estate.show', compact('estate'));
     }
 

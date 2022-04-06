@@ -110,7 +110,7 @@
                 <div class="card" v-for="garaje in estateResult.garajes" :key="garaje.id">
                     <div class="card-header">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span id="card_title">INFORMACIÓN DEL GARAJE</span>
+                            <span id="card_title">INFORMACIÓN DEL {{ garaje.typeGaraje }}</span>
                             <div class="float-right">
                                 <button type="button" class="btn btn-success btn-sm" @click="addGarajes"> Agregar Otro Garaje</button>
                             </div>
@@ -119,8 +119,8 @@
                     <div class="card-body row">
                         <div class="col-6">
                             <div class="input-group mb-3">
-                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Inmueble</label>
-                                <select class="form-select" id="inputGroupSelect01" v-model="estateResult.garajes.typeGaraje">
+                                <label class="input-group-text" for="inputGroupSelect01">Tipo de Garaje</label>
+                                <select class="form-select" id="inputGroupSelect01" v-model="garaje.typeGaraje">
                                     <option selected>Seleccione un Tipo de Inmueble...</option>
                                     <option value="CUARTO UTIL">CUARTO UTIL</option>
                                     <option value="GARAJE">GARAJE</option>
@@ -131,13 +131,13 @@
                         <div class="col-6">
                             <div class="input-group mb-3">
                                 <label class="input-group-text" for="realEstateRegistration">Matricula Inmobiliaria</label>
-                                <input type="text" class="form-control" id="realEstateRegistration" v-model="estateResult.garajes.realEstateRegistrationGarajes">
+                                <input type="text" class="form-control" id="realEstateRegistration" v-model="garaje.realEstateRegistrationGarajes">
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="input-group has-validation">
                                 <span class="input-group-text">Observaciones</span>
-                                <textarea v-model="estateResult.garajes.observations" class="form-control" id="observations"></textarea>
+                                <textarea v-model="garaje.observations" class="form-control" id="observations"></textarea>
                                 <div class="invalid-feedback">
                                 Your username is required.
                                 </div>
@@ -306,11 +306,7 @@ export default {
                 namesAdministrator: '',
                 annotations: '',
                 itIsGaraje: false,
-                garajes: {
-                    typeGaraje: '',
-                    realEstateRegistrationGarajes: '',
-                    observations: ''
-                }
+                garajes: []
             },
             optionBtnEstate: this.estateResult ? 'CAMBIAR DE INMUEBLE' : 'CREAR / BUSCAR INMUEBLE',
             active: 'btn btn-success btn-sm',
@@ -322,26 +318,28 @@ export default {
         const urlId = `/estates/${this.estate[0]}`;
         console.log('link',urlId)
         axios.get(urlId).then(response => ([
-            this.estateResult.address = response.data.address,
-            this.estateResult.typeEstate = response.data.typeEstate,
-            this.estateResult.realEstateRegistration = response.data.realEstateRegistration,
-            this.estateResult.isSharedElectricityMeter = (response.data.isSharedElectricityMeter ? true : false),
-            this.estateResult.policyElectricity = response.data.policyElectricity,
-            this.estateResult.isSharedWaterMeter = (response.data.isSharedWaterMeter ? true : false),
-            this.estateResult.policyWater = response.data.policyWater,
-            this.estateResult.isSharedGasMeter = (response.data.isSharedGasMeter ? true : false),
-            this.estateResult.policyGas = response.data.policyGas,
-            this.estateResult.observations = response.data.observations,
-            this.estateResult.hasAdministration = (response.data.hasAdministration ? true : false),
-            this.estateResult.typeDni = response.data.typeDni,
-            this.estateResult.dni = response.data.dni,
-            this.estateResult.email = response.data.email,
-            this.estateResult.phone = response.data.phone,
-            this.estateResult.bankingEntity = response.data.bankingEntity,
-            this.estateResult.accountType = response.data.accountType,
-            this.estateResult.accountNumber = response.data.accountNumber,
-            this.estateResult.namesAdministrator = response.data.namesAdministrator,
-            this.estateResult.annotations = response.data.annotations
+            this.estateResult.address = response.data.estate.address,
+            this.estateResult.typeEstate = response.data.estate.typeEstate,
+            this.estateResult.realEstateRegistration = response.data.estate.realEstateRegistration,
+            this.estateResult.isSharedElectricityMeter = (response.data.estate.isSharedElectricityMeter ? true : false),
+            this.estateResult.policyElectricity = response.data.estate.policyElectricity,
+            this.estateResult.isSharedWaterMeter = (response.data.estate.isSharedWaterMeter ? true : false),
+            this.estateResult.policyWater = response.data.estate.policyWater,
+            this.estateResult.isSharedGasMeter = (response.data.estate.isSharedGasMeter ? true : false),
+            this.estateResult.policyGas = response.data.estate.policyGas,
+            this.estateResult.observations = response.data.estate.observations,
+            this.estateResult.hasAdministration = (response.data.estate.hasAdministration ? true : false),
+            this.estateResult.typeDni = response.data.estate.typeDni,
+            this.estateResult.dni = response.data.estate.dni,
+            this.estateResult.email = response.data.estate.email,
+            this.estateResult.phone = response.data.estate.phone,
+            this.estateResult.bankingEntity = response.data.estate.bankingEntity,
+            this.estateResult.accountType = response.data.estate.accountType,
+            this.estateResult.accountNumber = response.data.estate.accountNumber,
+            this.estateResult.namesAdministrator = response.data.estate.namesAdministrator,
+            this.estateResult.annotations = response.data.estate.annotations,
+            this.estateResult.itIsGaraje = (response.data.estate.isGarage === 1 ? true : false),
+            (response.data.garages ? this.loadGarajes(response.data.garages) : this.estateResult.itIsGaraje = false)
         ])).catch(error => console.log(error));
     },
     methods: {
@@ -357,8 +355,18 @@ export default {
             buttons: ["Oh noez!", true],
             });
         },
+        loadGarajes(garages){
+            garages.map((garages) => {
+                this.estateResult.garajes.push({
+                    'id' : garages.id,
+                    'realEstateRegistrationGarajes' : garages.realEstateLicensePlate,
+                    'typeGaraje' : garages.typeGaraje,
+                    'observations' : garages.observations
+                })
+            });            
+        },
         addGarajes(){
-            this.estateResult.garajes++;
+            this.estateResult.garajes;
         }
     }
 }

@@ -37,9 +37,6 @@
                                     <th>No</th>
                                     <th>Asegurable</th>
                                     <th>Dirección Inmueble</th>
-                                    <th>Arrendatario</th>
-                                    <th>Deudores</th>
-                                    <th>Propietarios</th>
 
                                     <th></th>
                                 </tr>
