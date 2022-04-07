@@ -61,20 +61,17 @@ export default {
             this.contractInject = [];
             this.participantInject = [];
             this.estateInject = [];
-            this.contractOn = true;
-            this.administrationOn = false;
+            this.contractOn = true;            
             this.inmobiliariaOn = false;
             this.estateOn = false;
             this.personOn = false;
             this.contractInject=contract;
-            console.log('contractInject',this.contractInject);
         },
         EstateView(estate){
             this.participantInject = [];
             this.estateInject = [];
             this.contractInject = [];
-            this.estateOn = true;
-            this.administrationOn = false;
+            this.estateOn = true;            
             this.inmobiliariaOn = false;
             this.contractOn = false;
             this.personOn = false;
@@ -85,12 +82,10 @@ export default {
             this.participantInject = [];
             this.estateInject = [];
             this.contractInject = [];
-            this.personOn = true;
-            this.administrationOn = false;
+            this.personOn = true;            
             this.inmobiliariaOn = false;
             this.contractOn = false;
             this.estateOn = false;
-            console.log(participant)
             this.participantInject.push(participant);
             this.contractInject.push(this.contract.id);
         },
@@ -101,7 +96,6 @@ export default {
             this.estateInject = [];
             this.contractInject = [];
             this.inmobiliariaOn = false;
-            this.administrationOn = false
             this.personOn = false;
             this.contractOn = false;
             this.estateOn = false;
