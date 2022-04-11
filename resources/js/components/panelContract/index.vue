@@ -5,7 +5,7 @@ import ListEstate from '../estates/List.vue';
 export default {
     name: 'panelContract',
     props: ['participants', 'estate', 'contract'],
-    emits: ['ContractView','EstateView','InmobiliariaView','AdministrationView', 'PersonView'],
+    emits: ['ContractView','EstateView', 'PersonView','DocumentsView'],
     inject: ['contractInject','estateInject', 'participantInject'],
     components: {
         ListContract,
@@ -19,6 +19,9 @@ export default {
     methods: {
         loadParticipant(participant){
             this.emitter.emit('Person-View', participant);
+        },
+        loadDocuments(typeDocument,id, contractId){
+            this.emitter.emit('DocumentsView', [typeDocument,id, contractId])
         }
     }
 }
@@ -39,7 +42,9 @@ export default {
                     :address="estate.address" 
                     :isActive="estate.isActive" 
                     @click="$emit('EstateView', estate.id)"/>
-                    
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <a class="btn btn-danger btn-sm btn-block" @click="loadDocuments('documentsEstate',estate.id, contract.id)">DOCUMENTOS</a>
+                </li>
             </div>
         </ul>
         <hr class="my-4">
@@ -58,6 +63,9 @@ export default {
                     :domus="contract.domus" 
                     :isActive="contract.isActive"
                     @click="$emit('ContractView', contract.id)"/>
+                <li class="list-group-item d-flex justify-content-between lh-sm">
+                    <a class="btn btn-danger btn-sm btn-block" @click="loadDocuments('contractDocuments',contract.id, 0)">DOCUMENTOS</a>
+                </li>
             </div>
         </ul>
         <hr class="my-4">

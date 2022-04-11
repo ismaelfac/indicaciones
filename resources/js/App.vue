@@ -2,20 +2,20 @@
     <div class="row g-5">
         <div class="col-md-5 col-lg-4 order-md-last">
             <PanelContract 
-                    :contract="contract" 
-                    :participants="participants" 
-                    :estate="estate"
-                    @DocumentsView="DocumentsView" 
-                    @ContractView="ContractView" 
-                    @EstateView="EstateView"
-                    @PersonView="PersonView"/>
+                :contract="contract" 
+                :participants="participants" 
+                :estate="estate"
+                @ContractView="ContractView" 
+                @EstateView="EstateView"
+                @PersonView="PersonView"
+                @DocumentsView="DocumentsView"/>
         </div>
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3"></h4>
-            <div v-if="contractOn"><ContractForm :contractId="contractInject" :documents="documents"></ContractForm></div>
-            <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject" :documents="documents"></EstateForm></div>
-            <div v-if="personOn"><PersonForm :contractId="contractInject" :participant="this.participantInject" :documents="documents"></PersonForm></div>
-            <div v-if="documentsOn"><Documents :typeDocuments="typeDocuments" :id="id"/></div>
+            <div v-if="contractOn"><ContractForm :contractId="contractInject"></ContractForm></div>
+            <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject"></EstateForm></div>
+            <div v-if="personOn"><PersonForm :contractId="contractInject" :participant="this.participantInject"></PersonForm></div>
+            <div v-if="documentsOn"><Documents :typeDocuments="this.typeDocuments" :documentsId="this.documentsId" :contractId="this.contractId"/></div>
         </div>
     </div>
 </template>
@@ -41,7 +41,13 @@ export default {
         this.emitter.on('Person-View', (participant) =>{
             console.log('participant desde app.vue',participant);
             this.PersonView(participant);
-        })
+        });
+        this.emitter.on('DocumentsView',(parameterDocument) => {
+            this.typeDocuments = parameterDocument[0];
+            this.documentsId = parameterDocument[1];
+            this.contractId = parameterDocument[2];
+            this.DocumentsView();
+        });
     },
     data() {
         return {
@@ -54,6 +60,9 @@ export default {
             documentsOn: false,
             administrationOn: false,
             contractEditing: true,
+            typeDocuments: '',
+            documentsId: '',
+            contractId: ''
         }
     },
     methods: {
@@ -89,9 +98,7 @@ export default {
             this.participantInject.push(participant);
             this.contractInject.push(this.contract.id);
         },
-        DocumentsView(typeDocuments, id){
-            console.log('entro con typeDocuments: ', typeDocuments);
-            console.log('entro con id: ', id);
+        DocumentsView(){
             this.participantInject = [];
             this.estateInject = [];
             this.contractInject = [];

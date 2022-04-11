@@ -2,7 +2,7 @@
     export default {
         name: 'ListEstate',
         props: [ 'id','isActive','typeEstate', 'address'],
-        emits: ['EstateViewChild', 'DocumentsView'],
+        emits: ['DocumentsView'],
         data() {
             return{
                 active: 'btn btn-success btn-sm',
@@ -27,7 +27,6 @@
         <span class="text-muted">
             <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                 <a :class="[ isActive ? active : inactive]" class="btn-sm">{{ (isActive) ? 'EDITAR': 'INACTIVO'}}</a>
-                <a class="btn btn-danger btn-sm btn-block" @click="loadDocuments(id)">DOCUMENTOS</a>
             </div>
         </span>
     </li>
