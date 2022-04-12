@@ -21,6 +21,7 @@ export default {
             this.emitter.emit('Person-View', participant);
         },
         loadDocuments(typeDocument,id, contractId){
+            console.log('accion disparada', typeDocument)
             this.emitter.emit('DocumentsView', [typeDocument,id, contractId])
         }
     }
@@ -43,7 +44,7 @@ export default {
                     :isActive="estate.isActive" 
                     @click="$emit('EstateView', estate.id)"/>
                 <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <a class="btn btn-danger btn-sm btn-block" @click="loadDocuments('documentsEstate',estate.id, contract.id)">DOCUMENTOS</a>
+                    <a class="btn btn-danger btn-sm btn-block" type="button" id="btnEstateDocuments" @click="loadDocuments('estates',estate.id, contract.id)">DOCUMENTOS</a>
                 </li>
             </div>
         </ul>
@@ -64,7 +65,7 @@ export default {
                     :isActive="contract.isActive"
                     @click="$emit('ContractView', contract.id)"/>
                 <li class="list-group-item d-flex justify-content-between lh-sm">
-                    <a class="btn btn-danger btn-sm btn-block" @click="loadDocuments('contractDocuments',contract.id, 0)">DOCUMENTOS</a>
+                    <a class="btn btn-danger btn-sm btn-block" type="button" id="btnContractDocuments" @click="loadDocuments('contracts',contract.id, 0)">DOCUMENTOS</a>
                 </li>
             </div>
         </ul>

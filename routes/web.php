@@ -26,5 +26,6 @@ Route::resource('contract-person', ContractPersonController::class);
 Route::resource('contract-estate', ContractEstateController::class);
 Route::resource('contractDocuments', ContractDocumentController::class);
 Route::resource('documents', DocumentController::class);
+Route::get('documentsCategoy/{category}', [DocumentController::class, 'getDocumentsCategoy']);
 Route::resource('documentsEstate', DocumentController::class);
 Route::resource('documentsPerson', DocumentController::class);
