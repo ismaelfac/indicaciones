@@ -9,18 +9,14 @@
                             {{ document.title }}
                         </div>
                         <div class="card-body">
-                            <div v-for="listDocument in listDocumentsEstate" :key="listDocument.id">
+                            <div v-for="listDocument in listDocumentResult" :key="listDocument.id">
                                 <h5 class="card-title" v-if="listDocument.pivot.fileName">{{ listDocument.id === document.id ? listDocument.pivot.fileName : '' }}</h5>
                                 <h5 class="card-title" v-else>NO REGISTRA DOCUMENTO</h5>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon3">Titulo del Documento</span>
-                                <input type="text" v-model="fileName" class="form-control" id="fileName">
-                            </div>                                
+                            </div>                            
                             <input class="form-control" type="file" id="formFile" @change="changeFiles" ref="documentsFile">                                
                         </div>
                         <div class="card-footer text-muted">
-                            <a href="#" class="btn btn-primary">Cargar Documento</a>
+                            <a type="button" @click="saveDocument(document.id, document.title)" class="btn btn-primary">Cargar Documento</a>
                         </div>
                     </div>
                 </li>
@@ -40,8 +36,9 @@
             return{
                 typeDocuments: this.typeDocuments,
                 documentsId: this.documentsId,
-                listDocumentsEstate: [],
+                listDocumentResult: [],
                 documents: [],
+                documentFile: []
             }
         },
         methods: {
@@ -64,14 +61,14 @@
                 switch (typeDocuments) {
                     case 'estates': {    
                         await this.getDocuments('INMUEBLE');                 
-                        this.listDocumentsEstate = await this.getDocumentsAction(typeDocuments, estateId)
-                        return this.listDocuments.filter(function () {
+                        return this.listDocumentResult = await this.getDocumentsAction(typeDocuments, estateId)
+                        /* return this.listDocuments.filter(function () {
                             return (document.category === component.component);
-                        });
+                        }); */
                     }
                     case 'contracts': { 
                         await this.getDocuments('CONTRATO');                 
-                        return this.listDocumentsEstate = await this.getDocumentsAction(typeDocuments, contractId)                        
+                        return this.listDocumentResult = await this.getDocumentsAction(typeDocuments, contractId)                        
                     }
                     case 'person': {
                         console.log(typeDocuments);
@@ -87,6 +84,18 @@
             changeFiles(e){
                 
                 console.log('entro', e.target.files[0]);
+                this.documentFile.file = e.target.files[0]
+            },
+            saveDocument(documentsId, title) {
+                this.documentFile.push({
+                    estate_id: this.estateId,
+                    document_id: documentsId,
+                    fileName: title,
+                    size: size,
+                    file: ''
+                });
+                console.log('datos a guardar', this.documentFile)
+                
             }
         }
     }

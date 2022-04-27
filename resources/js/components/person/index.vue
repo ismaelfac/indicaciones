@@ -376,9 +376,11 @@ export default {
                         confirm: true,
                     },
                 }),
-               swal(`El documento ya se encuentra registrado a nombre de ${response.data.legalPerson }, desea registrarlo al contrato?`, {
+               swal(`El documento ya se encuentra registrado a nombre de ${response.data.legalPerson[0].names }, desea registrarlo al contrato?`, {
                     buttons: ["Si", true],
-                })
+                }),
+                this.participantResult.legalPersonDni = response.data.legalPerson[0].dni,
+                this.participantResult.legalPersonNames = response.data.legalPerson[0].names
            ])).catch(error => console.log(error));
         }
     }
