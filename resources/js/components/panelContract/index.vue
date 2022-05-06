@@ -2,6 +2,7 @@
 import ListContract from '../contracts/List.vue';
 import ListPerson from '../person/List.vue';
 import ListEstate from '../estates/List.vue';
+import ListEstatesNew from '../estates/ListEstates.vue'
 export default {
     name: 'panelContract',
     props: ['participants', 'estate', 'contract'],
@@ -10,10 +11,11 @@ export default {
     components: {
         ListContract,
         ListPerson,
-        ListEstate
+        ListEstate,
+        ListEstatesNew
     },
     data() {
-        return{
+        return {
         }
     },
     methods: {
@@ -34,7 +36,7 @@ export default {
         </h4>
         <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-sm" v-if="!estate">
-                <h6 class="my-0"><a href="#" @click="$emit('EstateView')" class="btn btn-success">Configurar Inmueble</a></h6>
+                <h6 class="my-0"><a href="#" type="button" @click="$emit('EstateView')" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Configurar Inmueble</a></h6>
             </li>            
             <div v-if="estate">
                 <ListEstate 
@@ -90,5 +92,22 @@ export default {
                             @click="loadParticipant(participant.id)"/>
             </div>
         </ul>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Listado de Inmuebles</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <ListEstatesNew></ListEstatesNew>    
+                </div>
+                <div class="modal-footer">
+                    <p>Consulte aqui el Inmueble a crear y presione click en aplicar Inmueble</p>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
