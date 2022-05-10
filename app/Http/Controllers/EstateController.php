@@ -24,6 +24,11 @@ class EstateController extends Controller
         //return view('estate.index', compact('estates'))->with('i', (request()->input('page', 1) - 1) * $estates->perPage());
     }
 
+    public function findEstateAddress($address){
+        $estates = Estate::where('address',$address)->get();
+        return response()->json($estates);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
