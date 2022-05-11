@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Contracto Persona') }}
+                                {{ __('Contract Person') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('contract-person.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Persona a Contrato') }}
+                                <a href="{{ route('contract-people.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                  {{ __('Create New') }}
                                 </a>
                               </div>
                         </div>
@@ -36,10 +36,22 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Contracto</th>
-										<th>Persona</th>
-										<th>Tipo</th>
-										<th>Estado</th>
+										<th>Contract Id</th>
+										<th>Person Id</th>
+										<th>Typeparticipant</th>
+										<th>Typeperson</th>
+										<th>Legalpersonofcontractid</th>
+										<th>Legalpersonofpersonid</th>
+										<th>Rentsplitpercentage</th>
+										<th>Isivaresponsible</th>
+										<th>Isintegralprotection</th>
+										<th>Itisguaranteed</th>
+										<th>Bankingentity</th>
+										<th>Accounttype</th>
+										<th>Accountnumber</th>
+										<th>Isconsignmentpayment</th>
+										<th>User Id</th>
+										<th>Isactive</th>
 
                                         <th></th>
                                     </tr>
@@ -49,17 +61,30 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $contractPerson->contract->asegurable }}</td>
-											<td>{{ $contractPerson->person->names }}</td>
+											<td>{{ $contractPerson->contract_id }}</td>
+											<td>{{ $contractPerson->person_id }}</td>
+											<td>{{ $contractPerson->typeParticipant }}</td>
 											<td>{{ $contractPerson->typePerson }}</td>
-											<td><a href="" class="{{ $contractPerson->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $contractPerson->isActive ? 'Activo': 'Inactivo' }}</a></td>
+											<td>{{ $contractPerson->legalPersonOfContractId }}</td>
+											<td>{{ $contractPerson->legalPersonOfPersonId }}</td>
+											<td>{{ $contractPerson->rentSplitPercentage }}</td>
+											<td>{{ $contractPerson->isIVAResponsible }}</td>
+											<td>{{ $contractPerson->isIntegralProtection }}</td>
+											<td>{{ $contractPerson->itIsGuaranteed }}</td>
+											<td>{{ $contractPerson->bankingEntity }}</td>
+											<td>{{ $contractPerson->accountType }}</td>
+											<td>{{ $contractPerson->accountNumber }}</td>
+											<td>{{ $contractPerson->isConsignmentPayment }}</td>
+											<td>{{ $contractPerson->user_id }}</td>
+											<td>{{ $contractPerson->isActive }}</td>
+
                                             <td>
-                                                <form action="{{ route('contract-person.destroy',$contractPerson->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('contract-person.show',$contractPerson->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('contract-person.edit',$contractPerson->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                <form action="{{ route('contract-people.destroy',$contractPerson->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('contract-people.show',$contractPerson->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('contract-people.edit',$contractPerson->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

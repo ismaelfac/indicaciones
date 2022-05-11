@@ -71,6 +71,11 @@ class DocumentController extends Controller
         return view('document.show', compact('document'));
     }
 
+    public function getDocumentsCategoy($category)
+    {
+        return Document::where('category',$category)->get();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

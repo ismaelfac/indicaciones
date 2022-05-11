@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Person;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 /**
  * Class PersonController
@@ -13,10 +11,6 @@ use Illuminate\Support\Str;
  */
 class PersonController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -49,20 +43,9 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $user_id = Auth::id();
         request()->validate(Person::$rules);
 
-        $person = new Person;
-        $person->names = $request->names;
-        $person->slug = Str::slug($request->names);
-        $person->address = $request->address;
-        $person->dni =$request->dni;
-        $person->typeDni = $request->typeDni;
-        $person->phone = $request->phone;
-        $person->email = $request->email;
-        $person->user_id = $user_id;
-        $person->isActive = true;
-        $person->save();
+        $person = Person::create($request->all());
 
         return redirect()->route('people.index')
             ->with('success', 'Person created successfully.');
@@ -77,8 +60,28 @@ class PersonController extends Controller
     public function show($id)
     {
         $person = Person::find($id);
+        $contractPeople = $person->contractPerson;
+        //dd($person);
+        return response()->json([
+            'person' => $person
+        ]);
+        //return view('person.show', compact('person'));
+    }
 
-        return view('person.show', compact('person'));
+    public function findDni($dni)
+    {
+        $person = Person::where('dni',$dni)->get();
+        return response()->json([
+            'person' => $person
+        ]);
+    }
+// llamaron del 6013905475 y dieron el numero 3850456 en Barranquilla para reportar el caso.
+    public function findLegalPerson($dni)
+    {
+        $person = Person::with('contractPerson')->where('dni',$dni)->get();
+        return response()->json([
+            'legalPerson' => $person
+        ]);
     }
 
     /**

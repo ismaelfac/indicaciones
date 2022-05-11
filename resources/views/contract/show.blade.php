@@ -14,56 +14,19 @@
                             <span id="card_title">
                             Datos de {{ $contract->asegurable }}
                             </span>
-
                             <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('contracts.index') }}"> Cancelar</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('indicators.index') }}"> Volver al Listado de Contratos</a>
+                                <a class="btn btn-sm btn-danger" href="{{ url('contracts/pdf',$contract->id) }}" target="_blank"><i class="fa fa-fw fa-pdf"></i> PDF</a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="card-body">
-                        
-                        <div class="form-group">
-                            <strong>Asegurable:</strong>
-                            {{ $contract->asegurable }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Domus:</strong>
-                            {{ $contract->domus }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Cannonlease:</strong>
-                            {{ $contract->cannonLease }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Adminvalue:</strong>
-                            {{ $contract->adminValue }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Increment:</strong>
-                            {{ $contract->increment }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Contractrights:</strong>
-                            {{ $contract->contractRights }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Deliverydate:</strong>
-                            {{ $contract->deliveryDate }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Graceperiod:</strong>
-                            {{ $contract->gracePeriod }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Clause:</strong>
-                            {{ $contract->clause }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Isactive:</strong>
-                            {{ $contract->isActive }}
-                        </div>
-
+                    <div class="card-body">   
+                        <example-component 
+                            :contract="{{ json_encode($contract) }}" 
+                            :estate="{{ json_encode($contract->contractEstates[0]) }}" 
+                            :participants="{{json_encode($contract->contractPerson) }}"
+                            >
+                        </example-component>
                     </div>
                 </div>
             </div>

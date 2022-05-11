@@ -13,12 +13,12 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Persona') }}
+                                {{ __('Person') }}
                             </span>
 
                              <div class="float-right">
                                 <a href="{{ route('people.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Crear Nuevo') }}
+                                  {{ __('Create New') }}
                                 </a>
                               </div>
                         </div>
@@ -36,13 +36,15 @@
                                     <tr>
                                         <th>No</th>
                                         
-										<th>Nombres Completos</th>
-										<th>Direccion</th>
-										<th>Número</th>
-										<th>Tipo de Documento</th>
-										<th>Telefono</th>
+										<th>Names</th>
+										<th>Slug</th>
+										<th>Address</th>
+										<th>Dni</th>
+										<th>Typedni</th>
+										<th>Phone</th>
 										<th>Email</th>
-										<th>Estado</th>
+										<th>Isactive</th>
+										<th>User Id</th>
 
                                         <th></th>
                                     </tr>
@@ -53,20 +55,22 @@
                                             <td>{{ ++$i }}</td>
                                             
 											<td>{{ $person->names }}</td>
+											<td>{{ $person->slug }}</td>
 											<td>{{ $person->address }}</td>
 											<td>{{ $person->dni }}</td>
 											<td>{{ $person->typeDni }}</td>
 											<td>{{ $person->phone }}</td>
 											<td>{{ $person->email }}</td>
-											<td><a href="" class="{{ $person->isActive ? 'btn btn-sm btn-success' : 'btn btn-sm btn-danger'}}">{{ $person->isActive ? 'Activo': 'Inactivo' }}</a></td>
+											<td>{{ $person->isActive }}</td>
+											<td>{{ $person->user_id }}</td>
 
                                             <td>
                                                 <form action="{{ route('people.destroy',$person->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('people.show',$person->id) }}"><i class="fa fa-fw fa-eye"></i> Ver</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('people.edit',$person->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('people.show',$person->id) }}"><i class="fa fa-fw fa-eye"></i> Show</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('people.edit',$person->id) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>
+                                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

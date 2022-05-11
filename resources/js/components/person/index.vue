@@ -1,193 +1,387 @@
 <template>
     <form class="needs-validation" novalidate>
         <div class="row g-3">
-            <div class="col-6">
+            <div class="col-12" v-if="createPersonOn">
                 <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Tipo de participante</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeParticipante">
-                        <option selected>Eliga una opción...</option>
-                        <option value="ARRENDATARIO">ARRENDATARIO</option>
-                        <option value="DEUDOR">DEUDOR</option>
-                        <option value="PROPIETARIO">PROPIETARIO</option>
-                        <option value="COMODATARIO">COMODATARIO</option>
-                        <option value="USUFRUCTUARIO">USUFRUCTUARIO</option>
-
-                    </select>
+                    <span class="input-group-text">Ingrese el numero de identificación</span>
+                    <input type="text" class="form-control" v-model="participantResult.dni">
+                    <button class="btn btn-primary" type="button" @click="findOnCreatePerson()">
+                        <span v-if="loadingPerson" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        {{ stateBtnCreatePerson }}
+                    </button>
                 </div>
             </div>
-            <div class="col-6">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Tipo de persona</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typePerson">
-                        <option selected>Eliga una opción...</option>
-                        <option value="Natural">Natural</option>
-                        <option value="Juridica">Juridica</option>
-
-                    </select>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
-                    <select class="form-select" id="inputGroupSelect01" v-model="typeDni">
-                        <option selected>Eliga una opción...</option>
-                        <option value="CC">CC</option>
-                        <option value="NIT">NIT</option>
-
-                    </select>
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="input-group has-validation"> 
-                    <span class="input-group-text">Número de Identificación</span>
-                    <input type="text" class="form-control" id="username" v-model="dni">
-                <div class="invalid-feedback">
-                    Your username is required.
-                    </div>
-                </div>
-            </div>
-            <button class="w-100 btn btn-primary btn-lg" type="button" @click="findOnCreatePerson">{{ stateParticipante }} {{ typeParticipante }}</button>
-            <div class="row" v-if="detailPersonView">
+            <template v-if="!createPersonOn">
                 <hr class="my-4">
-                <h4 class="mb-1">Información del {{ typeParticipante }}</h4>
-                <div v-if="typePerson === 'Natural'" class="col-12">
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">Nombres Completos</span>
-                        <input type="text" class="form-control" id="username" v-model="names">
-                        <div class="invalid-feedback">
-                        Your username is required.
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">INFORMACIÓN BASICA </span>
+                        <div class="float-right">
+                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
                         </div>
                     </div>
                 </div>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">Razon Social</span>
-                        <input type="text" class="form-control" id="username" v-model="bussinessName">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo de participante</label>
+                            <select class="form-select" id="inputGroupSelect01" v-model="participantResult.typeParticipant">
+                                <option selected>Eliga una opción...</option>
+                                <option value="NO DEFINIDO">NO DEFINIDO</option>
+                                <option value="ARRENDATARIO">ARRENDATARIO</option>
+                                <option value="DEUDOR">DEUDOR</option>
+                                <option value="PROPIETARIO">PROPIETARIO</option>
+                                <option value="COMODATARIO">COMODATARIO</option>
+                                <option value="USUFRUCTUARIO">USUFRUCTUARIO</option>
+                                <option value="REPRESENTANTE LEGAL">REPRESENTANTE LEGAL</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect02">Tipo de persona</label>
+                            <select class="form-select" id="inputGroupSelect02" v-model="participantResult.typePerson">
+                                <option selected>Eliga una opción...</option>
+                                <option value="NATURAL">NATURAL</option>
+                                <option value="JURIDICA">JURIDICA</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group mb-3">
+                            <label class="input-group-text" for="inputGroupSelect01">Tipo de Identificación</label>
+                            <select class="form-select" id="inputGroupSelect01" v-model="participantResult.typeDni">
+                                <option selected>Eliga una opción...</option>
+                                <option value="CEDULA DE CIUDADANIA">CEDULA DE CIUDADANIA</option>
+                                <option value="NIT">NIT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group has-validation input-group mb-3"> 
+                            <span class="input-group-text">Número de Identificación</span>
+                            <input type="text" class="form-control" id="username" v-model="participantResult.dni">
                         <div class="invalid-feedback">
-                        Your username is required.
+                            Your username is required.
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-12">
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">Dirección de contacto</span>
-                        <input type="text" class="form-control" id="username" v-model="addressPerson">
-                        <div class="invalid-feedback">
-                        Your username is required.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">correo de contacto</span>
-                        <input type="text" class="form-control" id="username" v-model="emailPerson" >
-                        <div class="invalid-feedback">
-                        Your username is required.
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="input-group has-validation">
-                        <span class="input-group-text">Telefono de contacto</span>
-                        <input type="text" class="form-control" id="username" v-model="phonePerson" >
-                        <div class="invalid-feedback">
-                        Your username is required.
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-            <hr class="my-4">
-            <div class="row" v-if="detailPersonDocumentView">
-                <h4 class="mb-1">Documentos del {{ typeParticipante }}</h4>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">RUT</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div v-if="typePerson === 'Juridica'" class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">CAMARA DE COMERCIO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">SOLICITUD DE ARENDAMIENTO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">INSPECCION E INVENTARIO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>     
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">ASEGURABLE O APROVADO</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>
-                <div class="col-12">
-                    <small class="text-muted">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupFile01">INVENTARIO DE ENTREGA</label>
-                            <input type="file" class="form-control" id="inputGroupFile01">
-                        </div>
-                    </small>
-                </div>            
-            </div>
-        </div>
+            </template>
             
+            <template v-if="!createPersonOn">
+                <hr class="my-4">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">INFORMACIÓN DEL {{ participantResult.typeParticipant }} </span>
+                        <div class="float-right">
+                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body row">                    
+                    <div class="col-12">
+                        <div class="input-group has-validation input-group mb-3">
+                            <span class="input-group-text">Nombres Completos</span>
+                            <input type="text" class="form-control" id="namesPerson" v-model="participantResult.names">
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group has-validation input-group mb-3">
+                            <span class="input-group-text">Dirección de contacto</span>
+                            <input type="text" class="form-control" id="addressPerson" v-model="participantResult.address">
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group has-validation input-group mb-3">
+                            <span class="input-group-text">correo de contacto</span>
+                            <input type="text" class="form-control" id="emailPerson" v-model="participantResult.email" >
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group has-validation input-group mb-3">
+                            <span class="input-group-text">Telefono</span>
+                            <input type="text" class="form-control" id="phonePerson" v-model="participantResult.phone" >
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </template>   
 
-        <hr class="my-4">
-
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continuar</button>
+            <template v-if="participantResult.typePerson === 'JURIDICA'">
+                <hr class="my-4">
+                <div class="card-header">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span id="card_title">REPRESENTANTE LEGAL DEL {{ participantResult.typeParticipant }} </span>
+                        <div class="float-right">
+                            <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body row">                    
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Ingrese el numero de identificación</span>
+                            <input type="text" class="form-control" v-model="participantResult.legalPersonDni">
+                            <button class="btn btn-primary" type="button" @click="findLegalPerson()">
+                                <span v-if="loadingPerson" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                {{ stateBtnCreatePerson }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="input-group has-validation input-group mb-3">
+                            <span class="input-group-text">Nombres Completos</span>
+                            <input type="text" class="form-control" id="legalPersonNames" v-model="participantResult.legalPersonNames">
+                            <div class="invalid-feedback">
+                            Your username is required.
+                            </div>
+                        </div>
+                    </div>
+                </div>          
+            </template>  
+            
+            <template v-if="!createPersonOn">        
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">PARAMETROS DEL CONTRATO</span>
+                            <div class="float-right">
+                                <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                            </div>
+                        </div>                        
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-danger" role="alert">
+                            {{ notificationParametersContract }}
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-4">
+                                <div class="input-group has-validation input-group mb-3"> 
+                                    <span class="input-group-text">Porcentaje Division Renta</span>
+                                    <input type="text" class="form-control" id="rentSplitPercentage" v-model="participantResult.rentSplitPercentage">
+                                <div class="invalid-feedback">
+                                    Your username is required.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check form-switch">
+                                <input class="form-check-input" v-model="participantResult.isIVAResponsible" type="checkbox" role="switch" id="isIVAResponsible">
+                                <label class="form-check-label" for="isIVAResponsible">Responsable de IVA</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check form-switch">
+                                <input class="form-check-input" v-model="participantResult.isIntegralProtection" type="checkbox" role="switch" id="isIntegralProtection">
+                                <label class="form-check-label" for="isIntegralProtection">Amparo Integral</label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check form-switch">
+                                <input class="form-check-input" v-model="participantResult.itIsGuaranteed" type="checkbox" role="switch" id="itIsGuaranteed">
+                                <label class="form-check-label" for="itIsGuaranteed">Garantizado</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </template>
+            <template v-if="!createPersonOn">        
+                <div class="card">
+                    <div class="card-header">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span id="card_title">CONFIGURACIÓN DE PAGOS</span>
+                            <div class="float-right">
+                                <a class="btn btn-success btn-sm" href="#"> Grabar</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="bankingEntity">Entidad Bancaria</label>
+                                    <select class="form-select" id="bankingEntity" v-model="participantResult.bankingEntity">
+                                        <option value="BANCAMIA S.A.">BANCAMIA S.A.</option>
+                                        <option value="BANCO AGRARIO">BANCO AGRARIO</option>
+                                        <option value="BANCO AV VILLAS">BANCO AV VILLAS</option>
+                                        <option value="BANCO BBVA COLOMBIA S.A.">BANCO BBVA COLOMBIA S.A.</option>
+                                        <option value="BANCO CAJA SOCIAL">BANCO CAJA SOCIAL</option>
+                                        <option value="BANCO COOPERATIVO COOPCENTRAL">BANCO COOPERATIVO COOPCENTRAL</option>
+                                        <option value="BANCO CREDIFINANCIERA">BANCO CREDIFINANCIERA</option>
+                                        <option value="BANCO DAVIVIENDA">BANCO DAVIVIENDA</option>
+                                        <option value="BANCO DE BOGOTA">BANCO DE BOGOTA</option>
+                                        <option value="BANCO DE OCCIDENTE">BANCO DE OCCIDENTE</option>
+                                        <option value="BANCO FALABELLA">BANCO FALABELLA</option>
+                                        <option value="BANCO GNB SUDAMERIS">BANCO GNB SUDAMERIS</option>
+                                        <option value="BANCO ITAU">BANCO ITAU</option>
+                                        <option value="BANCO PICHINCHA S.A.">BANCO PICHINCHA S.A.</option>
+                                        <option value="BANCO POPULAR">BANCO POPULAR</option>
+                                        <option value="BANCO SANTANDER COLOMBIA">BANCO SANTANDER COLOMBIA</option>
+                                        <option value="BANCO SERFINANZA">BANCO SERFINANZA</option>
+                                        <option value="BANCOLOMBIA">BANCOLOMBIA</option>
+                                        <option value="BANCOOMEVA S.A.">BANCOOMEVA S.A.</option>
+                                        <option value="CFA COOPERATIVA FINANCIERA">CFA COOPERATIVA FINANCIERA</option>
+                                        <option value="CITIBANK">CITIBANK</option>
+                                        <option value="COLTEFINANCIERA">COLTEFINANCIERA</option>
+                                        <option value="CONFIAR COOPERATIVA FINANCIERA">CONFIAR COOPERATIVA FINANCIERA</option>
+                                        <option value="COOFINEP COOPERATIVA FINANCIERA">COOFINEP COOPERATIVA FINANCIERA</option>
+                                        <option value="COTRAFA">COTRAFA</option>
+                                        <option value="SCOTIABANK COLPATRIA">SCOTIABANK COLPATRIA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="accountType">Tipo de Cuenta</label>
+                                    <select class="form-select" id="accountType" v-model="participantResult.accountType">
+                                        <option value="AHORROS">AHORROS</option>
+                                        <option value="CORRIENTE">CORRIENTE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="input-group has-validation input-group mb-3"> 
+                                    <span class="input-group-text">Numero de Cuenta</span>
+                                    <input type="text" class="form-control" id="accountNumber" v-model="participantResult.accountNumber">
+                                <div class="invalid-feedback">
+                                    Your username is required.
+                                    </div>
+                                </div>
+                            </div>    
+                            <div class="col-4">
+                                <div class="form-check form-switch">
+                                <input class="form-check-input" v-model="participantResult.isConsignmentPayment" type="checkbox" role="switch" id="isConsignmentPayment">
+                                <label class="form-check-label" for="isConsignmentPayment">Pago por Consignación</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </template>    
+        </div>        
     </form>
 </template>
 <script>
+import swal from 'sweetalert';
 export default {
     name:'person',
-    mounted() {
-
-    },
+    props:['contractId','participant', 'documents'],
     data() {
         return {
-            participants: [
-                
-            ],
-            stateParticipante: 'CREAR',
-            typePerson: '',
-            typeParticipante: '',
-            dni: '',
-            bussinessName: '',
-            names: '',
-            typeDni:'',
-            addressPerson: '',
-            phonePerson: '',
-            emailPerson: '',
-            detailPersonView: false,
-            detailPersonDocumentView: false
+            createPersonOn: true,
+            stateBtnCreatePerson: 'ASIGNAR',
+            loadingPerson : false,
+            detailPersonDocumentView : false,
+            notificationParametersContract : 'IMPORTANTE: Este contrato estan suscritos (3) participantes como propietarios, asigne el porcentaje de comision para cada participante',        
+            participantResult: {
+                typePerson: '',
+                typeParticipant: '',
+                dni: '',
+                names: '',
+                typeDni: '',
+                address: '',
+                phone: '',
+                email: '',
+                rentSplitPercentage: '',
+                isIVAResponsible: false,
+                isIntegralProtection: false,
+                itIsGuaranteed: false,
+                bankingEntity: '',
+                accountType: '',
+                accountNumber: '',
+                isConsignmentPayment: '',
+                legalPersonDni: '',
+                legalPersonNames: ''
+            }
+        }
+    },
+    mounted () {
+        if(this.participant === 0) { 
+            this.createPersonOn = false 
+        }else{
+            console.log('contrato recibido',this.contractId[0])
+            const urlId = `/people/${this.participant}`;
+            console.log('link',urlId)
+            axios.get(urlId).then(response => ([
+            
+            this.participantResult.typePerson = response.data.person.contract_person[0].typePerson,
+            this.participantResult.typeParticipant = response.data.person.contract_person[0].typeParticipant,
+            this.participantResult.typeDni = response.data.person.typeDni,
+            this.participantResult.dni = response.data.person.dni,
+            this.participantResult.names = response.data.person.names,
+            this.participantResult.address = response.data.person.address,
+            this.participantResult.email = response.data.person.email,
+            this.participantResult.phone = response.data.person.phone,
+            this.participantResult.rentSplitPercentage = response.data.person.contract_person[0].rentSplitPercentage,
+            this.participantResult.isIVAResponsible = (response.data.person.contract_person[0].isIVAResponsible ? true : false),
+            this.participantResult.isIntegralProtection = (response.data.person.contract_person[0].isIntegralProtection ? true : false),
+            this.participantResult.itIsGuaranteed = (response.data.person.contract_person[0].itIsGuaranteed ? true : false),
+            this.participantResult.bankingEntity = response.data.person.contract_person[0].bankingEntity,
+            this.participantResult.accountType = response.data.person.contract_person[0].accountType,
+            this.participantResult.accountNumber = response.data.person.contract_person[0].accountNumber,
+            this.participantResult.isConsignmentPayment = (response.data.person.contract_person[0].isConsignmentPayment ? true : false),
+            this.createPersonOn = false
+            ])).catch(error => console.log(error));
         }
     },
     methods: {
         findOnCreatePerson() {
-            this.stateParticipante = 'GUARDAR'
-            this.detailPersonView = !this.detailPersonView;
-            this.detailPersonDocumentView = !this.detailPersonDocumentView;
+           this.loadingPerson = true;
+           this.stateBtnCreatePerson = '  Cargando...';
+           const urlIdPerson = `/personDni/${this.participantResult.dni}`;
+           axios.get(urlIdPerson).then(response => ([
+               swal({
+                    buttons: {
+                        cancel: true,
+                        confirm: true,
+                    },
+                }),
+               swal(`El documento ya se encuentra registrado a nombre de ${response.data.person[0].names}, desea registrarlo al contrato?`, {
+                    buttons: ["Si", true],
+                }),
+                this.participantResult.typePerson = response.data.person[0].contract_person[0].typePerson,
+                this.participantResult.typeParticipant = response.data.person[0].contract_person[0].typeParticipant,
+                this.participantResult.typeDni = response.data.person[0].typeDni,
+                this.participantResult.dni = response.data.person[0].dni,
+                this.participantResult.names = response.data.person[0].names,
+                this.participantResult.address = response.data.person[0].address,
+                this.participantResult.email = response.data.person[0].email,
+                this.participantResult.phone = response.data.person[0].phone,
+                this.createPersonOn = false,
+                this.loadingPerson = false,
+                this.stateBtnCreatePerson = ' CREAR'
+           ])).catch(error => console.log(error));
+        },
+        findLegalPerson() {
+            this.loadingPerson = true;
+            this.stateBtnCreatePerson = '  Cargando...';
+            const urlIdPerson = `/findLegalPerson/${this.participantResult.legalPersonDni}`;
+            axios.get(urlIdPerson).then(response => ([
+               swal({
+                    buttons: {
+                        cancel: true,
+                        confirm: true,
+                    },
+                }),
+               swal(`El documento ya se encuentra registrado a nombre de ${response.data.legalPerson[0].names }, desea registrarlo al contrato?`, {
+                    buttons: ["Si", true],
+                }),
+                this.participantResult.legalPersonDni = response.data.legalPerson[0].dni,
+                this.participantResult.legalPersonNames = response.data.legalPerson[0].names
+           ])).catch(error => console.log(error));
         }
     }
 }

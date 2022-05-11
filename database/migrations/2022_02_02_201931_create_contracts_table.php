@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateContractsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('contracts', function (Blueprint $table) {
@@ -19,22 +14,22 @@ class CreateContractsTable extends Migration
             $table->string('domus')->unique()->nullable();
             $table->string('cannonLease');
             $table->string('adminValue')->nullable();
+            $table->enum('typeContract', ['NO DEFINIDO','VIVIENDA', 'COMERCIAL'])->default('NO DEFINIDO');
+            $table->string('contractDuration');
             $table->string('increment')->nullable();
             $table->string('contractRights')->nullable();
             $table->date('deliveryDate')->nullable();
             $table->string('gracePeriod')->nullable();
             $table->mediumText('clause')->nullable();
+            $table->string('commissionPercentage');
+            $table->string('marketingPercentage');
+            $table->mediumText('observationsCommissionAndMarketing')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->onUpdate('cascade');
             $table->boolean('isActive')->default(false);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('contracts');

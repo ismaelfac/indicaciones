@@ -1,0 +1,92 @@
+[
+    {
+        "names": "COMERCIALIZADORA XYZ",
+        "address": "CLL 58 # 80 - 42 OFICINA 09 EDIFICIO LAS MARIANAS",
+        "dni": "800960237",
+        "typeDni": "NIT",
+        "phone": "6053201515",
+        "email": "info@comercializadoraxyz.com",
+        "isActive": true
+    },
+    {
+        "names": "ISMAEL ENRIQUE LASTRE ALVAREZ",
+        "address": "CLL 84B # 37-69 APTO 3 BARRIO EL RUBY",
+        "dni": "72288959",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3113258468",
+        "email": "ismaelfac@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "VALERIA REMEDIOS VASQUEZ CUESTA",
+        "address": "CLL 84B # 37 - 69 APTO 3 BARRIO EL RUBY",
+        "dni": "1140830970",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3012679458",
+        "email": "vvasquez688@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "LUCIANA ROBLEDO JIMENEZ",
+        "address": "CLL 58 #67-63",
+        "dni": "1152630214",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3014125252",
+        "email": "lrobledo630@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "JULIO CESAR GULY PABA",
+        "address": "CLL 84B # 37-69 APTO 3 BARRIO EL RUBY",
+        "dni": "74525631",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3002002020",
+        "email": "jpaba@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "INVERSIONES CHAU",
+        "address": "CLL 77 # 58 - 69 EDIFICIO MAFAFA",
+        "dni": "890452321-6",
+        "typeDni": "NIT",
+        "phone": "3002510",
+        "email": "servicioalcliente@inversioneschau.com.co",
+        "isActive": true
+    },
+    {
+        "names": "ABOGADOS Y ASOCIADOS PLIN",
+        "address": "CLL 82 # 23-63",
+        "dni": "600256321-6",
+        "typeDni": "NIT",
+        "phone": "3205206363",
+        "email": "abogadosyasociadosplin@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "FRANCISCO RODRIGUEZ POLO",
+        "address": "CLL 58 #67-63",
+        "dni": "86325142",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3205206363",
+        "email": "frodriguezpolo@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "VERENISE TARAZONA MARTINEZ",
+        "address": "CLL 28 #67-63 SOLEDAD-ATLANTICO",
+        "dni": "86325142",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3205206363",
+        "email": "vtarazonamartinez@gmail.com",
+        "isActive": true
+    },
+    {
+        "names": "JOSUE FERREIRA CHARRIS",
+        "address": "CLL 28 #67-63 SOLEDAD-ATLANTICO",
+        "dni": "8526320",
+        "typeDni": "CEDULA DE CIUDADANIA",
+        "phone": "3110000000",
+        "email": "jferreira@gmail.com",
+        "isActive": true
+    }
+]

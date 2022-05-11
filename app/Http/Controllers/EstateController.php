@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Auth;
  */
 class EstateController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -23,10 +19,14 @@ class EstateController extends Controller
      */
     public function index()
     {
-        $estates = Estate::paginate();
+        $estates = Estate::select('id','address')->get();
+        return response()->json($estates);
+        //return view('estate.index', compact('estates'))->with('i', (request()->input('page', 1) - 1) * $estates->perPage());
+    }
 
-        return view('estate.index', compact('estates'))
-            ->with('i', (request()->input('page', 1) - 1) * $estates->perPage());
+    public function findEstateAddress($address){
+        $estates = Estate::where('address',$address)->get();
+        return response()->json($estates);
     }
 
     /**
@@ -49,19 +49,11 @@ class EstateController extends Controller
     public function store(Request $request)
     {
         $user_id = Auth::id();
+        dd($request->all());
         request()->validate(Estate::$rules);
-
-        $estate = new Estate;
-        $estate->address = $request->address;
-        $estate->garajes = $request->garajes;
-        $estate->usefulRoom = $request->usefulRoom;
-        $estate->typeEstate = $request->typeEstate;
-        $estate->user_id = $user_id;
-        $estate->isActive = true;
-        $estate->save();
-        
-        return redirect()->route('estates.index')
-            ->with('success', 'Estate created successfully.');
+        $estate = Estate::create($request->all());
+        return response()->json($estate);        
+        //return redirect()->route('estates.index')->with('success', 'Estate created successfully.');
     }
 
     /**
@@ -73,8 +65,12 @@ class EstateController extends Controller
     public function show($id)
     {
         $estate = Estate::find($id);
-
-        return view('estate.show', compact('estate'));
+        $garages = $estate->garages;
+        return response()->json([
+            'estate' => $estate,
+            'garages' => $garages
+        ]);
+        //return view('estate.show', compact('estate'));
     }
 
     /**

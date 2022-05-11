@@ -24,12 +24,8 @@
                         </div>                        
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('contracts.store') }}"  role="form" enctype="multipart/form-data">
-                            @csrf
-
-                            @include('contract.form')
-
-                        </form>
+                        <example-component>
+                        </example-component>
                     </div>
                 </div>
             </div>

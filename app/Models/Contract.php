@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\{ ContractPerson, Person };
+use App\Models\{Document, Estate, Person };
 /**
  * Class Contract
  *
@@ -31,7 +31,6 @@ use App\Models\{ ContractPerson, Person };
  */
 class Contract extends Model
 {
-    
     static $rules = [
         'asegurable' => 'required',
 		'cannonLease' => 'required',
@@ -53,15 +52,7 @@ class Contract extends Model
      */
     public function contractDocuments()
     {
-        return $this->hasMany('App\Models\ContractDocument', 'contract_id', 'id');
-    }
-    
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
-     */
-    public function estates()
-    {
-        return $this->belongsToMany(Estate::class)->wherePivot('isActive',1);
+        return $this->belongsToMany(Document::class)->withPivot('fileName','route','isActive','created_at','updated_at')->wherePivot('isActive',1);
     }
     
     /**
@@ -69,7 +60,15 @@ class Contract extends Model
      */
     public function contractPerson()
     {
-        return $this->belongsToMany(Person::class)->withPivot('typePerson')->wherePivot('isActive',1);
+        return $this->belongsToMany(Person::class)->withPivot('typePerson','typeParticipant','legalPersonOfContractId','legalPersonOfPersonId','rentSplitPercentage','isIVAResponsible','isIntegralProtection','itIsGuaranteed','bankingEntity','accountType','accountNumber','isConsignmentPayment','user_id','isActive')->wherePivot('isActive',1);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\belongsToMany
+     */
+    public function contractEstates()
+    {
+        return $this->belongsToMany(Estate::class)->withPivot('user_id')->wherePivot('isActive',1);
     }
     
     /**

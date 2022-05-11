@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contract;
+use App\Models\{Contract, Document, ContractEstate};
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\App;
@@ -27,17 +27,23 @@ class ContractController extends Controller
     public function index()
     {
         $contracts = Contract::paginate();
-
-        return view('contract.index', compact('contracts'))
+        $documents = Document::all();
+        return view('contract.index', compact('contracts','documents'))
             ->with('i', (request()->input('page', 1) - 1) * $contracts->perPage());
+    }
+
+    public function getContractDocuments($contract_id){
+        return response()->json($contract_id);
     }
 
     public function printPDF($contract_id)
     {
         $contract = Contract::find($contract_id);
-        //dd($contract->estates);
+        $people = $contract->contractPerson;
+        $contractEstate = $contract->contractEstates;
+        //dd($contract->contractEstates);
         $pdf = App::make('dompdf.wrapper');
-        $pdf->loadView('contract.pdf', ['contract'=>$contract]);
+        $pdf->loadView('contract.pdf2', ['contract'=>$contract])->stream($contract->contractEstates[0]->address,'.pdf');
     
         return $pdf->stream();
     }
@@ -96,8 +102,11 @@ class ContractController extends Controller
     public function show($id)
     {
         $contract = Contract::find($id);
-
-        return view('contract.show', compact('contract'));
+        $contractEstate = $contract->contractEstates;
+        $contractPerson = $contract->contractPerson;
+        return response()->json([
+            'contract' => $contract
+        ]);
     }
 
     /**

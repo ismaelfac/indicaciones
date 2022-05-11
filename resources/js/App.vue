@@ -1,92 +1,115 @@
 <template>
-    <div>
-            <div class="row g-5">
-                <div class="col-md-5 col-lg-4 order-md-last">
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Contrato No</span>
-                    <span class="badge bg-primary rounded-pill">{{ asegurable }}</span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                            <div>
-                            <h6 class="my-0"><a href="#" @click="EstateView" class="btn btn-default">Inmueble</a></h6>
-                            <small class="text-muted">{{ estateAddress }}</small>
-                            </div>
-                            <span class="text-muted">INCOMPLETO</span>
-                        </li>
-                    </ul>
-                    <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-primary">Participantes</span>
-                    <span class="badge bg-primary rounded-pill">{{ numParticipants }}</span>
-                    </h4>
-                    <ul class="list-group mb-3">
-                        <li class="list-group-item d-flex justify-content-between lh-sm">
-                        <div>
-                            <h6 class="my-0"><a href="#" @click="PersonView" class="btn btn-default">Nuevo Participante</a></h6>
-                        </div>
-                    </li>
-                        <ListPerson v-for="participant in participants" :key="participant.id" :typePerson="participant.typePerson" :names="participant.names" :bussinessName="participant.bussinessName" :estate="participant.estate" />
-                    </ul>
-                </div>
-                <div class="col-md-7 col-lg-8">
-                    <h4 class="mb-3"></h4>
-                    <div v-if="estateOn"><EstateForm contractEditing="true"></EstateForm></div>
-                    <div v-if="personOn"><PersonForm></PersonForm></div>
-                </div>
-            </div>
+    <div class="row g-5">
+        <div class="col-md-5 col-lg-4 order-md-last">
+            <PanelContract 
+                :contract="contract" 
+                :participants="participants" 
+                :estate="estate"
+                @ContractView="ContractView" 
+                @EstateView="EstateView"
+                @PersonView="PersonView"
+                @DocumentsView="DocumentsView"/>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3"></h4>
+            <div v-if="contractOn"><ContractForm :contractId="contractInject"></ContractForm></div>
+            <div v-if="estateOn"><EstateForm :contract="contract" :estate="this.estateInject"></EstateForm></div>
+            <div v-if="personOn"><PersonForm :contractId="contractInject" :participant="this.participantInject"></PersonForm></div>
+            <div v-if="documentsOn"><Documents :typeDocuments="this.typeDocuments" :estateId="this.estateId" :contractId="this.contractId" :personId="this.personId"/></div>
+        </div>
     </div>
 </template>
 
 <script>
+import ContractForm from './components/contracts/index.vue';
 import EstateForm from './components/estates/index.vue';
 import PersonForm from './components/person/index.vue';
-import ListPerson from './components/person/List.vue';
+import PanelContract from './components/panelContract/index.vue';
+import Documents from "./components/documents/index.vue";
 export default {
     name: 'App',
+    props: ['documents', 'contractDocuments','contract', 'estate', 'participants'],
     components: {
+        PanelContract,
+        ContractForm,
         EstateForm,
         PersonForm,
-        ListPerson
+        Documents
+    },
+    mounted() {
+        this.contractDocuments;
+        this.emitter.on('Person-View', (participant) =>{
+            console.log('participant desde app.vue',participant);
+            this.PersonView(participant);
+        });
+        this.emitter.on('DocumentsView',(parameterDocument) => {
+            this.DocumentsView(parameterDocument);
+        });
     },
     data() {
         return {
+            contractInject: '',
+            participantInject: [],
+            estateInject: [],
+            contractOn: false,
             estateOn: false,
             personOn: false,
-            estateAddress: 'CLL 95 # 37-69 PISO 2',
+            documentsOn: false,
+            administrationOn: false,
             contractEditing: true,
-            asegurable: '',
-            numParticipants: 3,
-            participants: [
-                {
-                    id: 1,
-                    typePerson: 'ARRENDATARIO',
-                    bussinessName: 'COMERCIALIZADORA XYZ',
-                    estate: false
-                },
-                {
-                    id: 1,
-                    typePerson: 'DEUDOR',
-                    names: 'SINFOROSO GUMERSINDO',
-                    estate: true
-                },
-                {
-                    id: 1,
-                    typePerson: 'PROPIETARIO',
-                    names: 'ISMAEL ENRIQUE LASTRE ALVAREZ',
-                    estate: true
-                }
-            ]
+            typeDocuments: '',
+            estateId: '',
+            contractId: '',
+            personId: ''
         }
     },
     methods: {
-        EstateView(){
-            this.estateOn = !this.estateOn;
-            this.personOn = false;
-        },
-        PersonView(){
-            this.personOn = !this.personOn;
+        ContractView(contract){
+            this.contractInject = [];
+            this.participantInject = [];
+            this.estateInject = [];
+            this.contractOn = true;            
             this.estateOn = false;
+            this.personOn = false;
+            this.contractInject=contract;
+        },
+        EstateView(estate){
+            this.participantInject = [];
+            this.estateInject = [];
+            this.contractInject = [];
+            this.estateOn = true;            
+            this.contractOn = false;
+            this.personOn = false;
+            this.estateInject.push(estate);
+            
+        },
+        PersonView(participant){
+            this.participantInject = [];
+            this.estateInject = [];
+            this.contractInject = [];
+            this.personOn = true;            
+            this.contractOn = false;
+            this.estateOn = false;
+            this.participantInject.push(participant);
+            this.contractInject.push(this.contract.id);
+        },
+        DocumentsView(parameterDocument){
+            this.typeDocuments = '',
+            this.estateId = '',
+            this.contractId = '',
+            this.personId = '',
+            this.participantInject = [];
+            this.estateInject = [];
+            this.contractInject = [];
+            this.personOn = false;
+            this.contractOn = false;
+            this.estateOn = false;
+            this.documentsOn = true;
+            this.typeDocuments = parameterDocument[0];
+            this.estateId = parameterDocument[1];
+            this.contractId = parameterDocument[2];
+            this.personId = parameterDocument[3];
         }
-    }
+    }    
 }
 </script>

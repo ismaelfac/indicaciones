@@ -25,16 +25,92 @@
                             {{ $estate->address }}
                         </div>
                         <div class="form-group">
-                            <strong>Garajes:</strong>
-                            {{ $estate->garajes }}
-                        </div>
-                        <div class="form-group">
-                            <strong>Usefulroom:</strong>
-                            {{ $estate->usefulRoom }}
+                            <strong>Realestateregistration:</strong>
+                            {{ $estate->realEstateRegistration }}
                         </div>
                         <div class="form-group">
                             <strong>Typeestate:</strong>
                             {{ $estate->typeEstate }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Issharedelectricitymeter:</strong>
+                            {{ $estate->isSharedElectricityMeter }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Policyelectricity:</strong>
+                            {{ $estate->policyElectricity }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Issharedwatermeter:</strong>
+                            {{ $estate->isSharedWaterMeter }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Policywater:</strong>
+                            {{ $estate->policyWater }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Issharedgasmeter:</strong>
+                            {{ $estate->isSharedGasMeter }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Policygas:</strong>
+                            {{ $estate->policyGas }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Isgarage:</strong>
+                            {{ $estate->isGarage }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Isusefulroom:</strong>
+                            {{ $estate->isUseFulRoom }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Hasadministration:</strong>
+                            {{ $estate->hasAdministration }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Paymentinfavorof:</strong>
+                            {{ $estate->paymentInFavorOf }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Typedni:</strong>
+                            {{ $estate->typeDni }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Dni:</strong>
+                            {{ $estate->dni }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Email:</strong>
+                            {{ $estate->email }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Phone:</strong>
+                            {{ $estate->phone }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Bankingentity:</strong>
+                            {{ $estate->bankingEntity }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Accounttype:</strong>
+                            {{ $estate->accountType }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Accountnumber:</strong>
+                            {{ $estate->accountNumber }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Paymentdate:</strong>
+                            {{ $estate->paymentDate }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Namesadministrator:</strong>
+                            {{ $estate->namesAdministrator }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Annotations:</strong>
+                            {{ $estate->annotations }}
                         </div>
                         <div class="form-group">
                             <strong>User Id:</strong>

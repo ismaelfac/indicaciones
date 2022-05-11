@@ -9,15 +9,35 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property $id
  * @property $address
- * @property $garajes
- * @property $usefulRoom
+ * @property $realEstateRegistration
  * @property $typeEstate
+ * @property $isSharedElectricityMeter
+ * @property $policyElectricity
+ * @property $isSharedWaterMeter
+ * @property $policyWater
+ * @property $isSharedGasMeter
+ * @property $policyGas
+ * @property $isGarage
+ * @property $isUseFulRoom
+ * @property $hasAdministration
+ * @property $paymentInFavorOf
+ * @property $typeDni
+ * @property $dni
+ * @property $email
+ * @property $phone
+ * @property $bankingEntity
+ * @property $accountType
+ * @property $accountNumber
+ * @property $paymentDate
+ * @property $namesAdministrator
+ * @property $annotations
  * @property $user_id
  * @property $isActive
  * @property $created_at
  * @property $updated_at
  *
  * @property ContractEstate[] $contractEstates
+ * @property Garage[] $garages
  * @property User $user
  * @package App
  * @mixin \Illuminate\Database\Eloquent\Builder
@@ -27,8 +47,15 @@ class Estate extends Model
     
     static $rules = [
 		'address' => 'required',
+		'realEstateRegistration' => 'required',
 		'typeEstate' => 'required',
-		'isActive' => 'required',
+		'isSharedElectricityMeter' => 'required',
+		'policyElectricity' => 'required',
+		'isSharedWaterMeter' => 'required',
+		'policyWater' => 'required',
+		'isSharedGasMeter' => 'required',
+		'policyGas' => 'required',
+		'hasAdministration' => 'required',
     ];
 
     protected $perPage = 20;
@@ -38,7 +65,7 @@ class Estate extends Model
      *
      * @var array
      */
-    protected $fillable = ['address','garajes','usefulRoom','typeEstate','user_id','isActive'];
+    protected $fillable = ['address','realEstateRegistration','typeEstate','isSharedElectricityMeter','policyElectricity','isSharedWaterMeter','policyWater','isSharedGasMeter','policyGas','isGarage','isUseFulRoom','hasAdministration','paymentInFavorOf','typeDni','dni','email','phone','bankingEntity','accountType','accountNumber','paymentDate','namesAdministrator','annotations','user_id','isActive'];
 
 
     /**
@@ -47,6 +74,14 @@ class Estate extends Model
     public function contractEstates()
     {
         return $this->hasMany('App\Models\ContractEstate', 'estate_id', 'id');
+    }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function garages()
+    {
+        return $this->hasMany('App\Models\Garage', 'estate_id', 'id');
     }
     
     /**

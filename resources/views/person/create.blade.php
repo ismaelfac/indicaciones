@@ -13,15 +13,7 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span id="card_title">
-                                Crear Persona
-                            </span>
-
-                            <div class="float-right">
-                                <a class="btn btn-primary" href="{{ route('people.index') }}"> Cancelar</a>
-                            </div>
-                        </div>                        
+                        <span class="card-title">Create Person</span>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('people.store') }}"  role="form" enctype="multipart/form-data">
@@ -31,7 +23,6 @@
 
                         </form>
                     </div>
-                    
                 </div>
             </div>
         </div>

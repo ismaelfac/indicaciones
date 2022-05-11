@@ -26,6 +26,7 @@ class ContractDocument extends Model
     
     static $rules = [
 		'contract_id' => 'required',
+        'document_id' => 'required',
 		'fileName' => 'required',
 		'route' => 'required',
 		'user_id' => 'required',
@@ -39,7 +40,7 @@ class ContractDocument extends Model
      *
      * @var array
      */
-    protected $fillable = ['contract_id','fileName','route','user_id','isActive'];
+    protected $fillable = ['contract_id', 'document_id', 'fileName','route','user_id','isActive'];
 
 
     /**
@@ -48,6 +49,11 @@ class ContractDocument extends Model
     public function contract()
     {
         return $this->hasOne('App\Models\Contract', 'id', 'contract_id');
+    }
+
+    public function document()
+    {
+        return $this->hasOne('App\Models\Document', 'id', 'document_id');
     }
     
     /**
